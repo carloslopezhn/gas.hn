@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Política de Privacidad · Gas+</title>
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0b;color:#e8e9eb;font:15px/1.65 -apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:60px 28px 80px}
+h1{font-size:34px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
+.meta{color:#6b6d72;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.05em;margin-bottom:48px;text-transform:uppercase}
+h2{font-size:20px;font-weight:600;letter-spacing:-.01em;margin:36px 0 14px;color:#e8e9eb;border-top:1px solid #1f2024;padding-top:28px}
+h3{font-size:15px;font-weight:600;margin:20px 0 8px;color:#e8e9eb}
+p{color:#a1a3a8;margin-bottom:14px}
+ul{color:#a1a3a8;margin:8px 0 14px 24px}
+li{margin-bottom:6px}
+strong{color:#e8e9eb;font-weight:500}
+code{background:#16161a;border:1px solid #1f2024;border-radius:3px;padding:1px 6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:#00d68f}
+a{color:#00d68f;text-decoration:none;border-bottom:1px dashed #008855}
+a:hover{color:#00ed9d}
+.box{background:#111114;border:1px solid #1f2024;border-radius:6px;padding:20px 24px;margin:20px 0;color:#a1a3a8}
+.back{display:inline-block;margin-top:48px;padding:10px 18px;border:1px solid #2a2b30;border-radius:6px;color:#e8e9eb;font-size:13px;font-family:'JetBrains Mono',ui-monospace,monospace}
+.back:hover{border-color:#00d68f;color:#00d68f}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Política de Privacidad</h1>
+<div class="meta">Gas+ · Última actualización: 30 de junio de 2026</div>
+
+<p>Esta política describe cómo la aplicación <strong>Gas+</strong> (en adelante "la aplicación") recolecta, usa, almacena y protege la información de sus usuarios y de la estación de combustible donde opera.</p>
+
+<div class="box">
+<strong>Resumen.</strong> Gas+ es una aplicación operativa B2B para personal autorizado de estaciones de combustible. No recolecta datos personales del público general ni los comparte con terceros. Todo el procesamiento ocurre en el servidor on-premise de la propia estación.
+</div>
+
+<h2>1. Información que recolectamos</h2>
+
+<h3>Identificadores del operador</h3>
+<ul>
+<li><strong>Nombre y PIN</strong> del bombero o jefe de pista (asignados por el administrador de la estación).</li>
+<li><strong>ID de persona</strong> dentro del sistema de la estación.</li>
+<li><strong>Rol</strong> (bombero, jefe de pista, administrador).</li>
+</ul>
+
+<h3>Datos operativos generados durante el uso</h3>
+<ul>
+<li>Despachos de combustible registrados, facturas emitidas, turnos abiertos/cerrados.</li>
+<li>Acciones administrativas: cambios de precio, bloqueos de bomba, cierres de turno.</li>
+<li>Fecha, hora y autor de cada acción (para auditoría).</li>
+</ul>
+
+<h3>Datos técnicos del dispositivo</h3>
+<ul>
+<li>Versión de la aplicación (para detectar actualizaciones).</li>
+<li>Logs de errores anónimos almacenados localmente en el dispositivo (no se envían a terceros).</li>
+</ul>
+
+<h3>Lo que NO recolectamos</h3>
+<ul>
+<li>Ubicación GPS del dispositivo.</li>
+<li>Lista de contactos, fotos, archivos personales.</li>
+<li>Datos del cliente final que carga combustible (más allá del RTN cuando se factura, requerido por SAR Honduras).</li>
+<li>Identificadores publicitarios (la aplicación no muestra anuncios).</li>
+</ul>
+
+<h2>2. Cómo usamos la información</h2>
+<p>Los datos recolectados se usan exclusivamente para:</p>
+<ul>
+<li>Autenticar al personal y autorizar acciones según su rol.</li>
+<li>Registrar la operación de la estación (despachos, ventas, cierre de turno).</li>
+<li>Generar reportes y cuadres internos solicitados por el administrador.</li>
+<li>Cumplir con requisitos fiscales de la SAR (Servicio de Administración de Rentas de Honduras): emisión de factura con CAI, correlativo y RTN.</li>
+</ul>
+
+<h2>3. Dónde se almacenan los datos</h2>
+<p>Todos los datos se almacenan en el <strong>servidor on-premise de la propia estación</strong> (instalación física en el local del cliente). La aplicación se conecta a ese servidor mediante un túnel cifrado (TLS 1.2+ sobre Cloudflare Tunnel).</p>
+<p><strong>No usamos servicios de terceros</strong> para procesar, almacenar o analizar los datos operativos del cliente.</p>
+
+<h2>4. Compartición de datos</h2>
+<p>No compartimos, vendemos ni transferimos datos a terceros, salvo cuando es legalmente obligatorio:</p>
+<ul>
+<li>Facturas electrónicas pueden ser declaradas ante la SAR de Honduras (es responsabilidad del contribuyente, no de la aplicación).</li>
+<li>Ante una orden judicial competente.</li>
+</ul>
+
+<h2>5. Seguridad</h2>
+<ul>
+<li>Las credenciales del operador (PIN) se almacenan como hash <code>pbkdf2:sha256</code> en la base de datos del servidor.</li>
+<li>La comunicación entre la app y el servidor usa <strong>HTTPS/TLS</strong> a través de un túnel Cloudflare con autenticación de origen.</li>
+<li>El acceso al panel administrativo requiere credenciales separadas con rol explícito.</li>
+</ul>
+
+<h2>6. Retención de datos</h2>
+<p>Los datos operativos se retienen por <strong>7 años</strong> en cumplimiento de las regulaciones fiscales de Honduras. Pasado ese plazo, el administrador de la estación puede solicitar su eliminación.</p>
+<p>Los logs técnicos del dispositivo se conservan localmente y se eliminan automáticamente al desinstalar la aplicación o al usar la función "Borrar cache" desde Configuración.</p>
+
+<h2>7. Derechos del operador</h2>
+<p>El personal autorizado tiene derecho a:</p>
+<ul>
+<li>Solicitar al administrador de la estación el acceso a los datos personales que la aplicación tiene sobre él.</li>
+<li>Solicitar corrección de datos inexactos.</li>
+<li>Solicitar la eliminación de su cuenta cuando deje de pertenecer al personal de la estación.</li>
+</ul>
+
+<h2>8. Datos de menores</h2>
+<p>La aplicación está destinada exclusivamente a personal autorizado mayor de edad. No recolectamos intencionalmente datos de menores de 18 años.</p>
+
+<h2>9. Cambios en esta política</h2>
+<p>Podemos actualizar esta política en cualquier momento. La fecha de "última actualización" al inicio de este documento refleja la versión vigente. Los cambios sustanciales serán notificados a los administradores de las estaciones.</p>
+
+<h2>10. Contacto</h2>
+<p>Para consultas sobre privacidad o ejercer alguno de los derechos descritos arriba:</p>
+<ul>
+<li>Correo: <a href="mailto:contacto@gas.hn">contacto@gas.hn</a></li>
+<li>WhatsApp: <a href="https://wa.me/50432332785">+504 3233-2785</a></li>
+</ul>
+
+<a href="/" class="back">← Volver al sitio</a>
+
+</div>
+</body>
+</html>
