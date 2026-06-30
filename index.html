@@ -4,12 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Gas+ · Plataforma de gestión para estaciones de combustible</title>
-<meta name="description" content="Gas+ es una plataforma integral para la operación de estaciones de combustible: control en vivo de bombas, facturación CAI Honduras, cuadre por empleado, reconciliación de tanques y aplicación móvil para pista.">
+<meta name="description" content="Gas+ es el software para gasolineras y estaciones de servicio en Honduras: facturación CAI/SAR, control en vivo de bombas, cuadre de turno por empleado, control de inventario de combustible y reconciliación de tanques (ATG). Compatible con Gilbarco, Wayne Fusion DFS, Veeder-Root, ALVIC, EVO y Progauge.">
+<meta name="keywords" content="software para gasolineras, sistema para estaciones de servicio, software de gestión de gasolineras Honduras, sistema de facturación combustible Honduras, facturación CAI Honduras, facturación SAR gasolineras, control de combustible, control volumétrico gasolinera, cuadre de turno gasolinera, control de inventario de combustible, monitoreo de tanques de combustible, ATG, punto de venta para gasolineras, POS pista, Gilbarco, Wayne Fusion DFS, Veeder-Root, ALVIC, FORGAS, Colibrí, EVO, Progauge, Tatsuno, Tokheim, diesel, gasolina superior, gasolina regular, Tegucigalpa, San Pedro Sula, Centroamérica">
+<meta name="author" content="Gas+">
 <meta name="robots" content="index,follow">
-<meta property="og:title" content="Gas+">
-<meta property="og:description" content="Plataforma integral para estaciones de combustible.">
+<link rel="canonical" href="https://gas.hn/">
+<meta property="og:title" content="Gas+ · Software para gasolineras y estaciones de combustible">
+<meta property="og:description" content="Plataforma integral para estaciones de combustible: facturación CAI/SAR Honduras, control de bombas, cuadre de turno, inventario y reconciliación de tanques. Compatible con Gilbarco, Wayne Fusion DFS, Veeder-Root, ALVIC, EVO y Progauge.">
 <meta property="og:url" content="https://gas.hn">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="es_HN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gas+ · Software para gasolineras">
+<meta name="twitter:description" content="Facturación CAI/SAR, control de bombas, cuadre de turno y reconciliación de tanques para estaciones de combustible en Honduras.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gas+","applicationCategory":"BusinessApplication","operatingSystem":"Windows, Android, iOS, Web","offers":{"@type":"Offer","price":"0","priceCurrency":"HNL"},"description":"Software de gestión para gasolineras y estaciones de servicio en Honduras: facturación CAI/SAR, control en vivo de bombas, cuadre de turno, control de inventario de combustible y reconciliación de tanques (ATG).","areaServed":"HN","url":"https://gas.hn"}
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon-apple.svg">
 <link rel="mask-icon" href="/favicon.svg" color="#00d68f">
@@ -136,6 +146,18 @@ section{padding:80px 0;border-top:1px solid var(--border)}
 .cap{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--border-2);border-radius:999px;background:var(--bg-2);font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text);letter-spacing:.02em}
 .cap::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
 @media (max-width:720px){.compat{padding:40px 0}.compat-box{padding:26px}.compat-h{font-size:22px}.compat-split{grid-template-columns:1fr;gap:24px}}
+
+/* Equipos / sistemas soportados */
+.equipos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px}
+.eq-cat{border:1px solid var(--border);border-radius:8px;background:var(--bg-2);padding:24px}
+.eq-cat-t{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.eq-cat-h{font-size:15px;font-weight:600;color:var(--text);margin-bottom:16px;letter-spacing:-.01em}
+.eq-chips{display:flex;flex-wrap:wrap;gap:9px}
+.eq-chip{display:inline-flex;align-items:center;padding:6px 13px;border:1px solid var(--border-2);border-radius:6px;background:var(--bg-3);font-size:12.5px;color:var(--text);letter-spacing:-.005em;transition:.15s}
+.eq-chip:hover{border-color:var(--accent-dim);color:var(--accent)}
+.eq-note{margin-top:22px;font-size:13.5px;color:var(--text-3);font-family:'JetBrains Mono',monospace;letter-spacing:.01em}
+.eq-note em{color:var(--accent);font-style:normal}
+@media (max-width:720px){.equipos-grid{grid-template-columns:1fr}}
 
 /* Highlight inline en descripciones de módulos */
 .mod-d em{font-style:normal;color:var(--text);font-weight:500;border-bottom:1px dashed var(--accent-dim);padding-bottom:1px}
@@ -695,6 +717,51 @@ footer{border-top:1px solid var(--border);padding:36px 0 48px;color:var(--text-3
         <span class="cap">multi-tarifa por grade</span>
       </div>
     </div>
+
+    <div class="section-head" style="margin-top:64px">
+      <div class="section-tag mono">equipos y sistemas soportados</div>
+      <h2 class="section-h">Compatible con el hardware y el software de tu estación.</h2>
+      <p class="section-l">Gas+ se conecta a los surtidores, controladores de pista, medidores de tanque (ATG) y sistemas de punto de venta más usados en gasolineras de Honduras y Centroamérica.</p>
+    </div>
+    <div class="equipos-grid">
+      <div class="eq-cat">
+        <div class="eq-cat-t mono">surtidores / dispensadores</div>
+        <div class="eq-cat-h">Bombas despachadoras de combustible</div>
+        <div class="eq-chips">
+          <span class="eq-chip">Gilbarco</span>
+          <span class="eq-chip">Wayne</span>
+          <span class="eq-chip">Tatsuno</span>
+          <span class="eq-chip">Tokheim</span>
+        </div>
+      </div>
+      <div class="eq-cat">
+        <div class="eq-cat-t mono">controladores de pista</div>
+        <div class="eq-cat-h">Forecourt controllers / automatización</div>
+        <div class="eq-chips">
+          <span class="eq-chip">Wayne Fusion DFS</span>
+          <span class="eq-chip">DOMS</span>
+        </div>
+      </div>
+      <div class="eq-cat">
+        <div class="eq-cat-t mono">medición de tanques · atg</div>
+        <div class="eq-cat-h">Sondas y consolas de nivel de tanque</div>
+        <div class="eq-chips">
+          <span class="eq-chip">Veeder-Root</span>
+          <span class="eq-chip">EVO</span>
+          <span class="eq-chip">Progauge</span>
+        </div>
+      </div>
+      <div class="eq-cat">
+        <div class="eq-cat-t mono">software / pos de estación</div>
+        <div class="eq-cat-h">Sistemas de punto de venta y back-office</div>
+        <div class="eq-chips">
+          <span class="eq-chip">ALVIC</span>
+          <span class="eq-chip">FORGAS</span>
+          <span class="eq-chip">Colibrí</span>
+        </div>
+      </div>
+    </div>
+    <div class="eq-note">¿Tu equipo no aparece en la lista? <em>Lo integramos.</em> Gas+ se adapta al protocolo del fabricante.</div>
   </div>
 </section>
 
@@ -847,7 +914,7 @@ footer{border-top:1px solid var(--border);padding:36px 0 48px;color:var(--text-3
       <div class="spec"><div class="spec-l">Cliente móvil</div><div class="spec-v">Flutter · Android</div></div>
       <div class="spec"><div class="spec-l">Despliegue</div><div class="spec-v">Docker Compose</div></div>
       <div class="spec"><div class="spec-l">Conexión</div><div class="spec-v">VPN Tunnel</div></div>
-      <div class="spec"><div class="spec-l">Hardware soportado</div><div class="spec-v">Fusion DFS · Veeder-Root</div></div>
+      <div class="spec"><div class="spec-l">Hardware soportado</div><div class="spec-v">Fusion DFS · Veeder-Root · EVO · Progauge</div></div>
       <div class="spec"><div class="spec-l">Auditoría</div><div class="spec-v">Log inmutable</div></div>
       <div class="spec"><div class="spec-l">Cumplimiento</div><div class="spec-v">CAI SAR · Honduras</div></div>
     </div>
@@ -869,7 +936,7 @@ footer{border-top:1px solid var(--border);padding:36px 0 48px;color:var(--text-3
     <div class="footer-grid">
       <div>
         <div class="logo" style="font-size:16px;margin-bottom:12px">gas<span class="plus">+</span></div>
-        <div style="font-size:13px;color:var(--text-2);max-width:340px;line-height:1.5">Plataforma de gestión integral para estaciones de combustible.<br>Desarrollado y operado desde Honduras.</div>
+        <div style="font-size:13px;color:var(--text-2);max-width:340px;line-height:1.5">Software para gasolineras y estaciones de servicio: facturación CAI/SAR, control de bombas, cuadre de turno, inventario de combustible y reconciliación de tanques.<br>Desarrollado y operado desde Honduras.</div>
       </div>
       <div>
         <div class="footer-h">Producto</div>
@@ -883,9 +950,12 @@ footer{border-top:1px solid var(--border);padding:36px 0 48px;color:var(--text-3
         <a href="mailto:contacto@gas.hn" class="mono">contacto@gas.hn</a>
       </div>
     </div>
+    <div style="margin-top:36px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;line-height:1.7;color:var(--text-3);max-width:900px">
+      Gas+ es un <strong style="color:var(--text-2);font-weight:500">software para gasolineras y estaciones de servicio en Honduras</strong> y Centroamérica. Integra facturación electrónica CAI/SAR, control volumétrico de combustible, cuadre de turno por empleado, control de inventario, punto de venta de pista y monitoreo de tanques (ATG). Compatible con surtidores Gilbarco, Wayne, Tatsuno y Tokheim; controladores de pista Wayne Fusion DFS y DOMS; medición de tanques Veeder-Root, EVO y Progauge; y sistemas POS como ALVIC, FORGAS y Colibrí. Operación de diésel, gasolina superior y gasolina regular en Tegucigalpa, San Pedro Sula y todo el país.
+    </div>
     <div class="footer-bot">
       <div class="mono" style="color:var(--text-3)">© 2026 gas.hn · todos los derechos reservados</div>
-      <div class="mono" style="color:var(--text-3)">v2.12.7 · status: <span style="color:var(--accent)">operativo</span></div>
+      <div class="mono" style="color:var(--text-3)">v2.12.9 · status: <span style="color:var(--accent)">operativo</span></div>
     </div>
   </div>
 </footer>
