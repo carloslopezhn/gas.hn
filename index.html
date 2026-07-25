@@ -25,863 +25,359 @@
 <link rel="mask-icon" href="/favicon.svg" color="#00d68f">
 <meta name="theme-color" content="#0a0a0b">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0a0a0b;
-  --bg-2:#111114;
-  --bg-3:#16161a;
-  --border:#1f2024;
-  --border-2:#2a2b30;
-  --text:#e8e9eb;
-  --text-2:#a1a3a8;
-  --text-3:#6b6d72;
-  --accent:#00d68f;
-  --accent-dim:#008855;
-  --warn:#ffb547;
-  --danger:#ef4444;
-}
-html,body{background:var(--bg);color:var(--text);font:14px/1.55 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
-.mono{font-family:'JetBrains Mono','SF Mono',ui-monospace,monospace;font-feature-settings:"ss01","cv11"}
-a{color:inherit;text-decoration:none}
-button{font:inherit;background:none;border:0;color:inherit;cursor:pointer}
-.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
-.sep{height:1px;background:var(--border);margin:0;border:0}
+  :root{
+    --mono: ui-monospace,'JetBrains Mono','SF Mono','Cascadia Code',Menlo,Consolas,monospace;
+    --sans: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --green:#00d68f; --green-ink:#04835c; --amber:#ffb547;
+    --ink:#0a0d0b; --ink-card:#141a16; --ink-line:#26302a;
+    --paper:#ffffff; --paper-2:#f3f6f3; --paper-line:#e2e8e3;
+    --forest:#08251b; --forest-card:#0e352752; --forest-line:#1c5541;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--ink);color:#e8efe9;font-family:var(--sans);
+       font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
 
-/* ─── nav ─── */
-nav{position:sticky;top:0;z-index:50;background:rgba(10,10,11,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-family:'JetBrains Mono','SF Mono',monospace;font-weight:800;font-size:26px;letter-spacing:-.03em;display:inline-flex;align-items:baseline;line-height:1}
-.logo .plus{color:var(--accent);font-size:30px;margin-left:1px;text-shadow:0 0 14px rgba(0,214,143,.5);transition:color .15s}
-@keyframes plusColorCycle{0%{color:#00d68f}14%{color:#ffb547}28%{color:#5b9eff}42%{color:#ef4444}56%{color:#a855f7}70%{color:#22d3ee}84%{color:#fb923c}100%{color:#00d68f}}
-.logo:hover .plus{animation:plusColorCycle .8s linear infinite;text-shadow:0 0 18px currentColor}
-.nav-links{display:flex;gap:30px;font-size:13px;color:var(--text-2)}
-.nav-links a:hover{color:var(--text)}
-.nav-cta{padding:7px 14px;border:1px solid var(--border-2);border-radius:6px;font-size:12.5px;color:var(--text);transition:.15s}
-.nav-cta:hover{border-color:var(--accent);color:var(--accent)}
-.nav-cta-wa{padding:7px 9px;display:inline-flex;align-items:center;color:#25D366}
-.nav-cta-wa:hover{border-color:#25D366;color:#25D366;box-shadow:0 0 12px rgba(37,211,102,.25)}
-@media (max-width:720px){.nav-links{display:none}}
+  /* ---- band system: each band sets local tokens, children inherit ---- */
+  .band{background:var(--bg);color:var(--fg);border-top:1px solid var(--line)}
+  .band--dark   {--bg:var(--ink);   --fg:#e8efe9; --muted:#8fa096; --line:var(--ink-line);   --card:var(--ink-card);   --card-line:var(--ink-line); --accent:var(--green); --accent-txt:var(--green)}
+  .band--white  {--bg:var(--paper);  --fg:#0e1512; --muted:#5c6b62; --line:var(--paper-line); --card:#ffffff;            --card-line:var(--paper-line); --accent:var(--green); --accent-txt:var(--green-ink)}
+  .band--light  {--bg:var(--paper-2);--fg:#0e1512; --muted:#5c6b62; --line:var(--paper-line); --card:#ffffff;            --card-line:var(--paper-line); --accent:var(--green); --accent-txt:var(--green-ink)}
+  .band--green  {--bg:var(--forest); --fg:#eafff6; --muted:#8fcdb6; --line:var(--forest-line);--card:var(--forest-card); --card-line:var(--forest-line);--accent:var(--green); --accent-txt:var(--green)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .pad{padding:96px 0}
+  @media (max-width:640px){.pad{padding:64px 0}}
 
-/* ─── hero ─── */
-.hero{padding:84px 0 64px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 380px at 50% -10%,rgba(0,214,143,.06),transparent 60%);pointer-events:none}
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:22px}
-.eyebrow::before{content:"▎ ";color:var(--accent)}
-.h1{font-size:54px;line-height:1.05;font-weight:500;letter-spacing:-.025em;max-width:900px;margin-bottom:22px}
-.h1 em{font-style:normal;color:var(--accent)}
-.lede{font-size:17px;color:var(--text-2);max-width:680px;line-height:1.55}
-.hero-actions{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:6px;font-size:13.5px;font-weight:500;transition:.15s;border:1px solid transparent}
-.btn-primary{background:var(--accent);color:#001a10}
-.btn-primary:hover{background:#00ed9d}
-.btn-ghost{border-color:var(--border-2);color:var(--text)}
-.btn-ghost:hover{border-color:var(--text-2)}
-.btn-wa{border-color:#25D366;color:#25D366}
-.btn-wa:hover{background:rgba(37,211,102,.08);border-color:#34e379;color:#34e379}
-.btn-wa svg{flex-shrink:0}
-.btn .arrow{font-size:15px;line-height:1}
+  /* ---- shared components (styled through tokens) ---- */
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+           color:var(--accent-txt);display:inline-flex;align-items:center;gap:10px;margin:0 0 20px}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
+  h1,h2,h3{font-family:var(--mono);font-weight:600;text-wrap:balance;margin:0;letter-spacing:-.01em}
+  .h2{font-size:clamp(27px,4vw,40px);line-height:1.12;color:var(--fg)}
+  .lead{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:62ch;margin:18px 0 0}
+  .kicker-num{font-family:var(--mono);color:var(--accent-txt);opacity:.8}
 
-/* Sello presencia */
-.presencia{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:9px}
-.presencia .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse 1.8s ease-in-out infinite;flex-shrink:0}
-.presencia strong{color:var(--text-2);font-weight:500}
+  .chip{font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:5px 11px;border-radius:999px;
+        border:1px solid var(--card-line);color:var(--muted);background:color-mix(in srgb,var(--card) 60%,transparent);white-space:nowrap}
+  .chip--go{color:var(--accent-txt);border-color:color-mix(in srgb,var(--accent) 45%,var(--card-line))}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
 
-/* ─── data strip ─── */
-.strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 0;margin-top:60px}
-.strip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
-.kpi{display:flex;flex-direction:column;gap:6px}
-.kpi-v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--text)}
-.kpi-l{font-size:11.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;font-family:'JetBrains Mono',monospace}
-@media (max-width:720px){.h1{font-size:36px}.strip-grid{grid-template-columns:repeat(2,1fr);gap:22px}}
+  .btn{font-family:var(--mono);font-size:14px;letter-spacing:.02em;padding:13px 22px;border-radius:8px;
+       display:inline-flex;align-items:center;gap:9px;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .15s ease,border-color .15s}
+  .btn-primary{background:var(--green);color:#062a1e;font-weight:600}
+  .btn-primary:hover{transform:translateY(-2px);background:#12e6a0}
+  .btn-ghost{border-color:var(--card-line);color:var(--fg);background:transparent}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-txt);transform:translateY(-2px)}
+  .btn-wa{background:#25d366;color:#04220f;font-weight:600}
+  .btn-wa:hover{transform:translateY(-2px);background:#33e074}
+  :focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
 
-/* ─── sections ─── */
-section{padding:80px 0;border-top:1px solid var(--border)}
-.section-head{margin-bottom:54px;max-width:760px}
-.section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
-.section-h{font-size:32px;font-weight:500;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
-.section-l{font-size:15.5px;color:var(--text-2);line-height:1.6}
+  /* ---- nav ---- */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(10,13,11,.86);backdrop-filter:blur(12px);
+       border-bottom:1px solid var(--ink-line)}
+  .nav .wrap{display:flex;align-items:center;gap:24px;height:64px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:20px;color:#fff;letter-spacing:-.02em}
+  .brand b{color:var(--green)}
+  .nav-links{display:flex;gap:26px;margin-left:14px}
+  .nav-links a{font-family:var(--mono);font-size:13.5px;color:#9fb0a6;letter-spacing:.01em}
+  .nav-links a:hover{color:#fff}
+  .nav-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+  @media (max-width:820px){.nav-links{display:none}}
 
-/* ─── modules grid ─── */
-.mods{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg-2)}
-.mod{padding:28px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;transition:.2s;cursor:default}
-.mod:nth-child(3n){border-right:0}
-.mod:nth-last-child(-n+3){border-bottom:0}
-.mod:hover{background:var(--bg-3)}
-.mod-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-2);border-radius:6px;color:var(--accent);margin-bottom:18px;background:rgba(0,214,143,.04);transition:.2s}
-.mod:hover .mod-icon{border-color:var(--accent);background:rgba(0,214,143,.1);box-shadow:0 0 14px rgba(0,214,143,.15)}
-.mod-icon svg{width:18px;height:18px}
-.mod-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.08em;margin-bottom:14px}
-.mod-h{font-size:16.5px;font-weight:600;margin-bottom:10px;letter-spacing:-.01em}
-.mod-d{font-size:13.5px;color:var(--text-2);line-height:1.55;margin-bottom:18px;min-height:62px}
-.mod-meta{display:flex;gap:14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-3);letter-spacing:.05em;padding-top:14px;border-top:1px solid var(--border)}
-.mod-meta span::before{content:"·  ";color:var(--accent-dim);margin-right:2px}
-.mod-meta span:first-child::before{display:none}
-@media (max-width:920px){.mods{grid-template-columns:repeat(2,1fr)}.mod{border-right:0;border-bottom:1px solid var(--border)!important}.mod:nth-child(2n){border-right:0}}
-@media (max-width:560px){.mods{grid-template-columns:1fr}}
+  /* ---- hero ---- */
+  .hero{position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(60% 70% at 78% 30%,rgba(0,214,143,.14),transparent 70%);}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding:104px 0 92px}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px;padding:72px 0}}
+  .h1{font-family:var(--mono);font-weight:600;font-size:clamp(38px,6.2vw,66px);line-height:1.02;letter-spacing:-.02em;color:#fff;text-wrap:balance}
+  .h1 .accent{color:var(--green)}
+  .hero-sub{color:#9fb0a6;max-width:52ch;margin:22px 0 32px;font-size:clamp(16px,1.7vw,19px)}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+  .platforms{display:flex;flex-wrap:wrap;gap:20px;align-items:center;padding-top:26px;border-top:1px solid var(--ink-line)}
+  .platforms span{font-family:var(--mono);font-size:12.5px;color:#7f9188;letter-spacing:.04em}
+  .platforms .pl-label{color:#5c6b62;text-transform:uppercase;letter-spacing:.2em;font-size:11px}
 
-/* ─── plataformas soportadas (strip) ─── */
-.platforms{padding:34px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2)}
-.platforms-wrap{display:flex;align-items:center;justify-content:center;gap:42px;flex-wrap:wrap}
-.platforms-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.14em;text-transform:uppercase}
-.plat{display:inline-flex;align-items:center;gap:10px;color:var(--text-2);font-size:14px;font-weight:500;transition:color .15s}
-.plat:hover{color:var(--text)}
-.plat svg{flex-shrink:0;width:18px;height:18px}
-@media (max-width:560px){.platforms-wrap{gap:22px}}
+  /* dispenser readout instrument */
+  .meter{background:linear-gradient(180deg,#0e1512,#0a0d0b);border:1px solid var(--ink-line);border-radius:16px;
+         padding:22px;box-shadow:0 30px 80px -40px rgba(0,214,143,.35);position:relative}
+  .meter-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);
+             font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7f9188;margin-bottom:16px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);display:inline-block;margin-right:7px;vertical-align:middle}
+  .readout{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .readout .row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px dashed var(--ink-line)}
+  .readout .row:last-child{border-bottom:0}
+  .readout .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7f9188}
+  .readout .v{font-size:clamp(26px,3.4vw,38px);color:#fff;font-weight:500;letter-spacing:-.01em}
+  .readout .v small{font-size:14px;color:var(--green);margin-left:6px;letter-spacing:.05em}
+  .meter-foot{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+  .grade{font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:6px;border:1px solid var(--ink-line);color:#9fb0a6}
+  .grade.active{color:#062a1e;background:var(--amber);border-color:var(--amber);font-weight:600}
 
-/* ─── compatibilidad / adaptabilidad (callout destacado) ─── */
-.compat{padding:56px 0;background:linear-gradient(180deg,var(--bg-2) 0%,var(--bg) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.compat-box{border:1px solid var(--accent-dim);border-radius:10px;background:linear-gradient(135deg,rgba(0,214,143,.05) 0%,transparent 60%);padding:44px;position:relative;overflow:hidden}
-.compat-box::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
-.compat-box::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,214,143,.4),transparent)}
-.compat-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
-.compat-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 1.8s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.compat-h{font-size:28px;font-weight:500;letter-spacing:-.025em;line-height:1.22;margin-bottom:34px;max-width:820px}
-.compat-h em{font-style:normal;color:var(--accent)}
-.compat-split{display:grid;grid-template-columns:1fr 1fr;gap:36px}
-.compat-col-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.1em;margin-bottom:12px;text-transform:uppercase}
-.compat-col-h{font-size:18px;font-weight:600;margin-bottom:10px;color:var(--text);letter-spacing:-.01em}
-.compat-col-d{font-size:14px;color:var(--text-2);line-height:1.65}
-.compat-caps{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
-.cap{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--border-2);border-radius:999px;background:var(--bg-2);font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text);letter-spacing:.02em}
-.cap::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
-@media (max-width:720px){.compat{padding:40px 0}.compat-box{padding:26px}.compat-h{font-size:22px}.compat-split{grid-template-columns:1fr;gap:24px}}
+  /* ---- generic layouts ---- */
+  .section-head{max-width:70ch}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .grid-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media (max-width:860px){.grid-2,.grid-3,.grid-mods{grid-template-columns:1fr}}
+  @media (max-width:860px) and (min-width:561px){.grid-3,.grid-mods{grid-template-columns:1fr 1fr}}
 
-/* Equipos / sistemas soportados */
-.equipos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px}
-.eq-cat{border:1px solid var(--border);border-radius:8px;background:var(--bg-2);padding:24px}
-.eq-cat-t{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
-.eq-cat-h{font-size:15px;font-weight:600;color:var(--text);margin-bottom:16px;letter-spacing:-.01em}
-.eq-chips{display:flex;flex-wrap:wrap;gap:9px}
-.eq-chip{display:inline-flex;align-items:center;padding:6px 13px;border:1px solid var(--border-2);border-radius:6px;background:var(--bg-3);font-size:12.5px;color:var(--text);letter-spacing:-.005em;transition:.15s}
-.eq-chip:hover{border-color:var(--accent-dim);color:var(--accent)}
-.eq-note{margin-top:22px;font-size:13.5px;color:var(--text-3);font-family:'JetBrains Mono',monospace;letter-spacing:.01em}
-.eq-note em{color:var(--accent);font-style:normal}
-@media (max-width:720px){.equipos-grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--card-line);border-radius:14px;padding:26px}
+  .card h3{font-size:19px;color:var(--fg);margin-bottom:8px}
+  .card p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+  .card .num{font-family:var(--mono);font-size:12px;color:var(--accent-txt);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;display:block}
 
-/* Highlight inline en descripciones de módulos */
-.mod-d em{font-style:normal;color:var(--text);font-weight:500;border-bottom:1px dashed var(--accent-dim);padding-bottom:1px}
+  /* case A/B */
+  .case{position:relative;overflow:hidden}
+  .case .tag{font-family:var(--mono);font-size:12px;color:var(--accent-txt);letter-spacing:.02em;margin-bottom:14px;display:block}
+  .case h3{font-size:22px;margin-bottom:10px}
+  .case p{font-size:15.5px}
 
-/* ─── station SVG (full width) + cards debajo ─── */
-.station-svg{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:24px;overflow:hidden}
-.station-svg svg{width:100%;height:auto;display:block;max-height:560px}
-.arch-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.arch-item{padding:22px;border:1px solid var(--border);border-radius:6px;background:var(--bg-2)}
-.arch-item-t{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.08em;margin-bottom:8px;text-transform:uppercase}
-.arch-item-h{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
-.arch-item-d{font-size:13px;color:var(--text-2);line-height:1.55}
-@media (max-width:820px){.arch-list{grid-template-columns:1fr}.station-svg{padding:14px}}
+  /* module card */
+  .mod{background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:22px;transition:border-color .2s,transform .2s}
+  .mod:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--card-line));transform:translateY(-3px)}
+  .mod .mhead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .mod .mnum{font-family:var(--mono);font-size:12px;color:var(--accent-txt);letter-spacing:.1em}
+  .mod .mcat{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
+  .mod h3{font-size:17px;color:var(--fg);margin-bottom:8px}
+  .mod p{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.5}
 
-/* ─── modos cliente ─── */
-.modes{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.mode{padding:36px;background:var(--bg-2);position:relative}
-.mode:first-child{border-right:1px solid var(--border)}
-.mode-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:.12em;margin-bottom:14px}
-.mode-h{font-size:20px;font-weight:600;margin-bottom:12px;letter-spacing:-.01em}
-.mode-d{font-size:14px;color:var(--text-2);line-height:1.6;margin-bottom:22px}
-.mode-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.mode-list li{font-size:13.5px;color:var(--text-2);padding-left:18px;position:relative}
-.mode-list li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:1px;background:var(--accent)}
-@media (max-width:720px){.modes{grid-template-columns:1fr}.mode:first-child{border-right:0;border-bottom:1px solid var(--border)}}
+  /* checklist */
+  .checks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+  .checks li{display:flex;gap:11px;font-size:15px;color:var(--fg)}
+  .checks li::before{content:"";flex:0 0 18px;height:18px;margin-top:3px;border-radius:5px;
+    background:color-mix(in srgb,var(--accent) 18%,transparent);
+    border:1px solid var(--accent);
+    background-image:linear-gradient(45deg,transparent 46%,var(--accent) 46%,var(--accent) 54%,transparent 54%),linear-gradient(-45deg,transparent 46%,var(--accent) 46%,var(--accent) 54%,transparent 54%);
+    background-size:9px 9px;background-position:center;background-repeat:no-repeat}
 
-/* ─── spec sheet ─── */
-.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg-2)}
-.spec{padding:24px;border-right:1px solid var(--border)}
-.spec:last-child{border-right:0}
-.spec-l{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
-.spec-v{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--text);letter-spacing:-.01em}
-@media (max-width:720px){.specs{grid-template-columns:repeat(2,1fr)}.spec{border-bottom:1px solid var(--border)}.spec:nth-child(odd){border-right:1px solid var(--border)}.spec:nth-last-child(-n+2){border-bottom:0}}
+  /* hardware brand rows */
+  .hw{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+  @media (max-width:860px){.hw{grid-template-columns:1fr}}
+  .hw .cat{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-txt);margin-bottom:6px}
+  .hw .sub{color:var(--muted);font-size:13.5px;margin-bottom:16px}
+  .hw .brands{display:flex;flex-wrap:wrap;gap:9px}
+  .hw .brand-chip{font-family:var(--mono);font-size:13px;padding:8px 13px;border:1px solid var(--card-line);border-radius:8px;background:var(--card);color:var(--fg)}
+  .hw-note{margin-top:26px;font-size:14.5px;color:var(--muted)}
+  .hw-note b{color:var(--accent-txt);font-family:var(--mono);font-weight:600}
 
-/* ─── CTA ─── */
-.cta{text-align:center;padding:120px 0}
-.cta-h{font-size:38px;font-weight:500;letter-spacing:-.025em;margin-bottom:16px;line-height:1.15}
-.cta-l{font-size:16px;color:var(--text-2);max-width:520px;margin:0 auto 36px;line-height:1.6}
-.cta-mail{display:inline-flex;align-items:center;gap:12px;padding:14px 24px;border:1px solid var(--border-2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text);transition:.2s}
-.cta-mail:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 4px rgba(0,214,143,.08)}
-.cta-mail .at{color:var(--text-3)}
+  /* spec sheet */
+  .specs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--card-line);border:1px solid var(--card-line);border-radius:14px;overflow:hidden}
+  @media (max-width:860px){.specs{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:440px){.specs{grid-template-columns:1fr}}
+  .spec{background:var(--bg);padding:22px}
+  .spec .sk{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+  .spec .sv{font-family:var(--mono);font-size:16px;color:var(--fg)}
 
-/* ─── footer ─── */
-footer{border-top:1px solid var(--border);padding:36px 0 48px;color:var(--text-3);font-size:12.5px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;align-items:start}
-.footer-h{font-size:11px;color:var(--text-2);letter-spacing:.08em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:14px}
-.footer-grid a{display:block;color:var(--text-2);padding:4px 0;font-size:13px}
-.footer-grid a:hover{color:var(--text)}
-.footer-bot{margin-top:36px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px}
-@media (max-width:720px){.footer-grid{grid-template-columns:1fr;gap:24px}}
+  /* arch columns */
+  .arch{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media (max-width:860px){.arch{grid-template-columns:1fr}}
+  .arch .col{border-left:2px solid var(--accent);padding:4px 0 4px 20px}
+  .arch .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .arch h3{font-size:18px;color:var(--fg);margin-bottom:8px}
+  .arch p{margin:0;color:var(--muted);font-size:14.5px}
+
+  /* CTA band */
+  .cta-band{text-align:center}
+  .cta-band .h2{margin-bottom:16px}
+  .cta-band .lead{margin:0 auto 30px}
+  .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* footer */
+  .foot{color:#8fa096;font-size:14px}
+  .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;padding:56px 0 40px}
+  @media (max-width:760px){.foot-top{grid-template-columns:1fr}}
+  .foot h4{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5c6b62;margin:0 0 14px}
+  .foot a{display:block;color:#9fb0a6;padding:5px 0;font-size:14px}
+  .foot a:hover{color:var(--green)}
+  .foot .seo{font-size:12.5px;color:#5c6b62;line-height:1.7;max-width:58ch;margin-top:14px}
+  .foot-bottom{border-top:1px solid var(--ink-line);padding:20px 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+               font-family:var(--mono);font-size:12px;color:#5c6b62}
+  .status-ok{color:var(--green)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
-
-<nav>
-  <div class="wrap nav">
-    <a href="/" class="logo">gas<span class="plus">+</span></a>
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">gas<b>+</b></a>
     <div class="nav-links">
       <a href="#modulos">Módulos</a>
       <a href="#arquitectura">Arquitectura</a>
-      <a href="#modos">Implementación</a>
-      <a href="https://demo.gas.hn" target="_blank" rel="noopener">Plataforma</a>
+      <a href="#implementacion">Implementación</a>
+      <a href="#hardware">Compatibilidad</a>
     </div>
-    <a href="mailto:contacto@gas.hn" class="nav-cta mono">contacto@gas.hn</a>
-    <a href="https://wa.me/50432332785?text=Hola%2C%20me%20interesa%20Gas%2B" target="_blank" rel="noopener" class="nav-cta nav-cta-wa" title="WhatsApp · 3233-2785" aria-label="WhatsApp 3233-2785">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-    </a>
+    <div class="nav-right">
+      <a class="btn btn-primary" href="#contacto">Solicitar demostración</a>
+    </div>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow mono">v2.12 · producción · Honduras</div>
-    <h1 class="h1">Plataforma de gestión para <em>estaciones de combustible</em>.</h1>
-    <div class="station-svg">
-<svg viewBox="0 0 1100 540" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono,monospace" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama animado: estacion con tres tanques (super, diesel, regular) alimentando tres bombas (cada una con su producto: super, diesel, regular), todas gobernadas por un sistema local que sincroniza con la nube y dispositivos remotos.">
-  <defs>
-    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#16161a" stroke-width="0.5"/>
-    </pattern>
-    <linearGradient id="liqSuper" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffb547" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#ffb547" stop-opacity="0.42"/>
-    </linearGradient>
-    <linearGradient id="liqDiesel" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#00d68f" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#00d68f" stop-opacity="0.45"/>
-    </linearGradient>
-    <linearGradient id="liqRegular" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#5b9eff" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#5b9eff" stop-opacity="0.5"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#00d68f" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#00d68f" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-
-  <rect width="1100" height="540" fill="url(#grid)"/>
-
-  <!-- ─── REMOTOS (arriba) — laptop y móvil delineados, claros ─── -->
-  <!-- LAPTOP del administrador -->
-  <g>
-    <!-- Tapa con pantalla -->
-    <rect x="32" y="26" width="116" height="64" rx="3" fill="#0a0a0b" stroke="#c0c2c6" stroke-width="1.4"/>
-    <!-- Marco interior pantalla -->
-    <rect x="38" y="32" width="104" height="48" rx="1.5" fill="#0f0f12" stroke="#3a3b40" stroke-width="0.6"/>
-    <!-- Notch / cámara -->
-    <circle cx="90" cy="29" r="0.9" fill="#3a3b40"/>
-    <!-- Contenido pantalla -->
-    <text x="90" y="50" text-anchor="middle" fill="#e8e9eb" font-size="10" font-weight="600">administrador</text>
-    <text x="90" y="64" text-anchor="middle" fill="#00d68f" font-size="8">● panel web</text>
-    <text x="90" y="76" text-anchor="middle" fill="#6b6d72" font-size="8">acceso remoto</text>
-    <!-- Base trapezoidal (laptop abierto) -->
-    <path d="M 22 90 L 158 90 L 164 100 L 16 100 Z" fill="#16161a" stroke="#c0c2c6" stroke-width="1.4"/>
-    <!-- Trackpad -->
-    <rect x="78" y="93" width="24" height="3.5" rx="1" fill="#1f2024" stroke="#3a3b40" stroke-width="0.4"/>
-  </g>
-
-  <!-- MÓVIL DEL ADMIN (cerca del laptop, SÍ pasa por VPN) -->
-  <g>
-    <rect x="158" y="26" width="46" height="84" rx="8" fill="#0a0a0b" stroke="#c0c2c6" stroke-width="1.3"/>
-    <rect x="173" y="30" width="16" height="2" rx="1" fill="#3a3b40"/>
-    <rect x="161" y="36" width="40" height="60" rx="2" fill="#0f0f12" stroke="#3a3b40" stroke-width="0.5"/>
-    <text x="181" y="50" text-anchor="middle" fill="#e8e9eb" font-size="7" font-weight="600">gas+</text>
-    <text x="181" y="60" text-anchor="middle" fill="#00d68f" font-size="6">admin</text>
-    <circle cx="181" cy="74" r="2" fill="#00d68f">
-      <animate attributeName="opacity" values="1;0.3;1" dur="1.3s" repeatCount="indefinite"/>
-    </circle>
-    <text x="181" y="86" text-anchor="middle" fill="#6b6d72" font-size="5.5">remoto</text>
-    <rect x="173" y="101" width="16" height="2" rx="1" fill="#3a3b40"/>
-  </g>
-
-  <!-- MÓVIL DEL BOMBERO (top derecho, NO pasa por VPN — red local pista) -->
-  <g>
-    <rect x="980" y="20" width="80" height="138" rx="12" fill="#0a0a0b" stroke="#c0c2c6" stroke-width="1.5"/>
-    <rect x="1008" y="26" width="26" height="2.6" rx="1.3" fill="#3a3b40"/>
-    <circle cx="1046" cy="28" r="1.6" fill="#3a3b40"/>
-    <rect x="986" y="34" width="68" height="106" rx="2" fill="#0f0f12" stroke="#3a3b40" stroke-width="0.6"/>
-    <text x="990" y="43" fill="#6b6d72" font-size="6.5">9:41</text>
-    <circle cx="1049" cy="41" r="1.3" fill="#00d68f"/>
-    <text x="1020" y="58" text-anchor="middle" fill="#e8e9eb" font-size="11" font-weight="700">gas+</text>
-    <text x="1020" y="70" text-anchor="middle" fill="#00d68f" font-size="7.5">app bombero</text>
-    <line x1="994" y1="76" x2="1046" y2="76" stroke="#2a2b30" stroke-width="0.5"/>
-    <!-- ícono surtidor -->
-    <rect x="1004" y="84" width="32" height="26" rx="2" fill="none" stroke="#00d68f" stroke-width="1.2"/>
-    <rect x="1008" y="88" width="14" height="8" fill="#0f0f12"/>
-    <circle cx="1012" cy="104" r="1.3" fill="#00d68f"><animate attributeName="opacity" values="1;0.3;1" dur="0.9s" repeatCount="indefinite"/></circle>
-    <text x="1029" y="106" fill="#a1a3a8" font-size="5">B-01</text>
-    <!-- "local" badge -->
-    <rect x="993" y="116" width="54" height="11" rx="5" fill="rgba(0,214,143,.15)" stroke="#00d68f" stroke-width="0.6"/>
-    <text x="1020" y="124" text-anchor="middle" fill="#00d68f" font-size="6" font-weight="600">LOCAL · PISTA</text>
-    <rect x="1010" y="149" width="20" height="2" rx="1" fill="#3a3b40"/>
-  </g>
-
-  <!-- ─── VPN (centro arriba) —  ─── -->
-  <g>
-    <rect x="485" y="40" width="130" height="50" rx="25" fill="#0f0f12" stroke="#2a2b30"/>
-    <text x="550" y="60" text-anchor="middle" fill="#a1a3a8" font-size="13" font-weight="600">VPN</text>
-    <text x="550" y="76" text-anchor="middle" fill="#6b6d72" font-size="9">acceso cifrado</text>
-  </g>
-
-  <!-- Conexión laptop admin → VPN -->
-  <path id="path-admin" d="M 148 64 Q 320 56 485 64" stroke="#2a2b30" stroke-width="1" fill="none"/>
-  <!-- Conexión admin-mobile → VPN -->
-  <path id="path-amob" d="M 204 64 Q 340 56 485 64" stroke="#2a2b30" stroke-width="1" fill="none"/>
-  <circle r="3" fill="#00d68f">
-    <animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#path-admin"/></animateMotion>
-    <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite"/>
-  </circle>
-  <circle r="3" fill="#00d68f">
-    <animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#path-amob"/></animateMotion>
-    <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- ─── SISTEMA LOCAL (centrado con B-02 DIESEL, cx=510) ─── -->
-  <g>
-    <rect x="425" y="148" width="170" height="96" rx="8" fill="#0a0a0b" stroke="#00d68f" stroke-width="1.5"/>
-    <circle cx="510" cy="196" r="50" fill="url(#glow)" opacity="0.6"/>
-    <!-- LOGO grande "gas+" con "+" cambiando de color sin parar -->
-    <text x="510" y="202" text-anchor="middle" font-family="'JetBrains Mono','SF Mono',monospace" font-size="38" font-weight="800" letter-spacing="-1">
-      <tspan fill="#e8e9eb">gas</tspan><tspan dx="-2"><animate attributeName="fill" values="#00d68f;#ffb547;#5b9eff;#ef4444;#a855f7;#22d3ee;#fb923c;#00d68f" dur="4s" repeatCount="indefinite"/>+</tspan>
-    </text>
-    <circle cx="438" cy="232" r="2.5" fill="#00d68f"><animate attributeName="opacity" values="1;0.25;1" dur="1.1s" repeatCount="indefinite"/></circle>
-    <circle cx="448" cy="232" r="2.5" fill="#00d68f"><animate attributeName="opacity" values="0.25;1;0.25" dur="1.4s" repeatCount="indefinite"/></circle>
-    <circle cx="458" cy="232" r="2.5" fill="#ffb547"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
-  </g>
-
-  <line x1="510" y1="90" x2="510" y2="148" stroke="#2a2b30" stroke-width="1.5"/>
-  <circle cx="510" r="3" fill="#00d68f">
-    <animate attributeName="cy" values="90;148;90" dur="2.4s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0;1;1;0" dur="2.4s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- ─── EVO ATG (debajo del laptop+móvil admin, lado izquierdo) ─── -->
-  <g>
-    <rect x="32" y="120" width="172" height="62" rx="6" fill="#0f0f12" stroke="#a1a3a8" stroke-width="1.3"/>
-    <text x="118" y="142" text-anchor="middle" fill="#e8e9eb" font-size="13" font-weight="600">EVO ATG</text>
-    <text x="118" y="158" text-anchor="middle" fill="#a1a3a8" font-size="9">medidor de tanques</text>
-    <text x="118" y="172" text-anchor="middle" fill="#6b6d72" font-size="8">lectura continua · 5 min</text>
-    <circle cx="44" cy="175" r="2.2" fill="#00d68f">
-      <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-  <!-- Conexión EVO ↔ sistema (data link, ahora desde la izquierda) -->
-  <line x1="204" y1="151" x2="425" y2="196" stroke="#00d68f" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
-  <circle r="2" fill="#00d68f">
-    <animateMotion dur="2s" repeatCount="indefinite" path="M 204 151 L 425 196"/>
-    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- Líneas EVO → sondas de cada tanque (curvas sutiles, desde abajo del EVO box) -->
-  <path d="M 80 182 Q 100 320 220 442" stroke="#a1a3a8" stroke-width="0.6" fill="none" stroke-dasharray="2,5" opacity="0.32"/>
-  <path d="M 118 182 Q 280 320 510 442" stroke="#a1a3a8" stroke-width="0.6" fill="none" stroke-dasharray="2,5" opacity="0.32"/>
-  <path d="M 160 182 Q 500 320 800 442" stroke="#a1a3a8" stroke-width="0.6" fill="none" stroke-dasharray="2,5" opacity="0.32"/>
-
-  <!-- Conexión LOCAL bombero-móvil → sistema (sin pasar por VPN, red local) -->
-  <line x1="1020" y1="158" x2="595" y2="200" stroke="#00d68f" stroke-width="1" stroke-dasharray="3,4" opacity="0.45"/>
-  <text x="800" y="180" text-anchor="middle" fill="#6b6d72" font-size="8">red local pista</text>
-
-  <!-- ─── PISO (línea separación) ─── -->
-  <line x1="0" y1="410" x2="1100" y2="410" stroke="#2a2b30" stroke-width="1"/>
-  <line x1="0" y1="414" x2="1100" y2="414" stroke="#2a2b30" stroke-width="0.5" stroke-dasharray="2,4" opacity="0.6"/>
-  
-  
-
-  <!-- ─── VEHÍCULOS (3, frente a las 3 bombas) ─── -->
-  <!-- SEDAN/TURISMO a la IZQUIERDA de B-01 SUPER (cuerpo x=8-148, tapa cx=134 trasero lateral) -->
-  <g>
-    <!-- Cuerpo bajo principal con silueta de sedan -->
-    <path d="M 8 398 L 8 388 Q 10 378 22 378 L 38 370 Q 50 360 68 360 L 95 360 Q 112 360 120 372 L 140 378 Q 148 380 148 390 L 148 398 Z"
-          fill="#16161a" stroke="#2a2b30" stroke-linejoin="round" stroke-width="1.1"/>
-    <!-- División cuerpo (línea media) -->
-    <line x1="10" y1="386" x2="146" y2="386" stroke="#2a2b30" stroke-width="0.4"/>
-    <!-- Parabrisas frontal inclinado -->
-    <path d="M 40 372 L 65 362 L 78 374 L 44 374 Z" fill="#0f0f12" stroke="#2a2b30" stroke-width="0.4"/>
-    <!-- Ventana lateral trasera -->
-    <path d="M 82 364 L 100 362 L 115 374 L 82 374 Z" fill="#0f0f12" stroke="#2a2b30" stroke-width="0.4"/>
-    <!-- Pilar B -->
-    <line x1="80" y1="364" x2="80" y2="374" stroke="#2a2b30" stroke-width="0.8"/>
-    <!-- Espejo lateral -->
-    <rect x="38" y="370" width="3" height="2" fill="#3a3b40"/>
-    <!-- Manijas puertas -->
-    <line x1="55" y1="384" x2="65" y2="384" stroke="#3a3b40" stroke-width="0.6"/>
-    <line x1="90" y1="384" x2="100" y2="384" stroke="#3a3b40" stroke-width="0.6"/>
-    <!-- Faro delantero -->
-    <rect x="10" y="382" width="6" height="4" fill="#ffb547" opacity="0.95"/>
-    <!-- Stop trasero -->
-    <rect x="142" y="382" width="5" height="4" fill="#ef4444" opacity="0.7"/>
-    <!-- Tapa combustible (lateral trasero, lado del tanque en sedans) -->
-    <circle cx="134" cy="390" r="2.5" fill="#ffb547"/>
-    <!-- Ruedas -->
-    <circle cx="32" cy="402" r="9" fill="#0a0a0b" stroke="#3a3b40" stroke-width="1.5"/>
-    <circle cx="32" cy="402" r="4" fill="#16161a" stroke="#2a2b30" stroke-width="0.6"/>
-    <circle cx="32" cy="402" r="1.5" fill="#3a3b40"/>
-    <circle cx="120" cy="402" r="9" fill="#0a0a0b" stroke="#3a3b40" stroke-width="1.5"/>
-    <circle cx="120" cy="402" r="4" fill="#16161a" stroke="#2a2b30" stroke-width="0.6"/>
-    <circle cx="120" cy="402" r="1.5" fill="#3a3b40"/>
-  </g>
-
-  <!-- CAMIÓN frente a B-02 DIESEL (centro=510, vehículo x=560-720) -->
-  <g>
-    <rect x="560" y="346" width="105" height="54" rx="2" fill="#16161a" stroke="#2a2b30"/>
-    <line x1="578" y1="350" x2="578" y2="396" stroke="#2a2b30" stroke-width="0.5"/>
-    <line x1="598" y1="350" x2="598" y2="396" stroke="#2a2b30" stroke-width="0.5"/>
-    <line x1="623" y1="350" x2="623" y2="396" stroke="#2a2b30" stroke-width="0.5"/>
-    <line x1="648" y1="350" x2="648" y2="396" stroke="#2a2b30" stroke-width="0.5"/>
-    <line x1="560" y1="372" x2="665" y2="372" stroke="#2a2b30" stroke-width="0.5"/>
-    <path d="M 666 358 L 676 346 L 716 346 L 723 358 L 723 400 L 666 400 Z" fill="#16161a" stroke="#2a2b30"/>
-    <path d="M 678 352 L 714 352 L 719 366 L 678 366 Z" fill="#0f0f12" stroke="#2a2b30" stroke-width="0.4"/>
-    <rect x="717" y="368" width="4" height="6" fill="#ffb547" opacity="0.7"/>
-    <circle cx="661" cy="378" r="2" fill="#00d68f"/>
-    <line x1="673" y1="346" x2="673" y2="338" stroke="#3a3b40" stroke-width="1.5"/>
-    <circle cx="578" cy="404" r="10" fill="#0a0a0b" stroke="#3a3b40" stroke-width="1.5"/>
-    <circle cx="578" cy="404" r="3.5" fill="#3a3b40"/>
-    <circle cx="608" cy="404" r="10" fill="#0a0a0b" stroke="#3a3b40" stroke-width="1.5"/>
-    <circle cx="608" cy="404" r="3.5" fill="#3a3b40"/>
-    <circle cx="646" cy="404" r="10" fill="#0a0a0b" stroke="#3a3b40" stroke-width="1.5"/>
-    <circle cx="646" cy="404" r="3.5" fill="#3a3b40"/>
-    <circle cx="703" cy="404" r="10" fill="#0a0a0b" stroke="#3a3b40" stroke-width="1.5"/>
-    <circle cx="703" cy="404" r="3.5" fill="#3a3b40"/>
-  </g>
-
-  <!-- PICKUP estilo Ford F-150 mejorado (sin punto azul flotante) — x=918-1050 -->
-  <g>
-    <!-- Chasis bajo (cuerpo principal) -->
-    <rect x="918" y="372" width="132" height="28" fill="#16161a" stroke="#2a2b30" stroke-width="1.1"/>
-    <!-- Cabina alta delantera -->
-    <rect x="920" y="346" width="58" height="26" fill="#16161a" stroke="#2a2b30" stroke-width="1.1"/>
-    <!-- Techo cabina (línea más oscura) -->
-    <line x1="920" y1="346" x2="978" y2="346" stroke="#3a3b40" stroke-width="1.2"/>
-    <!-- Parabrisas frontal + ventana lateral cabina -->
-    <path d="M 925 350 L 945 350 L 945 366 L 925 366 Z" fill="#0f0f12" stroke="#2a2b30" stroke-width="0.4"/>
-    <path d="M 949 350 L 975 350 L 975 366 L 949 366 Z" fill="#0f0f12" stroke="#2a2b30" stroke-width="0.4"/>
-    <!-- Pilar B entre ventanas -->
-    <line x1="947" y1="350" x2="947" y2="366" stroke="#2a2b30" stroke-width="0.8"/>
-    <!-- Espejo lateral pickup (saliente, grande) -->
-    <rect x="922" y="352" width="3" height="7" fill="#3a3b40"/>
-    <!-- Caja trasera (descubierta, con tailgate al final) -->
-    <rect x="978" y="358" width="70" height="14" fill="#1f2024" stroke="#2a2b30" stroke-width="0.8"/>
-    <!-- Paneles laterales caja (líneas verticales sutiles) -->
-    <line x1="990" y1="358" x2="990" y2="372" stroke="#2a2b30" stroke-width="0.3"/>
-    <line x1="1005" y1="358" x2="1005" y2="372" stroke="#2a2b30" stroke-width="0.3"/>
-    <line x1="1020" y1="358" x2="1020" y2="372" stroke="#2a2b30" stroke-width="0.3"/>
-    <line x1="1035" y1="358" x2="1035" y2="372" stroke="#2a2b30" stroke-width="0.3"/>
-    <!-- Tailgate (puerta trasera) -->
-    <rect x="1048" y="372" width="2" height="22" fill="#3a3b40"/>
-    <!-- Capó frontal pequeño -->
-    <path d="M 918 372 L 920 364 L 920 372 Z" fill="#1f2024" stroke="#2a2b30" stroke-width="0.5"/>
-    <!-- Parrilla -->
-    <rect x="918" y="372" width="3" height="14" fill="#0f0f12" stroke="#3a3b40" stroke-width="0.4"/>
-    <line x1="918" y1="376" x2="921" y2="376" stroke="#3a3b40" stroke-width="0.3"/>
-    <line x1="918" y1="380" x2="921" y2="380" stroke="#3a3b40" stroke-width="0.3"/>
-    <line x1="918" y1="384" x2="921" y2="384" stroke="#3a3b40" stroke-width="0.3"/>
-    <!-- Faro delantero -->
-    <rect x="918" y="388" width="5" height="4" fill="#ffb547" opacity="0.95"/>
-    <!-- Manija puerta cabina -->
-    <line x1="930" y1="362" x2="940" y2="362" stroke="#3a3b40" stroke-width="0.6"/>
-    <!-- Stop trasero (rojo) -->
-    <rect x="1044" y="378" width="4" height="4" fill="#ef4444" opacity="0.7"/>
-    <!-- Ruedas grandes (off-road) -->
-    <circle cx="938" cy="402" r="11" fill="#0a0a0b" stroke="#3a3b40" stroke-width="1.8"/>
-    <circle cx="938" cy="402" r="5" fill="#16161a" stroke="#2a2b30" stroke-width="0.8"/>
-    <circle cx="938" cy="402" r="2" fill="#3a3b40"/>
-    <circle cx="1030" cy="402" r="11" fill="#0a0a0b" stroke="#3a3b40" stroke-width="1.8"/>
-    <circle cx="1030" cy="402" r="5" fill="#16161a" stroke="#2a2b30" stroke-width="0.8"/>
-    <circle cx="1030" cy="402" r="2" fill="#3a3b40"/>
-  </g>
-
-  <!-- ─── BOMBAS (3) ─── -->
-  <!-- B-01 SUPER (despachando) — x=180-260, centro=220 -->
-  <g>
-    <rect x="180" y="260" width="80" height="130" rx="4" fill="#0f0f12" stroke="#2a2b30"/>
-    <rect x="175" y="254" width="90" height="10" rx="2" fill="#1f2024" stroke="#2a2b30"/>
-    <rect x="188" y="270" width="64" height="36" fill="#0a0a0b" stroke="#1f2024"/>
-    <text id="p1-l" x="220" y="285" text-anchor="middle" fill="#ffb547" font-size="9" font-weight="700">19.820 L</text>
-    <text id="p1-p" x="220" y="299" text-anchor="middle" fill="#e8e9eb" font-size="9">L. 1,432.40</text>
-    <circle cx="195" cy="320" r="3" fill="#00d68f">
-      <animate attributeName="opacity" values="1;0.3;1" dur="0.85s" repeatCount="indefinite"/>
-    </circle>
-    <text x="204" y="324" fill="#e8e9eb" font-size="8">B-01</text>
-    <rect x="188" y="334" width="64" height="20" fill="#1f2024"/>
-    <text x="220" y="348" text-anchor="middle" fill="#ffb547" font-size="9" font-weight="700">SUPER</text>
-    <text x="220" y="384" text-anchor="middle" fill="#6b6d72" font-size="9" font-weight="700">SURTIDOR 1</text>
-    <!-- manguera B-01 SUPER con flujo amber animado; pistola en tapa microbus (375,380) -->
-    <!-- Manguera B-01 sale del lado IZQUIERDO de la bomba (x=180) hacia microbus -->
-    <path d="M 180 372 Q 180 380 178 386 Q 177 388 176 390" stroke="#3a3b40" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-    <path d="M 180 372 Q 180 380 178 386 Q 177 388 176 390" stroke="#ffb547" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-dasharray="4,10" opacity="0.9">
-      <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="1s" repeatCount="indefinite"/>
-    </path>
-    <!-- Pistola B-01 ESPEJADA (boquilla a la izquierda) en tapa microbus (132,382) -->
-    <g transform="translate(176,385) scale(-1,1)">
-      <rect x="0" y="0" width="22" height="10" rx="2" fill="rgba(255,181,71,0.55)" stroke="#ffb547" stroke-width="1.2"/>
-      <rect x="22" y="2" width="14" height="6" fill="rgba(255,181,71,0.7)"/>
-      <rect x="36" y="3" width="6" height="4" fill="#ffb547"/>
-      <circle cx="44" r="1.8" fill="#ffb547">
-        <animate attributeName="cy" values="5;14;5" dur="0.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>
-      </circle>
-    </g>
-  </g>
-
-  <!-- B-02 DIESEL (despachando) — x=470-550, centro=510 -->
-  <g>
-    <rect x="470" y="260" width="80" height="130" rx="4" fill="#0f0f12" stroke="#2a2b30"/>
-    <rect x="465" y="254" width="90" height="10" rx="2" fill="#1f2024" stroke="#2a2b30"/>
-    <rect x="478" y="270" width="64" height="36" fill="#0a0a0b" stroke="#1f2024"/>
-    <text id="p2-l" x="510" y="285" text-anchor="middle" fill="#00d68f" font-size="9" font-weight="700">28.450 L</text>
-    <text id="p2-p" x="510" y="299" text-anchor="middle" fill="#e8e9eb" font-size="9">L. 978.50</text>
-    <circle cx="485" cy="320" r="3" fill="#00d68f">
-      <animate attributeName="opacity" values="1;0.3;1" dur="0.95s" repeatCount="indefinite"/>
-    </circle>
-    <text x="494" y="324" fill="#e8e9eb" font-size="8">B-02</text>
-    <rect x="478" y="334" width="64" height="20" fill="#1f2024"/>
-    <text x="510" y="348" text-anchor="middle" fill="#00d68f" font-size="9" font-weight="700">DIESEL</text>
-        <text x="510" y="384" text-anchor="middle" fill="#6b6d72" font-size="9" font-weight="700">SURTIDOR 2</text>
-    <!-- manguera B-02 DIESEL con flujo verde animado; pistola en tapa camión (661,378) -->
-    <path d="M 550 370 Q 590 373 615 376 Q 625 377 630 378" stroke="#3a3b40" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-    <path d="M 550 370 Q 590 373 615 376 Q 625 377 630 378" stroke="#00d68f" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-dasharray="4,10" opacity="0.9">
-      <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="0.9s" repeatCount="indefinite"/>
-    </path>
-    <g transform="translate(630,373)">
-      <rect x="0" y="0" width="22" height="10" rx="2" fill="rgba(0,214,143,0.55)" stroke="#00d68f" stroke-width="1.2"/>
-      <rect x="22" y="2" width="14" height="6" fill="rgba(0,214,143,0.7)"/>
-      <rect x="36" y="3" width="6" height="4" fill="#00d68f"/>
-      <circle cx="44" r="1.8" fill="#00d68f">
-        <animate attributeName="cy" values="5;14;5" dur="0.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>
-      </circle>
-    </g>
-  </g>
-
-  <!-- B-03 REGULAR (despachando) — x=760-840, centro=800 -->
-  <g>
-    <rect x="760" y="260" width="80" height="130" rx="4" fill="#0f0f12" stroke="#2a2b30"/>
-    <rect x="755" y="254" width="90" height="10" rx="2" fill="#1f2024" stroke="#2a2b30"/>
-    <rect x="768" y="270" width="64" height="36" fill="#0a0a0b" stroke="#1f2024"/>
-    <text id="p3-l" x="800" y="285" text-anchor="middle" fill="#5b9eff" font-size="9" font-weight="700">12.140 L</text>
-    <text id="p3-p" x="800" y="299" text-anchor="middle" fill="#e8e9eb" font-size="9">L. 388.20</text>
-    <circle cx="775" cy="320" r="3" fill="#00d68f">
-      <animate attributeName="opacity" values="1;0.3;1" dur="1.05s" repeatCount="indefinite"/>
-    </circle>
-    <text x="784" y="324" fill="#e8e9eb" font-size="8">B-03</text>
-    <rect x="768" y="334" width="64" height="20" fill="#1f2024"/>
-    <text x="800" y="348" text-anchor="middle" fill="#5b9eff" font-size="9" font-weight="700">REGULAR</text>
-        <text x="800" y="384" text-anchor="middle" fill="#6b6d72" font-size="9" font-weight="700">SURTIDOR 3</text>
-    <!-- manguera B-03 REGULAR con flujo azul animado; pistola en tapa pickup (885,388) -->
-    <path d="M 840 370 Q 855 374 870 376 Q 880 378 885 380" stroke="#3a3b40" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-    <path d="M 840 370 Q 855 374 870 376 Q 880 378 885 380" stroke="#5b9eff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-dasharray="4,10" opacity="0.9">
-      <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="1.05s" repeatCount="indefinite"/>
-    </path>
-    <g transform="translate(885,375)">
-      <rect x="0" y="0" width="22" height="10" rx="2" fill="rgba(91,158,255,0.55)" stroke="#5b9eff" stroke-width="1.2"/>
-      <rect x="22" y="2" width="14" height="6" fill="rgba(91,158,255,0.7)"/>
-      <rect x="36" y="3" width="6" height="4" fill="#5b9eff"/>
-      <circle cx="44" r="1.8" fill="#5b9eff">
-        <animate attributeName="cy" values="5;14;5" dur="0.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>
-      </circle>
-    </g>
-  </g>
-
-  <!-- ─── TANQUES (3, subterráneos, alineados con sus bombas) ─── -->
-  <!-- T-01 SUPER cx=220 -->
-  <g>
-    <ellipse cx="220" cy="455" rx="130" ry="13" fill="#0a0a0b" stroke="#2a2b30"/>
-    <rect x="90" y="455" width="260" height="48" fill="#0a0a0b" stroke="#2a2b30"/>
-    <ellipse cx="220" cy="503" rx="130" ry="13" fill="#0f0f12" stroke="#2a2b30"/>
-    <rect x="93" y="473" width="254" height="30" fill="url(#liqSuper)">
-      <animate attributeName="y" values="473;471;473" dur="3.3s" repeatCount="indefinite"/>
-    </rect>
-    <ellipse cx="220" cy="503" rx="127" ry="12" fill="#ffb547" opacity="0.4"/>
-    <text x="220" y="487" text-anchor="middle" fill="#e8e9eb" font-size="11" font-weight="700">5 180 L</text>
-    <text x="220" y="500" text-anchor="middle" fill="#ffd591" font-size="10" font-weight="600" letter-spacing="0.5">SUPER · T-01</text>
-    <line x1="220" y1="442" x2="220" y2="455" stroke="#2a2b30" stroke-width="1.5"/>
-    <circle cx="220" cy="442" r="4" fill="#0f0f12" stroke="#00d68f"/>
-  </g>
-  <!-- T-02 DIESEL cx=510 -->
-  <g>
-    <ellipse cx="510" cy="455" rx="130" ry="13" fill="#0a0a0b" stroke="#2a2b30"/>
-    <rect x="380" y="455" width="260" height="48" fill="#0a0a0b" stroke="#2a2b30"/>
-    <ellipse cx="510" cy="503" rx="130" ry="13" fill="#0f0f12" stroke="#2a2b30"/>
-    <rect x="383" y="471" width="254" height="32" fill="url(#liqDiesel)">
-      <animate attributeName="y" values="471;469;471" dur="3.7s" repeatCount="indefinite"/>
-    </rect>
-    <ellipse cx="510" cy="503" rx="127" ry="12" fill="#00d68f" opacity="0.45"/>
-    <text x="510" y="487" text-anchor="middle" fill="#e8e9eb" font-size="11" font-weight="700">8 420 L</text>
-    <text x="510" y="500" text-anchor="middle" fill="#9af5cf" font-size="10" font-weight="600" letter-spacing="0.5">DIESEL · T-02</text>
-    <line x1="510" y1="442" x2="510" y2="455" stroke="#2a2b30" stroke-width="1.5"/>
-    <circle cx="510" cy="442" r="4" fill="#0f0f12" stroke="#00d68f"/>
-  </g>
-  <!-- T-03 REGULAR cx=800 -->
-  <g>
-    <ellipse cx="800" cy="455" rx="130" ry="13" fill="#0a0a0b" stroke="#2a2b30"/>
-    <rect x="670" y="455" width="260" height="48" fill="#0a0a0b" stroke="#2a2b30"/>
-    <ellipse cx="800" cy="503" rx="130" ry="13" fill="#0f0f12" stroke="#2a2b30"/>
-    <rect x="673" y="475" width="254" height="28" fill="url(#liqRegular)">
-      <animate attributeName="y" values="475;473;475" dur="3.5s" repeatCount="indefinite"/>
-    </rect>
-    <ellipse cx="800" cy="503" rx="127" ry="12" fill="#5b9eff" opacity="0.42"/>
-    <text x="800" y="488" text-anchor="middle" fill="#e8e9eb" font-size="11" font-weight="700">3 940 L</text>
-    <text x="800" y="500" text-anchor="middle" fill="#c0d8ff" font-size="10" font-weight="600" letter-spacing="0.5">REGULAR · T-03</text>
-    <line x1="800" y1="442" x2="800" y2="455" stroke="#2a2b30" stroke-width="1.5"/>
-    <circle cx="800" cy="442" r="4" fill="#0f0f12" stroke="#00d68f"/>
-  </g>
-
-  <!-- ─── TUBERÍAS subterráneas (verticales, alineadas tanque↔bomba; bus horizontal de conexión) ─── -->
-  <!-- Bus horizontal subterráneo (red de distribución) -->
-  <line x1="220" y1="430" x2="800" y2="430" stroke="#1f2024" stroke-width="3"/>
-  <line x1="220" y1="430" x2="800" y2="430" stroke="#2a2b30" stroke-width="1" stroke-dasharray="2,4" opacity="0.6"/>
-  <!-- Bajadas tanques al bus -->
-  <line x1="220" y1="442" x2="220" y2="430" stroke="#1f2024" stroke-width="3"/>
-  <line x1="510" y1="442" x2="510" y2="430" stroke="#1f2024" stroke-width="3"/>
-  <line x1="800" y1="442" x2="800" y2="430" stroke="#1f2024" stroke-width="3"/>
-  <!-- Subidas bus → base bomba (entra por abajo) -->
-  <line x1="220" y1="430" x2="220" y2="390" stroke="#1f2024" stroke-width="3"/>
-  <line x1="510" y1="430" x2="510" y2="390" stroke="#1f2024" stroke-width="3"/>
-  <line x1="800" y1="430" x2="800" y2="390" stroke="#1f2024" stroke-width="3"/>
-
-  <!-- FLUJO ACTIVO T-01 SUPER → B-01 (vertical, alineado) -->
-  <path d="M 220 442 L 220 430 L 220 430 L 220 390" stroke="#ffb547" stroke-width="2" fill="none" stroke-dasharray="6,14" opacity="0.95">
-    <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="1.3s" repeatCount="indefinite"/>
-  </path>
-  <!-- FLUJO ACTIVO T-02 DIESEL → B-02 -->
-  <path d="M 510 442 L 510 390" stroke="#00d68f" stroke-width="2" fill="none" stroke-dasharray="6,14" opacity="0.95">
-    <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="1.2s" repeatCount="indefinite"/>
-  </path>
-  <!-- FLUJO ACTIVO T-03 REGULAR → B-03 -->
-  <path d="M 800 442 L 800 390" stroke="#5b9eff" stroke-width="2" fill="none" stroke-dasharray="6,14" opacity="0.95">
-    <animate attributeName="stroke-dashoffset" from="0" to="-40" dur="1.4s" repeatCount="indefinite"/>
-  </path>
-
-  <!-- Conectores multi-producto en base de cada bomba (3 dots: producto activo brilla) -->
-  <circle cx="208" cy="396" r="2.5" fill="#ffb547"><animate attributeName="opacity" values="1;0.5;1" dur="0.9s" repeatCount="indefinite"/></circle>
-  <circle cx="220" cy="396" r="2.5" fill="#00d68f" opacity="0.25"/>
-  <circle cx="232" cy="396" r="2.5" fill="#5b9eff" opacity="0.25"/>
-  <circle cx="498" cy="396" r="2.5" fill="#ffb547" opacity="0.25"/>
-  <circle cx="510" cy="396" r="2.5" fill="#00d68f"><animate attributeName="opacity" values="1;0.5;1" dur="1s" repeatCount="indefinite"/></circle>
-  <circle cx="522" cy="396" r="2.5" fill="#5b9eff" opacity="0.25"/>
-  <circle cx="788" cy="396" r="2.5" fill="#ffb547" opacity="0.25"/>
-  <circle cx="800" cy="396" r="2.5" fill="#00d68f" opacity="0.25"/>
-  <circle cx="812" cy="396" r="2.5" fill="#5b9eff"><animate attributeName="opacity" values="1;0.5;1" dur="1.1s" repeatCount="indefinite"/></circle>
-
-  <!-- líneas control (sistema → 3 bombas) -->
-  <path d="M 425 220 Q 320 240 225 260" stroke="#00d68f" stroke-width="1" fill="none" stroke-dasharray="3,5" opacity="0.4"/>
-  <line x1="510" y1="244" x2="510" y2="260" stroke="#00d68f" stroke-width="1" stroke-dasharray="3,5" opacity="0.4"/>
-  <path d="M 595 220 Q 700 240 800 260" stroke="#00d68f" stroke-width="1" fill="none" stroke-dasharray="3,5" opacity="0.4"/>
-
-  
-</svg>
+<!-- ================= HERO · negro ================= -->
+<header id="top" class="band band--dark hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Presencia nacional · Honduras</div>
+      <h1 class="h1">Plataforma de gestión para <span class="accent">estaciones de combustible</span>.</h1>
+      <p class="hero-sub">Facturación CAI/SAR, control de bombas en vivo, cuadre de turno e inventario de combustible — en un solo sistema, corriendo en tu estación.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#modulos">Ver módulos →</a>
+        <a class="btn btn-ghost" href="#contacto">Solicitar demostración</a>
+      </div>
+      <div class="platforms">
+        <span class="pl-label">Disponible en</span>
+        <span>Windows</span><span>iOS · macOS</span><span>Android</span><span>Web</span>
+      </div>
     </div>
-
-    <div class="hero-actions">
-      <a href="#modulos" class="btn btn-primary">Ver módulos <span class="arrow">→</span></a>
-      <a href="mailto:contacto@gas.hn?subject=Solicitud%20de%20demostración%20Gas%2B" class="btn btn-ghost">Solicitar demostración</a>
+    <div>
+      <div class="meter" aria-hidden="true">
+        <div class="meter-top"><span><span class="dot"></span>Bomba 03 · despacho en vivo</span><span>gas+ v2.12</span></div>
+        <div class="readout">
+          <div class="row"><span class="k">Litros</span><span class="v" data-count="47.318" data-dec="3">0.000</span></div>
+          <div class="row"><span class="k">Monto</span><span class="v">L <span data-count="1793.42" data-dec="2">0.00</span><small>HNL</small></span></div>
+          <div class="row"><span class="k">Precio / galón</span><span class="v" style="font-size:20px">L 143.50</span></div>
+        </div>
+        <div class="meter-foot">
+          <span class="grade">Diésel</span>
+          <span class="grade active">Superior</span>
+          <span class="grade">Regular</span>
+        </div>
+      </div>
     </div>
-    <div class="presencia"><span class="dot"></span><strong>Presencia Nacional</strong> · Honduras</div>
   </div>
 </header>
 
-<section class="platforms">
-  <div class="wrap">
-    <div class="platforms-wrap">
-      <span class="platforms-label">disponible en</span>
-      <span class="plat" title="Windows"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.949-1.49L23.999 0v11.4H10.949V1.959zM0 12.6h9.75v9.451L0 20.699V12.6zm10.949 0H24V24l-13.051-1.959V12.6z"/></svg>Windows</span>
-      <span class="plat" title="iOS y macOS"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>iOS · macOS</span>
-      <span class="plat" title="Android"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.523 15.34a1.122 1.122 0 110-2.244 1.122 1.122 0 010 2.244m-11.046 0a1.122 1.122 0 110-2.244 1.122 1.122 0 010 2.244m11.45-6.02l2.24-3.88a.464.464 0 00-.169-.634.464.464 0 00-.635.17l-2.265 3.93a14.05 14.05 0 00-11.196 0L3.636 4.976a.464.464 0 00-.634-.17.464.464 0 00-.17.635l2.24 3.88C1.221 11.314 0 13.957 0 17.001h24c0-3.044-1.221-5.687-6.073-7.681"/></svg>Android</span>
-      <span class="plat" title="Web (cualquier navegador)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.5" ry="9.5"/><line x1="2.5" y1="12" x2="21.5" y2="12"/></svg>Web</span>
+<!-- ================= ADAPTABLE A/B · blanco ================= -->
+<section class="band band--white">
+  <div class="wrap pad">
+    <div class="section-head reveal">
+      <div class="eyebrow">Adaptable — sin importar tu punto de partida</div>
+      <h2 class="h2">Gas+ se acopla al sistema que ya operás, o se implementa como sistema único desde cero.</h2>
+    </div>
+    <div class="grid-2" style="margin-top:40px">
+      <div class="card case reveal">
+        <span class="tag">► caso A · estación con sistema existente</span>
+        <h3>Conviví con tu sistema actual</h3>
+        <p>Si ya tenés un POS, una consola de control de bombas o un sistema de facturación, Gas+ se conecta a su base de datos y lo gestiona desde afuera. Nada cambia en tu operación diaria — agregamos control de pista, app móvil, reportería y cuadre automático sobre lo que ya funciona.</p>
+      </div>
+      <div class="card case reveal">
+        <span class="tag">► caso B · estación nueva o sin sistema</span>
+        <h3>Implementación llave en mano</h3>
+        <p>Si recién arrancás o no tenés nada todavía, Gas+ se instala como sistema único. Factura con tu CAI, controla las bombas, lleva el inventario, cierra turnos y emite reportes. Una sola plataforma, una sola base de datos, sin licencias ni dependencias externas.</p>
+      </div>
+    </div>
+    <div class="chips reveal" style="margin-top:26px">
+      <span class="chip chip--go">tanques multi-producto</span>
+      <span class="chip chip--go">surtidores multi-producto</span>
+      <span class="chip">sin límite de bombas</span>
+      <span class="chip">sin límite de tanques</span>
+      <span class="chip">sin licencia por punto</span>
+      <span class="chip">multi-tarifa por grade</span>
     </div>
   </div>
 </section>
 
-<section class="compat">
-  <div class="wrap">
-    <div class="compat-box">
-      <div class="compat-eyebrow">Adaptable — sin importar tu punto de partida</div>
-      <h2 class="compat-h">Gas+ <em>se acopla al sistema que ya operás</em>, o se implementa como sistema único desde cero.</h2>
-      <div class="compat-split">
-        <div class="compat-col">
-          <div class="compat-col-tag">► caso A · estación con sistema existente</div>
-          <div class="compat-col-h">Conviví con tu sistema actual</div>
-          <p class="compat-col-d">Si ya tenés un POS, una consola de control de bombas o un sistema de facturación, Gas+ se conecta a su base de datos y lo gestiona desde afuera. Nada cambia en tu operación diaria — agregamos control de pista, app móvil, reportería y cuadre automático sobre lo que ya funciona.</p>
-        </div>
-        <div class="compat-col">
-          <div class="compat-col-tag">► caso B · estación nueva o sin sistema</div>
-          <div class="compat-col-h">Implementación llave en mano</div>
-          <p class="compat-col-d">Si recién arrancás o no tenés nada todavía, Gas+ se instala como sistema único. Factura con tu CAI, controla las bombas, lleva el inventario, cierra turnos y emite reportes. Una sola plataforma, una sola base de datos, sin licencias ni dependencias externas.</p>
-        </div>
+<!-- ================= HARDWARE · claro ================= -->
+<section id="hardware" class="band band--light">
+  <div class="wrap pad">
+    <div class="section-head reveal">
+      <div class="eyebrow">Equipos y sistemas soportados</div>
+      <h2 class="h2">Compatible con el hardware y el software de tu estación.</h2>
+      <p class="lead">Gas+ se conecta a los surtidores, controladores de pista, medidores de tanque (ATG) y sistemas de punto de venta más usados en gasolineras de Honduras y Centroamérica.</p>
+    </div>
+    <div class="hw reveal" style="margin-top:38px">
+      <div>
+        <div class="cat">Surtidores / dispensadores</div>
+        <div class="sub">Bombas despachadoras de combustible</div>
+        <div class="brands"><span class="brand-chip">Gilbarco</span><span class="brand-chip">Wayne</span><span class="brand-chip">Tatsuno</span><span class="brand-chip">Tokheim</span></div>
       </div>
-      <div class="compat-caps">
-        <span class="cap">tanques multi-producto</span>
-        <span class="cap">surtidores multi-producto</span>
-        <span class="cap">sin límite de bombas</span>
-        <span class="cap">sin límite de tanques</span>
-        <span class="cap">sin licencia por punto</span>
-        <span class="cap">multi-tarifa por grade</span>
+      <div>
+        <div class="cat">Controladores de pista</div>
+        <div class="sub">Forecourt controllers / automatización</div>
+        <div class="brands"><span class="brand-chip">Wayne Fusion DFS</span><span class="brand-chip">DOMS</span></div>
+      </div>
+      <div>
+        <div class="cat">Medición de tanques · ATG</div>
+        <div class="sub">Sondas y consolas de nivel de tanque</div>
+        <div class="brands"><span class="brand-chip">Veeder-Root</span><span class="brand-chip">EVO</span><span class="brand-chip">Progauge</span></div>
       </div>
     </div>
-
-    <div class="section-head" style="margin-top:64px">
-      <div class="section-tag mono">equipos y sistemas soportados</div>
-      <h2 class="section-h">Compatible con el hardware y el software de tu estación.</h2>
-      <p class="section-l">Gas+ se conecta a los surtidores, controladores de pista, medidores de tanque (ATG) y sistemas de punto de venta más usados en gasolineras de Honduras y Centroamérica.</p>
-    </div>
-    <div class="equipos-grid">
-      <div class="eq-cat">
-        <div class="eq-cat-t mono">surtidores / dispensadores</div>
-        <div class="eq-cat-h">Bombas despachadoras de combustible</div>
-        <div class="eq-chips">
-          <span class="eq-chip">Gilbarco</span>
-          <span class="eq-chip">Wayne</span>
-          <span class="eq-chip">Tatsuno</span>
-          <span class="eq-chip">Tokheim</span>
-        </div>
-      </div>
-      <div class="eq-cat">
-        <div class="eq-cat-t mono">controladores de pista</div>
-        <div class="eq-cat-h">Forecourt controllers / automatización</div>
-        <div class="eq-chips">
-          <span class="eq-chip">Wayne Fusion DFS</span>
-          <span class="eq-chip">DOMS</span>
-        </div>
-      </div>
-      <div class="eq-cat">
-        <div class="eq-cat-t mono">medición de tanques · atg</div>
-        <div class="eq-cat-h">Sondas y consolas de nivel de tanque</div>
-        <div class="eq-chips">
-          <span class="eq-chip">Veeder-Root</span>
-          <span class="eq-chip">EVO</span>
-          <span class="eq-chip">Progauge</span>
-        </div>
-      </div>
-    </div>
-    <div class="eq-note">¿Tu equipo no aparece en la lista? <em>Lo integramos.</em> Gas+ se adapta al protocolo del fabricante.</div>
+    <p class="hw-note reveal">¿Tu equipo no aparece en la lista? <b>Lo integramos.</b> Gas+ se adapta al protocolo del fabricante.</p>
   </div>
 </section>
 
-<section id="modulos">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-tag mono">01 / módulos</div>
-      <h2 class="section-h">Nueve módulos. Una sola operación.</h2>
-      <p class="section-l">Cada módulo es independiente pero está integrado al núcleo transaccional. Habilitá únicamente los que tu estación necesita y agregá los demás cuando crezca.</p>
+<!-- ================= MÓDULOS · negro ================= -->
+<section id="modulos" class="band band--dark">
+  <div class="wrap pad">
+    <div class="section-head reveal">
+      <div class="eyebrow">01 / módulos</div>
+      <h2 class="h2">Nueve módulos. Una sola operación.</h2>
+      <p class="lead">Cada módulo es independiente pero está integrado al núcleo transaccional. Habilitá únicamente los que tu estación necesita y agregá los demás cuando crezca.</p>
     </div>
-    <div class="mods">
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="11" height="18" rx="1.5"/><line x1="5.5" y1="7" x2="11.5" y2="7"/><line x1="14" y1="9" x2="17" y2="9"/><path d="M17 9v8a1.5 1.5 0 0 0 3 0V12.5L18 10"/></svg></div>
-        <div class="mod-n mono">01 / pista</div>
-        <div class="mod-h">Control en vivo de bombas</div>
-        <div class="mod-d">Dashboard en tiempo real con estado, autorización, preset, bloqueo y desbloqueo. Soporta surtidores <em>multi-producto</em> y cualquier cantidad de bombas en la estación.</div>
-        <div class="mod-meta mono"><span>multi-producto</span><span>sin límite</span><span>cache 2s</span></div>
-      </div>
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h11l4 4v14H5z"/><polyline points="15,3 15,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="16.5" x2="14" y2="16.5"/></svg></div>
-        <div class="mod-n mono">02 / despachos</div>
-        <div class="mod-h">Facturación CAI Honduras</div>
-        <div class="mod-d">Emisión con correlativo SAR vigente, control de rango, ISV gravado y exento, ticket impresor térmico 80mm o PDF compartible.</div>
-        <div class="mod-meta mono"><span>cai sar</span><span>impresión 80mm</span><span>pdf</span></div>
-      </div>
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 15.5,14"/></svg></div>
-        <div class="mod-n mono">03 / turnos</div>
-        <div class="mod-h">Cierre unificado y cuadre</div>
-        <div class="mod-d">Apertura y cierre por bombero o jefe, con cuadre automático contra totalizador del medidor y atribución por TAG RFID.</div>
-        <div class="mod-meta mono"><span>cuadre auto</span><span>tag rfid</span><span>ticket impr.</span></div>
-      </div>
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
-        <div class="mod-n mono">04 / tienda</div>
-        <div class="mod-h">Productos no-combustible</div>
-        <div class="mod-d">Catálogo, ventas, escaneo de código de barras y emisión de factura mixta combustible + lubricantes / accesorios / consumibles.</div>
-        <div class="mod-meta mono"><span>ean-13</span><span>factura mixta</span><span>multi-isv</span></div>
-      </div>
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="8" height="8" rx="0.5"/><rect x="13" y="13" width="8" height="8" rx="0.5"/><rect x="8" y="3" width="8" height="8" rx="0.5"/></svg></div>
-        <div class="mod-n mono">05 / inventario</div>
-        <div class="mod-h">Stock, conteos y ajustes</div>
-        <div class="mod-d">Conteos físicos cíclicos, ajustes con motivo, compras a proveedor con replicación automática al sistema de caja.</div>
-        <div class="mod-meta mono"><span>conteos físicos</span><span>cola reintentos</span></div>
-      </div>
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="20" x2="21" y2="20"/><rect x="5" y="12" width="3" height="8"/><rect x="11" y="6" width="3" height="14"/><rect x="17" y="9" width="3" height="11"/></svg></div>
-        <div class="mod-n mono">06 / reportes</div>
-        <div class="mod-h">Reportería operativa</div>
-        <div class="mod-d">Cuadre diario, reconciliación de tanques, comparativo Fusion vs caja, ventas por empleado, descargas y estadígrafo mensual.</div>
-        <div class="mod-meta mono"><span>pdf / xlsx</span><span>reportes 9+</span></div>
-      </div>
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
-        <div class="mod-n mono">07 / móvil</div>
-        <div class="mod-h">App nativa para pista</div>
-        <div class="mod-d">Android (Flutter) para bombero y jefe de pista. Login por PIN o RFID, facturación, control de bomba y reimpresión.</div>
-        <div class="mod-meta mono"><span>android</span><span>offline-aware</span><span>auto-update</span></div>
-      </div>
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="7" ry="2.5"/><path d="M5 5v14a7 2.5 0 0 0 14 0V5"/><path d="M5 12a7 2.5 0 0 0 14 0"/></svg></div>
-        <div class="mod-n mono">08 / tanques</div>
-        <div class="mod-h">Reconciliación de tanques</div>
-        <div class="mod-d">Lectura en vivo con ATG (Veeder-Root y compatibles), descargas, mermas por hora y reconciliación histórica con ventas. Soporta tanques <em>multi-producto</em> y cualquier cantidad.</div>
-        <div class="mod-meta mono"><span>multi-producto</span><span>sin límite</span><span>atg</span></div>
-      </div>
-      <div class="mod">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v5.5c0 4.5-3.4 8.7-8 10.5-4.6-1.8-8-6-8-10.5V5.5z"/><polyline points="8.5,12 11,14.5 16,9.5"/></svg></div>
-        <div class="mod-n mono">09 / auditoría</div>
-        <div class="mod-h">Trazabilidad y eventos</div>
-        <div class="mod-d">Registro detallado de cada acción operativa: facturación, cambios de precio, bloqueo de bomba y cierre de turno con autor, hora y origen.</div>
-        <div class="mod-meta mono"><span>log inmutable</span><span>filtros</span><span>export</span></div>
-      </div>
+    <div class="grid-mods reveal" style="margin-top:40px">
+      <div class="mod"><div class="mhead"><span class="mnum">01</span><span class="mcat">pista</span></div><h3>Control en vivo de bombas</h3><p>Dashboard en tiempo real con estado, autorización, preset, bloqueo y desbloqueo. Soporta surtidores multi-producto y cualquier cantidad de bombas.</p><div class="chips"><span class="chip">multi-producto</span><span class="chip">sin límite</span><span class="chip chip--go">cache 2s</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mnum">02</span><span class="mcat">despachos</span></div><h3>Facturación CAI Honduras</h3><p>Emisión con correlativo SAR vigente, control de rango, ISV gravado y exento, ticket térmico 80mm o PDF compartible.</p><div class="chips"><span class="chip chip--go">cai sar</span><span class="chip">impresión 80mm</span><span class="chip">pdf</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mnum">03</span><span class="mcat">turnos</span></div><h3>Cierre unificado y cuadre</h3><p>Apertura y cierre por bombero o jefe, con cuadre automático contra el totalizador del medidor y atribución por TAG RFID.</p><div class="chips"><span class="chip chip--go">cuadre auto</span><span class="chip">tag rfid</span><span class="chip">ticket impr.</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mnum">04</span><span class="mcat">tienda</span></div><h3>Productos no-combustible</h3><p>Catálogo, ventas, escaneo de código de barras y emisión de factura mixta combustible + lubricantes / accesorios / consumibles.</p><div class="chips"><span class="chip">ean-13</span><span class="chip">factura mixta</span><span class="chip">multi-isv</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mnum">05</span><span class="mcat">inventario</span></div><h3>Stock, conteos y ajustes</h3><p>Conteos físicos cíclicos, ajustes con motivo, compras a proveedor con replicación automática al sistema de caja.</p><div class="chips"><span class="chip">conteos físicos</span><span class="chip">cola reintentos</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mnum">06</span><span class="mcat">reportes</span></div><h3>Reportería operativa</h3><p>Cuadre diario, reconciliación de tanques, comparativo Fusion vs caja, ventas por empleado, descargas y estadígrafo mensual.</p><div class="chips"><span class="chip">pdf / xlsx</span><span class="chip chip--go">reportes 9+</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mnum">07</span><span class="mcat">móvil</span></div><h3>App nativa para pista</h3><p>Android (Flutter) para bombero y jefe de pista. Login por PIN o RFID, facturación, control de bomba y reimpresión.</p><div class="chips"><span class="chip">android</span><span class="chip">offline-aware</span><span class="chip chip--go">auto-update</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mnum">08</span><span class="mcat">tanques</span></div><h3>Reconciliación de tanques</h3><p>Lectura en vivo con ATG (Veeder-Root y compatibles), descargas, mermas por hora y reconciliación histórica con ventas.</p><div class="chips"><span class="chip">multi-producto</span><span class="chip">sin límite</span><span class="chip chip--go">atg</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mnum">09</span><span class="mcat">auditoría</span></div><h3>Trazabilidad y eventos</h3><p>Registro detallado de cada acción operativa: facturación, cambios de precio, bloqueo de bomba y cierre de turno con autor, hora y origen.</p><div class="chips"><span class="chip chip--go">log inmutable</span><span class="chip">filtros</span><span class="chip">export</span></div></div>
     </div>
   </div>
 </section>
 
-<section id="arquitectura">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-tag mono">02 / arquitectura operativa</div>
-      <h2 class="section-h">Un núcleo en sitio, control desde cualquier lugar.</h2>
-      <p class="section-l">Toda la operación corre en un servidor on-premise. Supervisores y bomberos se conectan en vivo desde la web o la app móvil, sin abrir puertos ni exponer la red local.</p>
+<!-- ================= ARQUITECTURA · verde ================= -->
+<section id="arquitectura" class="band band--green">
+  <div class="wrap pad">
+    <div class="section-head reveal">
+      <div class="eyebrow">02 / arquitectura operativa</div>
+      <h2 class="h2">Un núcleo en sitio, control desde cualquier lugar.</h2>
+      <p class="lead">Toda la operación corre en un servidor on-premise. Supervisores y bomberos se conectan en vivo desde la web o la app móvil, sin abrir puertos ni exponer la red local.</p>
     </div>
-    <div class="arch-list">
-        <div class="arch-item">
-          <div class="arch-item-t mono">núcleo</div>
-          <div class="arch-item-h">Sistema en sitio</div>
-          <div class="arch-item-d">Backend instalado en el VPS de la estación. Procesa cada autorización, facturación y lectura sin depender de Internet para operar.</div>
-        </div>
-        <div class="arch-item">
-          <div class="arch-item-t mono">remoto</div>
-          <div class="arch-item-h">Supervisión desde cualquier lugar</div>
-          <div class="arch-item-d">Administradores y dueños acceden por túnel cifrado al panel web. Bomberos operan desde la app móvil en la pista. Misma plataforma, mismos datos.</div>
-        </div>
-        <div class="arch-item">
-          <div class="arch-item-t mono">resiliencia</div>
-          <div class="arch-item-h">La estación nunca se detiene</div>
-          <div class="arch-item-d">Si la nube cae, la pista sigue operando local. Si Fusion no responde, la operación entra en modo degradado con mensaje claro al operador.</div>
-        </div>
-      </div>
+    <div class="arch reveal" style="margin-top:42px">
+      <div class="col"><div class="lbl">núcleo</div><h3>Sistema en sitio</h3><p>Backend instalado en el VPS de la estación. Procesa cada autorización, facturación y lectura sin depender de Internet para operar.</p></div>
+      <div class="col"><div class="lbl">remoto</div><h3>Supervisión desde cualquier lugar</h3><p>Administradores y dueños acceden por túnel cifrado al panel web. Bomberos operan desde la app móvil en la pista. Misma plataforma, mismos datos.</p></div>
+      <div class="col"><div class="lbl">resiliencia</div><h3>La estación nunca se detiene</h3><p>Si la nube cae, la pista sigue operando local. Si Fusion no responde, la operación entra en modo degradado con mensaje claro al operador.</p></div>
     </div>
   </div>
 </section>
 
-<section id="modos">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-tag mono">03 / implementación</div>
-      <h2 class="section-h">Llave en mano. Operativo en días, no en meses.</h2>
-      <p class="section-l">Gas+ se instala en el servidor de la estación, se conecta al hardware existente y queda funcionando con la facturación, el control de pista y la app móvil para tu equipo.</p>
+<!-- ================= IMPLEMENTACIÓN · blanco ================= -->
+<section id="implementacion" class="band band--white">
+  <div class="wrap pad">
+    <div class="section-head reveal">
+      <div class="eyebrow">03 / implementación</div>
+      <h2 class="h2">Llave en mano. Operativo en días, no en meses.</h2>
+      <p class="lead">Gas+ se instala en el servidor de la estación, se conecta al hardware existente y queda funcionando con la facturación, el control de pista y la app móvil para tu equipo.</p>
     </div>
-    <div class="modes">
-      <div class="mode">
-        <div class="mode-tag mono">on-premise</div>
-        <div class="mode-h">Sistema en sitio</div>
-        <p class="mode-d">El backend corre en el servidor físico de tu estación. Toda la operación funciona sin Internet: facturación, control de bombas, despachos y cierre de turno.</p>
-        <ul class="mode-list">
+    <div class="grid-2 reveal" style="margin-top:40px">
+      <div class="card">
+        <span class="num">on-premise</span>
+        <h3>Sistema en sitio</h3>
+        <p>El backend corre en el servidor físico de tu estación. Toda la operación funciona sin Internet: facturación, control de bombas, despachos y cierre de turno.</p>
+        <ul class="checks">
           <li>Facturación CAI propia con correlativo SAR</li>
           <li>Catálogo de productos, clientes y proveedores</li>
           <li>Cuadre de turno con atribución por TAG RFID</li>
           <li>Backup local + sincronización a la nube</li>
         </ul>
       </div>
-      <div class="mode">
-        <div class="mode-tag mono">acceso remoto</div>
-        <div class="mode-h">Conectado donde estés</div>
-        <p class="mode-d">Túnel cifrado expone el panel web sin abrir puertos ni IP pública. Bomberos operan desde la app móvil, supervisores entran desde el navegador.</p>
-        <ul class="mode-list">
+      <div class="card">
+        <span class="num">acceso remoto</span>
+        <h3>Conectado donde estés</h3>
+        <p>Túnel cifrado expone el panel web sin abrir puertos ni IP pública. Bomberos operan desde la app móvil, supervisores entran desde el navegador.</p>
+        <ul class="checks">
           <li>Panel web seguro desde cualquier red</li>
           <li>App móvil para pista (Android)</li>
           <li>Sin VPN, sin puertos abiertos</li>
@@ -892,96 +388,88 @@ footer{border-top:1px solid var(--border);padding:36px 0 48px;color:var(--text-3
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-tag mono">04 / especificaciones</div>
-      <h2 class="section-h">Especificaciones técnicas.</h2>
+<!-- ================= SPECS · negro ================= -->
+<section class="band band--dark">
+  <div class="wrap pad">
+    <div class="section-head reveal">
+      <div class="eyebrow">04 / especificaciones</div>
+      <h2 class="h2">Especificaciones técnicas.</h2>
     </div>
-    <div class="specs">
-      <div class="spec"><div class="spec-l">Backend</div><div class="spec-v">Python · Flask</div></div>
-      <div class="spec"><div class="spec-l">Persistencia</div><div class="spec-v">MariaDB 11</div></div>
-      <div class="spec"><div class="spec-l">Cliente móvil</div><div class="spec-v">Flutter · Android</div></div>
-      <div class="spec"><div class="spec-l">Despliegue</div><div class="spec-v">Docker Compose</div></div>
-      <div class="spec"><div class="spec-l">Conexión</div><div class="spec-v">VPN Tunnel</div></div>
-      <div class="spec"><div class="spec-l">Hardware soportado</div><div class="spec-v">Fusion DFS · Veeder-Root · EVO · Progauge</div></div>
-      <div class="spec"><div class="spec-l">Auditoría</div><div class="spec-v">Log inmutable</div></div>
-      <div class="spec"><div class="spec-l">Cumplimiento</div><div class="spec-v">CAI SAR · Honduras</div></div>
+    <div class="specs reveal" style="margin-top:36px">
+      <div class="spec"><div class="sk">Backend</div><div class="sv">Python · Flask</div></div>
+      <div class="spec"><div class="sk">Persistencia</div><div class="sv">MariaDB 11</div></div>
+      <div class="spec"><div class="sk">Cliente móvil</div><div class="sv">Flutter · Android</div></div>
+      <div class="spec"><div class="sk">Despliegue</div><div class="sv">Docker Compose</div></div>
+      <div class="spec"><div class="sk">Conexión</div><div class="sv">VPN Tunnel</div></div>
+      <div class="spec"><div class="sk">Hardware</div><div class="sv" style="font-size:13.5px">Fusion DFS · Veeder-Root · EVO · Progauge</div></div>
+      <div class="spec"><div class="sk">Auditoría</div><div class="sv">Log inmutable</div></div>
+      <div class="spec"><div class="sk">Cumplimiento</div><div class="sv">CAI SAR · Honduras</div></div>
     </div>
   </div>
 </section>
 
-<section class="cta">
-  <div class="wrap">
-    <h2 class="cta-h">Hablemos de tu estación.</h2>
-    <p class="cta-l">Coordinamos una demostración con datos reales y discutimos cómo integrar Gas+ a tu operación actual.</p>
-    <a href="mailto:contacto@gas.hn?subject=Solicitud%20de%20demostración%20Gas%2B" class="cta-mail">
-      <span>contacto</span><span class="at">@</span><span>gas.hn</span>
-    </a>
+<!-- ================= CONTACTO · verde ================= -->
+<section id="contacto" class="band band--green">
+  <div class="wrap pad cta-band">
+    <div class="reveal">
+      <div class="eyebrow" style="justify-content:center">contacto</div>
+      <h2 class="h2">Hablemos de tu estación.</h2>
+      <p class="lead">Coordinamos una demostración con datos reales y discutimos cómo integrar Gas+ a tu operación actual.</p>
+      <div class="cta-actions">
+        <a class="btn btn-wa" href="https://wa.me/50432332785?text=Hola%2C%20me%20interesa%20Gas%2B">WhatsApp · +504 3233 2785</a>
+        <a class="btn btn-ghost" href="mailto:hola@gas.hn">hola@gas.hn</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<footer>
+<!-- ================= FOOTER · negro ================= -->
+<footer class="band band--dark foot">
   <div class="wrap">
-    <div class="footer-grid">
+    <div class="foot-top">
       <div>
-        <div class="logo" style="font-size:16px;margin-bottom:12px">gas<span class="plus">+</span></div>
-        <div style="font-size:13px;color:var(--text-2);max-width:340px;line-height:1.5">Software para gasolineras y estaciones de servicio: facturación CAI/SAR, control de bombas, cuadre de turno, inventario de combustible y reconciliación de tanques.<br>Desarrollado y operado desde Honduras.</div>
+        <a class="brand" href="#top">gas<b>+</b></a>
+        <p class="seo" style="margin-top:14px">Software para gasolineras y estaciones de servicio: facturación CAI/SAR, control de bombas, cuadre de turno, inventario de combustible y reconciliación de tanques. Desarrollado y operado desde Honduras.</p>
       </div>
       <div>
-        <div class="footer-h">Producto</div>
+        <h4>Producto</h4>
         <a href="#modulos">Módulos</a>
         <a href="#arquitectura">Arquitectura</a>
-        <a href="#modos">Implementación</a>
-        <a href="https://demo.gas.hn" target="_blank" rel="noopener">Plataforma →</a>
+        <a href="#implementacion">Implementación</a>
+        <a href="#hardware">Compatibilidad</a>
       </div>
       <div>
-        <div class="footer-h">Contacto</div>
-        <a href="mailto:contacto@gas.hn" class="mono">contacto@gas.hn</a>
-        <a href="/privacidad.html">Política de privacidad</a>
+        <h4>Contacto</h4>
+        <a href="https://wa.me/50432332785?text=Hola%2C%20me%20interesa%20Gas%2B">WhatsApp</a>
+        <a href="mailto:hola@gas.hn">hola@gas.hn</a>
+        <a href="#top">Política de privacidad</a>
       </div>
     </div>
-    <div style="margin-top:36px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;line-height:1.7;color:var(--text-3);max-width:900px">
-      Gas+ es un <strong style="color:var(--text-2);font-weight:500">software para gasolineras y estaciones de servicio en Honduras</strong> y Centroamérica. Integra facturación electrónica CAI/SAR, control volumétrico de combustible, cuadre de turno por empleado, control de inventario, punto de venta de pista y monitoreo de tanques (ATG). Compatible con surtidores Gilbarco, Wayne, Tatsuno y Tokheim; controladores de pista Wayne Fusion DFS y DOMS; medición de tanques Veeder-Root, EVO y Progauge. Operación de diésel, gasolina superior y gasolina regular en Tegucigalpa, San Pedro Sula y todo el país.
-    </div>
-    <div class="footer-bot">
-      <div class="mono" style="color:var(--text-3)">© 2026 gas.hn · todos los derechos reservados</div>
-      <div class="mono" style="color:var(--text-3)">v2.12.9 · status: <span style="color:var(--accent)">operativo</span></div>
+    <p class="seo" style="max-width:none;padding-bottom:26px">Gas+ es un software para gasolineras y estaciones de servicio en Honduras y Centroamérica. Integra facturación electrónica CAI/SAR, control volumétrico de combustible, cuadre de turno por empleado, control de inventario, punto de venta de pista y monitoreo de tanques (ATG). Compatible con surtidores Gilbarco, Wayne, Tatsuno y Tokheim; controladores de pista Wayne Fusion DFS y DOMS; medición de tanques Veeder-Root, EVO y Progauge. Operación de diésel, gasolina superior y gasolina regular en Tegucigalpa, San Pedro Sula y todo el país.</p>
+    <div class="foot-bottom">
+      <span>© 2026 gas.hn · todos los derechos reservados</span>
+      <span>v2.12.9 · status: <span class="status-ok">operativo</span></span>
     </div>
   </div>
 </footer>
 
-
 <script>
-(function(){
-  // Precios L/L plausibles para Honduras
-  const pumps = [
-    {id:'p1-l', idP:'p1-p', l: 19.820, pu: 72.27, color:'L'},  // SUPER
-    {id:'p2-l', idP:'p2-p', l: 28.450, pu: 34.39, color:'L'},  // DIESEL
-    {id:'p3-l', idP:'p3-p', l: 12.140, pu: 31.98, color:'L'},  // REGULAR
-  ];
-  // Si el SVG no está visible, no animar para ahorrar CPU
-  function visible(el){ if(!el) return false; const r=el.getBoundingClientRect(); return r.bottom>0 && r.top<window.innerHeight; }
-  function fmt3(n){ return n.toFixed(3); }
-  function fmt2(n){ return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
-  let svgRoot=null;
-  function tick(){
-    if(!svgRoot){ svgRoot=document.querySelector('.station-svg svg'); if(!svgRoot)return; }
-    if(!visible(svgRoot)) return;
-    pumps.forEach(p=>{
-      // Reset cuando llegue a ~200L (despacho terminado, nuevo despacho)
-      if(p.l > 180){ p.l = 0.5 + Math.random()*5; }
-      // Incremento aleatorio entre 0.05 y 0.18 L/tick (~ realista: 0.5-1.5 L/seg)
-      p.l += 0.05 + Math.random()*0.13;
-      const elL = document.getElementById(p.id);
-      const elP = document.getElementById(p.idP);
-      if(elL) elL.textContent = fmt3(p.l) + ' L';
-      if(elP) elP.textContent = 'L. ' + fmt2(p.l * p.pu);
-    });
-  }
-  setInterval(tick, 220);
-})();
-</script>
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+  // hero meter count-up (respects reduced motion)
+  const rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function tick(el){
+    const target=parseFloat(el.dataset.count), dec=parseInt(el.dataset.dec||'0');
+    if(rm){el.textContent=target.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});return;}
+    const dur=1400, t0=performance.now();
+    function step(t){const p=Math.min(1,(t-t0)/dur);const e=1-Math.pow(1-p,3);
+      el.textContent=(target*e).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+      if(p<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);
+  }
+  document.querySelectorAll('.readout [data-count]').forEach(tick);
+</script>
 </body>
 </html>
