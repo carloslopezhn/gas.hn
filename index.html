@@ -81,7 +81,10 @@
        border-bottom:1px solid var(--ink-line)}
   .nav .wrap{display:flex;align-items:center;gap:24px;height:64px}
   .brand{font-family:var(--mono);font-weight:700;font-size:20px;color:#fff;letter-spacing:-.02em}
-  .brand b{color:var(--green)}
+  @keyframes plusColorCycle{0%{color:#00d68f}14%{color:#ffb547}28%{color:#5b9eff}42%{color:#ef4444}56%{color:#a855f7}70%{color:#22d3ee}84%{color:#fb923c}100%{color:#00d68f}}
+  .brand b{color:var(--green);animation:plusColorCycle 5s linear infinite;text-shadow:0 0 10px currentColor}
+  @keyframes pulseDot{0%,100%{opacity:1;box-shadow:0 0 12px var(--green)}50%{opacity:.4;box-shadow:0 0 3px var(--green)}}
+  @media (prefers-reduced-motion:reduce){.brand b{animation:none;text-shadow:none}.dot{animation:none}}
   .nav-links{display:flex;gap:26px;margin-left:14px}
   .nav-links a{font-family:var(--mono);font-size:13.5px;color:#9fb0a6;letter-spacing:.01em}
   .nav-links a:hover{color:#fff}
@@ -107,7 +110,7 @@
          padding:22px;box-shadow:0 30px 80px -40px rgba(0,214,143,.35);position:relative}
   .meter-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);
              font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7f9188;margin-bottom:16px}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);display:inline-block;margin-right:7px;vertical-align:middle}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);display:inline-block;margin-right:7px;vertical-align:middle;animation:pulseDot 1.9s ease-in-out infinite}
   .readout{font-family:var(--mono);font-variant-numeric:tabular-nums}
   .readout .row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px dashed var(--ink-line)}
   .readout .row:last-child{border-bottom:0}
@@ -165,13 +168,6 @@
   .hw-note{margin-top:26px;font-size:14.5px;color:var(--muted)}
   .hw-note b{color:var(--accent-txt);font-family:var(--mono);font-weight:600}
 
-  /* spec sheet */
-  .specs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--card-line);border:1px solid var(--card-line);border-radius:14px;overflow:hidden}
-  @media (max-width:860px){.specs{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:440px){.specs{grid-template-columns:1fr}}
-  .spec{background:var(--bg);padding:22px}
-  .spec .sk{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
-  .spec .sv{font-family:var(--mono);font-size:16px;color:var(--fg)}
 
   /* arch columns */
   .arch{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -203,6 +199,31 @@
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* ---- limpieza movil (fuerte) ---- */
+  @media (max-width:640px){
+    body{font-size:16px}
+    .pad{padding:50px 0}
+    .hero-grid{padding:44px 0 36px;gap:28px}
+    .h1{font-size:clamp(30px,8.5vw,40px);line-height:1.06}
+    .hero-sub{margin:16px 0 24px;font-size:15.5px}
+    .hero-actions{margin-bottom:22px}
+    .h2{font-size:clamp(23px,6.6vw,30px)}
+    .eyebrow{margin-bottom:14px}
+    .lead{font-size:15px;margin-top:14px}
+    .card{padding:18px}
+    .card h3{font-size:17px}
+    .mod{padding:17px}
+    .meter{padding:16px}
+    .platforms{gap:12px;padding-top:18px}
+    .foot-top{padding:40px 0 28px;gap:24px}
+    .foot .seo{display:none}
+    .hero-actions .btn,.cta-actions .btn{width:100%;justify-content:center}
+  }
+  @media (max-width:400px){
+    .wrap{padding:0 18px}
+    .pad{padding:40px 0}
+  }
 </style>
 </head>
 <body>
@@ -384,26 +405,6 @@
           <li>Roles y permisos por usuario</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SPECS · negro ================= -->
-<section class="band band--dark">
-  <div class="wrap pad">
-    <div class="section-head reveal">
-      <div class="eyebrow">04 / especificaciones</div>
-      <h2 class="h2">Especificaciones técnicas.</h2>
-    </div>
-    <div class="specs reveal" style="margin-top:36px">
-      <div class="spec"><div class="sk">Backend</div><div class="sv">Python · Flask</div></div>
-      <div class="spec"><div class="sk">Persistencia</div><div class="sv">MariaDB 11</div></div>
-      <div class="spec"><div class="sk">Cliente móvil</div><div class="sv">Flutter · Android</div></div>
-      <div class="spec"><div class="sk">Despliegue</div><div class="sv">Docker Compose</div></div>
-      <div class="spec"><div class="sk">Conexión</div><div class="sv">VPN Tunnel</div></div>
-      <div class="spec"><div class="sk">Hardware</div><div class="sv" style="font-size:13.5px">Fusion DFS · Veeder-Root · EVO · Progauge</div></div>
-      <div class="spec"><div class="sk">Auditoría</div><div class="sv">Log inmutable</div></div>
-      <div class="spec"><div class="sk">Cumplimiento</div><div class="sv">CAI SAR · Honduras</div></div>
     </div>
   </div>
 </section>
