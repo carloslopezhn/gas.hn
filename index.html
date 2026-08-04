@@ -72,6 +72,23 @@
   .btn-primary:hover{transform:translateY(-2px);background:#12e6a0}
   .btn-ghost{border-color:var(--card-line);color:var(--fg);background:transparent}
   .btn-ghost:hover{border-color:var(--accent);color:var(--accent-txt);transform:translateY(-2px)}
+  .nav .btn{padding:9px 15px;font-size:13px}
+  .btn-soft{border:1px solid var(--ink-line);color:#cdd8d1;background:transparent}
+  .btn-soft:hover{border-color:var(--green);color:#fff}
+  .btn-soft-primary{border:1px solid rgba(0,214,143,.5);color:var(--green);background:rgba(0,214,143,.10)}
+  .btn-soft-primary:hover{background:rgba(0,214,143,.18)}
+  .lm-ov{position:fixed;inset:0;background:rgba(4,12,8,.72);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+  .lm-ov.on{display:flex}
+  .lm{background:#0c1512;border:1px solid var(--ink-line);border-radius:16px;padding:34px 30px;width:360px;max-width:100%;position:relative}
+  .lm-x{position:absolute;top:12px;right:16px;background:none;border:0;color:#7f9188;font-size:26px;cursor:pointer}
+  .lm-brand{font-family:var(--mono);font-size:30px;font-weight:700;color:#fff}.lm-brand b{color:var(--green)}
+  .lm-sub{color:#8fa096;font-size:13px;margin:4px 0 22px}
+  .lm input{width:100%;padding:12px 14px;margin-bottom:12px;border-radius:9px;border:1px solid var(--ink-line);background:#08110d;color:#fff;font-size:15px}
+  .lm input:focus{outline:2px solid var(--green);border-color:transparent}
+  .lm-btn{width:100%;padding:12px;border-radius:9px;border:0;background:var(--green);color:#062a1e;font-weight:700;font-size:15px;cursor:pointer}
+  .lm-btn:hover{background:#12e6a0}
+  .lm-msg{color:#ffb547;font-size:13px;margin-top:12px;min-height:18px;text-align:center}
+  .lm-foot{color:#7f9188;font-size:12px;margin-top:16px;text-align:center}.lm-foot a{color:var(--green)}
   .btn-wa{background:#25d366;color:#04220f;font-weight:600}
   .btn-wa:hover{transform:translateY(-2px);background:#33e074}
   :focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
@@ -239,8 +256,8 @@
       <a href="#hardware">Compatibilidad</a>
     </div>
     <div class="nav-right">
-      <a class="btn btn-ghost" href="https://cotizar.gas.hn" target="_blank" rel="noopener">Iniciar sesión</a>
-      <a class="btn btn-primary" href="#contacto">Solicitar demostración</a>
+      <button class="btn btn-soft" onclick="openLogin()">Iniciar sesión</button>
+      <a class="btn btn-soft-primary" href="#contacto">Solicitar demostración</a>
     </div>
   </div>
 </nav>
@@ -472,7 +489,41 @@
       if(p<1)requestAnimationFrame(step);}
     requestAnimationFrame(step);
   }
-  document.querySelectorAll('.readout [data-count]').forEach(tick);
+  (function(){
+    var c=document.querySelectorAll('.readout [data-count]');
+    if(c.length<2)return; var litEl=c[0], monEl=c[1];
+    var PLIT=143.50/3.785;
+    function f3(n){return n.toLocaleString('en-US',{minimumFractionDigits:3,maximumFractionDigits:3});}
+    function f2(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+    if(rm){litEl.textContent=f3(47.318);monEl.textContent=f2(1793.42);return;}
+    var L=0, meta=40+Math.random()*30, sp=0.05+Math.random()*0.05;
+    function frame(){
+      L+=sp;
+      if(L>=meta){litEl.textContent=f3(L);monEl.textContent=f2(L*PLIT);
+        setTimeout(function(){L=0;meta=40+Math.random()*30;sp=0.05+Math.random()*0.05;requestAnimationFrame(frame);},1600);return;}
+      litEl.textContent=f3(L);monEl.textContent=f2(L*PLIT);requestAnimationFrame(frame);
+    }
+    frame();
+  })();
+  function openLogin(){document.getElementById('loginModal').classList.add('on');}
+  function closeLogin(){document.getElementById('loginModal').classList.remove('on');}
+  function doLogin(e){e.preventDefault();document.getElementById('lm-msg').textContent='Portal de clientes en configuración — muy pronto verás tu estación acá.';return false;}
+  window.openLogin=openLogin; window.closeLogin=closeLogin; window.doLogin=doLogin;
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLogin();});
 </script>
+<div id="loginModal" class="lm-ov" onclick="if(event.target===this)closeLogin()">
+  <div class="lm">
+    <button class="lm-x" onclick="closeLogin()" aria-label="Cerrar">&times;</button>
+    <div class="lm-brand">gas<b>+</b></div>
+    <div class="lm-sub">Portal de clientes · ingresá a tu estación</div>
+    <form onsubmit="return doLogin(event)">
+      <input type="email" id="lm-user" placeholder="Correo" autocomplete="username" required>
+      <input type="password" id="lm-pass" placeholder="Contraseña" autocomplete="current-password" required>
+      <button type="submit" class="lm-btn">Ingresar</button>
+    </form>
+    <div class="lm-msg" id="lm-msg"></div>
+    <div class="lm-foot">¿Cliente nuevo? Escribinos a <a href="mailto:hola@gas.hn">hola@gas.hn</a></div>
+  </div>
+</div>
 </body>
 </html>
