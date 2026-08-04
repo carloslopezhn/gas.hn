@@ -969,9 +969,9 @@
     <button class="lm-x" onclick="closeLogin()" aria-label="Cerrar">&times;</button>
     <div class="lm-brand">gas<b>+</b></div>
     <div class="lm-sub">Portal de clientes · ingresá a tu estación</div>
-    <form onsubmit="return doLogin(event)">
-      <input type="email" id="lm-user" placeholder="Correo" autocomplete="username" required>
-      <input type="password" id="lm-pass" placeholder="Contraseña" autocomplete="current-password" required>
+    <form action="https://portal.gas.hn/login" method="post">
+      <input type="email" name="email" placeholder="Correo" autocomplete="username" required>
+      <input type="password" name="pass" placeholder="Contraseña" autocomplete="current-password" required>
       <button type="submit" class="lm-btn">Ingresar</button>
     </form>
     <div class="lm-msg" id="lm-msg"></div>
