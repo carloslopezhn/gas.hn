@@ -2,3 +2,11 @@
 *.swp
 *.bak
 gasplus-playstore-a7f3.zip
+gasplus-base.vhdx.zst
+gasplus-base.vhdx.zst.sha256
+gasplus-codesign.cer
+index.html.bak-*
+*.aab
+*.apk
+GasPlus-Installer.*
+Provision-GasPlus.*
