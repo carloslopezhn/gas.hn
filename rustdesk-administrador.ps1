@@ -1,12 +1,18 @@
 $ErrorActionPreference='Stop'
 Write-Host '== RustDesk ADMINISTRADOR - soporte.gas.hn ==' -ForegroundColor Cyan
 $exe="$env:TEMP\rustdesk-setup.exe"
-# PIN 1.3.9 (NO usar 'latest'): el server hbbs 1.1.16 self-hosted NO implementa el
-# handshake secure_tcp que el cliente >=1.4.1 exige cuando esta logueado a la API/consola
-# -> "Failed to secure tcp: deadline has elapsed" (peer ONLINE pero no conecta).
-# 1.3.9 es la ultima version que NO lo exige y es 100% compatible con este server.
-$ver='1.3.9'
-$url="https://github.com/rustdesk/rustdesk/releases/download/$ver/rustdesk-$ver-x86_64.exe"
+# Version: LATEST (resuelta por la API de GitHub: el asset lleva la version en el
+# nombre, asi que 'releases/latest/download/rustdesk-x86_64.exe' da 404).
+# El pin a 1.3.9 fue un workaround del bug "Failed to secure tcp: deadline has elapsed"
+# (cliente >=1.4.1 logueado a la consola contra un hbbs sin el handshake secure_tcp).
+# RESUELTO EN EL SERVIDOR el 2026-09-19: hbbs 1.1.17 con el parche del PR
+# rustdesk-server#706 -> los clientes nuevos ya conectan sin downgrade.
+$url=$null
+try{
+  $rel=Invoke-RestMethod 'https://api.github.com/repos/rustdesk/rustdesk/releases/latest' -UseBasicParsing
+  $url=($rel.assets | Where-Object { $_.name -match 'x86_64\.exe$' } | Select-Object -First 1).browser_download_url
+}catch{ Write-Host 'API de GitHub no disponible; uso version de respaldo.' -ForegroundColor Yellow }
+if(-not $url){ $url='https://github.com/rustdesk/rustdesk/releases/download/1.4.9/rustdesk-1.4.9-x86_64.exe' }
 Write-Host "Descargando $url ..."
 Invoke-WebRequest $url -OutFile $exe -UseBasicParsing
 Write-Host 'Instalando (silencioso)...'
