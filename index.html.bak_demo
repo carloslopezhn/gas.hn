@@ -92,30 +92,6 @@
   .lm-btn:hover{background:#12e6a0}
   .lm-msg{color:#ffb547;font-size:13px;margin-top:12px;min-height:18px;text-align:center}
   .lm-foot{color:#7f9188;font-size:12px;margin-top:16px;text-align:center}.lm-foot a{color:var(--green)}
-  /* ── Modal GRANDE: Política de privacidad (antes el link del pie era falso: #top) ── */
-  .pm{background:#0c1512;border:1px solid var(--ink-line);border-radius:16px;position:relative;
-      width:860px;max-width:100%;max-height:88vh;display:flex;flex-direction:column}
-  .pm-head{padding:22px 28px 14px;border-bottom:1px solid var(--ink-line);flex:none}
-  .pm-head h2{margin:0;font-size:21px;color:#fff;font-weight:650}
-  .pm-head .pm-meta{color:#7f9188;font-size:12.5px;margin-top:5px;font-family:var(--mono)}
-  .pm-body{padding:20px 28px 26px;overflow-y:auto;color:#c6d3cc;font-size:14.2px;line-height:1.62}
-  .pm-body h3{color:#fff;font-size:15.5px;margin:22px 0 8px;font-weight:650}
-  .pm-body h4{color:var(--green);font-size:13.5px;margin:15px 0 6px;font-weight:600;
-      text-transform:uppercase;letter-spacing:.05em}
-  .pm-body p{margin:0 0 11px}
-  .pm-body ul{margin:0 0 12px;padding-left:20px}
-  .pm-body li{margin-bottom:5px}
-  .pm-body strong{color:#e8f2ed}
-  .pm-body code{font-family:var(--mono);font-size:12.5px;background:#08110d;
-      border:1px solid var(--ink-line);border-radius:5px;padding:1px 5px;color:var(--green)}
-  .pm-body a{color:var(--green)}
-  .pm-box{background:#08110d;border:1px solid var(--ink-line);border-left:3px solid var(--green);
-      border-radius:9px;padding:13px 16px;margin:0 0 18px;font-size:13.6px}
-  .pm-foot{padding:13px 28px;border-top:1px solid var(--ink-line);flex:none;display:flex;
-      justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-  .pm-foot a{color:#7f9188;font-size:12.5px}
-  .pm-foot .lm-btn{width:auto;padding:9px 22px}
-  @media(max-width:640px){.pm-head,.pm-body,.pm-foot{padding-left:18px;padding-right:18px}}
   .btn-wa{background:#25d366;color:#04220f;font-weight:600}
   .btn-wa:hover{transform:translateY(-2px);background:#33e074}
   :focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
@@ -298,6 +274,7 @@
     <h1 class="h1">Plataforma de gestión para <span class="accent">estaciones de combustible</span>.</h1>
     <p class="hero-sub">Facturación CAI/SAR, control de bombas en vivo, cuadre de turno e inventario — en un solo sistema, corriendo en tu estación.</p>
     <div class="hero-actions">
+      <a class="btn btn-primary" href="https://demo.gas.hn" target="_blank" rel="noopener">Probar la demo en vivo →</a>
       <a class="btn btn-ghost" href="#contacto">Solicitar demostración</a>
     </div>
     <div class="platforms">
@@ -332,6 +309,7 @@
         <button class="shot-btn" data-dir="1" aria-label="Captura siguiente">→</button>
       </div>
     </div>
+    <p class="hw-note reveal" style="margin-top:14px;text-align:center">¿Querés tocarlo vos mismo? <b>La demo es pública:</b> <a href="https://demo.gas.hn" target="_blank" rel="noopener" style="text-decoration:underline">demo.gas.hn</a></p>
   </div>
 </section>
 
@@ -493,7 +471,7 @@
       <div>
         <h4>Contacto</h4>
         <a href="mailto:hola@gas.hn">hola@gas.hn</a>
-        <a href="privacidad.html" onclick="openPriv();return false;">Política de privacidad</a>
+        <a href="#top">Política de privacidad</a>
       </div>
     </div>
     <p class="seo" style="max-width:none;padding-bottom:26px">Gas+ es un software para gasolineras y estaciones de servicio en Honduras y Centroamérica. Integra facturación electrónica CAI/SAR, control volumétrico de combustible, cuadre de turno por empleado, control de inventario, punto de venta de pista y monitoreo de tanques (ATG). Compatible con surtidores Gilbarco, Wayne, Tatsuno y Tokheim; controladores de pista Wayne Fusion DFS y DOMS; medición de tanques Veeder-Root, EVO y Progauge. Operación de diésel, gasolina superior y gasolina regular en Tegucigalpa, San Pedro Sula y todo el país.</p>
@@ -533,11 +511,6 @@
   function openLogin(){document.getElementById('loginModal').classList.add('on');}
   function closeLogin(){document.getElementById('loginModal').classList.remove('on');}
   function doLogin(e){e.preventDefault();document.getElementById('lm-msg').textContent='Portal de clientes en configuración — muy pronto verás tu estación acá.';return false;}
-  /* Política de privacidad: modal grande. El <a> conserva el href a privacidad.html
-     (sirve sin JS y para los buscadores); el onclick solo lo abre acá mismo. */
-  function openPriv(){document.getElementById('privModal').classList.add('on');document.body.style.overflow='hidden';}
-  function closePriv(){document.getElementById('privModal').classList.remove('on');document.body.style.overflow='';}
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closePriv();});
   window.openLogin=openLogin; window.closeLogin=closeLogin; window.doLogin=doLogin;
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLogin();});
 </script>
@@ -553,114 +526,6 @@
     </form>
     <div class="lm-msg" id="lm-msg"></div>
     <div class="lm-foot">¿Cliente nuevo? Escribinos a <a href="mailto:hola@gas.hn">hola@gas.hn</a></div>
-  </div>
-</div>
-
-<!-- ── Política de privacidad (modal grande) ── -->
-<div id="privModal" class="lm-ov" onclick="if(event.target===this)closePriv()">
-  <div class="pm" role="dialog" aria-modal="true" aria-labelledby="pm-t">
-    <button class="lm-x" onclick="closePriv()" aria-label="Cerrar">&times;</button>
-    <div class="pm-head">
-      <h2 id="pm-t">Política de Privacidad</h2>
-      <div class="pm-meta">Gas+ · Última actualización: 30 de junio de 2026</div>
-    </div>
-    <div class="pm-body">
-      <p>Esta política describe cómo la aplicación <strong>Gas+</strong> (en adelante “la aplicación”)
-         recolecta, usa, almacena y protege la información de sus usuarios y de la estación de
-         combustible donde opera.</p>
-
-      <div class="pm-box"><strong>Resumen.</strong> Gas+ es una aplicación operativa B2B para personal
-        autorizado de estaciones de combustible. No recolecta datos personales del público general ni
-        los comparte con terceros. Todo el procesamiento ocurre en el servidor on-premise de la propia
-        estación.</div>
-
-      <h3>1. Información que recolectamos</h3>
-      <h4>Identificadores del operador</h4>
-      <ul>
-        <li><strong>Nombre y PIN</strong> del expendedor o del empleado avanzado (asignados por el administrador de la estación).</li>
-        <li><strong>ID de empleado</strong> dentro del sistema de la estación.</li>
-        <li><strong>Rol</strong> (expendedor, avanzado, administrador, supervisor o auditor).</li>
-      </ul>
-      <h4>Datos operativos generados durante el uso</h4>
-      <ul>
-        <li>Despachos de combustible registrados, facturas emitidas, turnos abiertos y cerrados.</li>
-        <li>Acciones administrativas: cambios de precio, bloqueos de dispensadora, cierres de turno.</li>
-        <li>Fecha, hora y autor de cada acción (para auditoría).</li>
-      </ul>
-      <h4>Datos técnicos del dispositivo</h4>
-      <ul>
-        <li>Versión de la aplicación (para detectar actualizaciones).</li>
-        <li>Registros de error anónimos almacenados localmente en el dispositivo (no se envían a terceros).</li>
-      </ul>
-      <h4>Lo que NO recolectamos</h4>
-      <ul>
-        <li>Ubicación GPS del dispositivo.</li>
-        <li>Lista de contactos, fotos ni archivos personales.</li>
-        <li>Datos del cliente final que carga combustible, más allá de su identificación cuando se factura (requerida por la normativa fiscal aplicable).</li>
-        <li>Identificadores publicitarios: la aplicación no muestra anuncios.</li>
-      </ul>
-
-      <h3>2. Cómo usamos la información</h3>
-      <p>Los datos recolectados se usan exclusivamente para:</p>
-      <ul>
-        <li>Autenticar al personal y autorizar acciones según su rol.</li>
-        <li>Registrar la operación de la estación (despachos, ventas, cierre de turno).</li>
-        <li>Generar los reportes y cuadres internos solicitados por el administrador.</li>
-        <li>Cumplir los requisitos fiscales aplicables: emisión de comprobantes con numeración correlativa.</li>
-      </ul>
-
-      <h3>3. Dónde se almacenan los datos</h3>
-      <p>Todos los datos se almacenan en el <strong>servidor on-premise de la propia estación</strong>
-         (instalación física en el local del cliente). La aplicación se conecta a ese servidor mediante
-         un túnel cifrado (TLS 1.2+ sobre Cloudflare Tunnel).</p>
-      <p><strong>No usamos servicios de terceros</strong> para procesar, almacenar ni analizar los datos
-         operativos del cliente.</p>
-
-      <h3>4. Compartición de datos</h3>
-      <p>No compartimos, vendemos ni transferimos datos a terceros, salvo cuando es legalmente obligatorio:</p>
-      <ul>
-        <li>Las facturas pueden ser declaradas ante la autoridad fiscal correspondiente (responsabilidad del contribuyente, no de la aplicación).</li>
-        <li>Ante una orden judicial de autoridad competente.</li>
-      </ul>
-
-      <h3>5. Seguridad</h3>
-      <ul>
-        <li>Las credenciales del operador (PIN) se almacenan como hash <code>pbkdf2:sha256</code> en la base de datos del servidor.</li>
-        <li>La comunicación entre la app y el servidor usa <strong>HTTPS/TLS</strong> a través de un túnel Cloudflare con autenticación de origen.</li>
-        <li>El acceso al panel administrativo requiere credenciales separadas con rol explícito.</li>
-      </ul>
-
-      <h3>6. Retención de datos</h3>
-      <p>Los datos operativos se retienen por <strong>7 años</strong>, en cumplimiento de las regulaciones
-         fiscales de Honduras. Pasado ese plazo, el administrador de la estación puede solicitar su eliminación.</p>
-      <p>Los registros técnicos del dispositivo se conservan localmente y se eliminan automáticamente al
-         desinstalar la aplicación o al usar la función “Borrar caché” desde Configuración.</p>
-
-      <h3>7. Derechos del operador</h3>
-      <p>El personal autorizado tiene derecho a:</p>
-      <ul>
-        <li>Solicitar al administrador de la estación el acceso a los datos personales que la aplicación tiene sobre él.</li>
-        <li>Solicitar la corrección de datos inexactos.</li>
-        <li>Solicitar la eliminación de su cuenta cuando deje de pertenecer al personal de la estación.</li>
-      </ul>
-
-      <h3>8. Datos de menores</h3>
-      <p>La aplicación está destinada exclusivamente a personal autorizado mayor de edad. No recolectamos
-         intencionalmente datos de menores de 18 años.</p>
-
-      <h3>9. Cambios en esta política</h3>
-      <p>Podemos actualizar esta política en cualquier momento. La fecha de “última actualización” al
-         inicio de este documento refleja la versión vigente. Los cambios sustanciales se notifican a los
-         administradores de las estaciones.</p>
-
-      <h3>10. Contacto</h3>
-      <p>Para consultas sobre privacidad o para ejercer alguno de los derechos descritos arriba, escribinos a
-         <a href="mailto:contacto@gas.hn">contacto@gas.hn</a>.</p>
-    </div>
-    <div class="pm-foot">
-      <a href="privacidad.html" target="_blank" rel="noopener">Abrir en una página aparte ↗</a>
-      <button class="lm-btn" onclick="closePriv()">Entendido</button>
-    </div>
   </div>
 </div>
 </body>
