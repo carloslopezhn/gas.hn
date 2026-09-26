@@ -145,6 +145,43 @@
   .h1 .accent{color:var(--green)}
   .hero-sub{color:#9fb0a6;max-width:52ch;margin:20px 0 30px;font-size:clamp(16px,1.7vw,19px)}
   .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
+  .hero-grid .h1{font-size:clamp(34px,4.3vw,54px)}
+  .hero-shot{position:relative}
+  .hs-win{border-radius:12px;overflow:hidden;border:1px solid #2a3a31;background:#0f1512;
+          box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(0,214,143,.08);
+          transform:perspective(1600px) rotateY(-10deg) rotateX(3deg);transition:transform .6s ease}
+  .hero-shot:hover .hs-win{transform:perspective(1600px) rotateY(0) rotateX(0)}
+  .hs-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#161e19;border-bottom:1px solid #26302a}
+  .hs-bar i{width:9px;height:9px;border-radius:50%;background:#3a4a41}
+  .hs-bar span{margin-left:8px;font-family:var(--mono);font-size:11px;color:#7f9188}
+  .hs-win img{display:block;width:100%;height:auto}
+  .hs-badge{position:absolute;font-family:var(--mono);font-size:12.5px;color:#e8efe9;background:rgba(20,26,22,.92);
+            border:1px solid #2c3a32;border-radius:10px;padding:9px 13px;box-shadow:0 14px 34px rgba(0,0,0,.45);
+            display:flex;align-items:center;gap:8px;backdrop-filter:blur(8px)}
+  .hs-badge b{color:var(--green)}
+  .hs-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+  .hs-b1{left:-26px;top:18%}
+  .hs-b2{right:-10px;bottom:-18px}
+  .proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--ink-line);position:relative;z-index:1;padding-top:0;padding-bottom:0}
+  .proof-item{padding:26px 20px 30px;border-left:1px solid var(--ink-line);display:flex;flex-direction:column;gap:4px}
+  .proof-item:first-child{border-left:0;padding-left:0}
+  .proof-item b{font-family:var(--mono);font-weight:600;font-size:clamp(17px,1.7vw,22px);color:#fff;letter-spacing:-.01em}
+  .proof-item:first-child b{color:var(--green);font-size:clamp(26px,2.6vw,34px);line-height:1}
+  .proof-item span{font-size:13.5px;color:#8fa096}
+  .proof-item b.proof-brands{font-size:clamp(15px,1.4vw,19px);line-height:1.3}
+  a.proof-item:hover b{color:var(--green)}
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hs-win{transform:none}.hs-b1{left:8px;top:auto;bottom:-18px}.hs-b2{display:none}
+    .proof{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .proof-item:nth-child(3){border-left:0;padding-left:0}
+    .proof-item:nth-child(n+3){border-top:1px solid var(--ink-line)}
+  }
+  .utp-by{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:#7f9188;padding:4px 10px;border:1px solid var(--ink-line);border-radius:999px}
+  .utp-by b{color:#e8efe9}
+  .foot a.utp-by{display:inline-flex;padding:4px 12px;font-size:12px}
+  .utp-by:hover{border-color:var(--green);color:#cdd8d1}
   .platforms{display:flex;flex-wrap:wrap;gap:20px;align-items:center;padding-top:24px;border-top:1px solid var(--ink-line)}
   .platforms span{font-family:var(--mono);font-size:12.5px;color:#7f9188;letter-spacing:.04em}
   .platforms .pl-label{color:#5c6b62;text-transform:uppercase;letter-spacing:.2em;font-size:11px}
@@ -293,17 +330,34 @@
 
 <!-- ================= HERO · negro ================= -->
 <header id="top" class="band band--dark hero">
-  <div class="wrap pad">
-    <div class="eyebrow">Software para estaciones de combustible · Honduras</div>
-    <h1 class="h1">Plataforma de gestión para <span class="accent">estaciones de combustible</span>.</h1>
-    <p class="hero-sub">Facturación CAI/SAR, control de bombas en vivo, cuadre de turno e inventario — en un solo sistema, corriendo en tu estación.</p>
-    <div class="hero-actions">
-      <a class="btn btn-ghost" href="#contacto">Solicitar demostración</a>
+  <div class="wrap pad hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">Software para estaciones de combustible · Honduras</div>
+      <h1 class="h1">Plataforma de gestión para <span class="accent">estaciones de combustible</span>.</h1>
+      <p class="hero-sub">Facturación CAI/SAR, control de bombas en vivo, cuadre de turno e inventario — en un solo sistema, corriendo en tu estación.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contacto">Solicitar demostración <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#capturas">Ver el sistema</a>
+      </div>
+      <div class="platforms">
+        <span class="pl-label">Disponible en</span>
+        <span>Windows</span><span>iOS · macOS</span><span>Android</span><span>Web</span>
+      </div>
     </div>
-    <div class="platforms">
-      <span class="pl-label">Disponible en</span>
-      <span>Windows</span><span>iOS · macOS</span><span>Android</span><span>Web</span>
+    <div class="hero-shot" aria-hidden="true">
+      <div class="hs-win">
+        <div class="hs-bar"><i></i><i></i><i></i><span>pista · panel en vivo</span></div>
+        <img src="/shots/pista.webp?v=20260808" width="2880" height="1800" alt="" fetchpriority="high">
+      </div>
+      <div class="hs-badge hs-b1"><span class="dot"></span>16 caras en vivo</div>
+      <div class="hs-badge hs-b2">Cuadre de turno <b>automático</b></div>
     </div>
+  </div>
+  <div class="wrap proof">
+    <div class="proof-item"><b>8</b><span>estaciones en producción</span></div>
+    <div class="proof-item"><b class="proof-brands">Texaco · Shell · Puma</b><span>y estaciones independientes</span></div>
+    <div class="proof-item"><b>Sin internet</b><span>la pista sigue facturando</span></div>
+    <a class="proof-item" href="https://utp.hn/#productos" target="_blank" rel="noopener"><b>Grupo UTP</b><span>creadores de Gas+ · soporte en Honduras</span></a>
   </div>
 </header>
 
@@ -482,6 +536,7 @@
       <div>
         <a class="brand" href="#top">gas<b>+</b></a>
         <p class="seo" style="margin-top:14px">Software para gasolineras y estaciones de servicio: facturación CAI/SAR, control de bombas, cuadre de turno, inventario de combustible y reconciliación de tanques. Desarrollado y operado desde Honduras.</p>
+        <a class="utp-by" style="margin-top:6px" href="https://utp.hn/#productos" target="_blank" rel="noopener">un producto de <b>Grupo UTP</b> →</a>
       </div>
       <div>
         <h4>Producto</h4>
@@ -491,14 +546,17 @@
         <a href="#hardware">Compatibilidad</a>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <h4>Grupo UTP</h4>
+        <a href="https://utp.hn" target="_blank" rel="noopener">utp.hn</a>
+        <a href="https://utp.hn/#productos" target="_blank" rel="noopener">POS+ · Planilla+</a>
+        <h4 style="margin-top:22px">Contacto</h4>
         <a href="mailto:hola@gas.hn">hola@gas.hn</a>
         <a href="privacidad.html" onclick="openPriv();return false;">Política de privacidad</a>
       </div>
     </div>
     <p class="seo" style="max-width:none;padding-bottom:26px">Gas+ es un software para gasolineras y estaciones de servicio en Honduras y Centroamérica. Integra facturación electrónica CAI/SAR, control volumétrico de combustible, cuadre de turno por empleado, control de inventario, punto de venta de pista y monitoreo de tanques (ATG). Compatible con surtidores Gilbarco, Wayne, Tatsuno y Tokheim; controladores de pista Wayne Fusion DFS y DOMS; medición de tanques Veeder-Root, EVO y Progauge. Operación de diésel, gasolina superior y gasolina regular en Tegucigalpa, San Pedro Sula y todo el país.</p>
     <div class="foot-bottom">
-      <span>© 2026 gas.hn · todos los derechos reservados</span>
+      <span>© 2026 gas.hn · un producto de <a href="https://utp.hn" target="_blank" rel="noopener" style="display:inline;padding:0;color:#cdd8d1">Grupo UTP</a> · todos los derechos reservados</span>
       <span>v2.12.9 · status: <span class="status-ok">operativo</span></span>
     </div>
   </div>
