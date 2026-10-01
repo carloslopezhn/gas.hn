@@ -37,8 +37,8 @@
 # =============================================================================
 set -euo pipefail
 
-KIT_SHA256="26e3e37f5ae530900e71c44f6dd507df8370f0073ab8108248268c0d919bdc48"          # lo sella station/build-kit.sh --publicar
-KIT_VERSION="2026-09-30-4b2171c"
+KIT_SHA256="530c475108f1f1c3a68f3667d53e915d949fe01c3bc1840c946986ff53469ee8"          # lo sella station/build-kit.sh --publicar
+KIT_VERSION="2026-09-30-098e4d8"
 KIT_URL="https://gas.hn/gasplus-station-kit.tar.gz"
 PANEL_URL="${GASPLUS_PANEL_URL:-https://panel.gas.hn}"
 REGISTRY_HOST="registry.gas.hn"
