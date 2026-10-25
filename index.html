@@ -316,8 +316,8 @@
     <div class="nav-links">
       <a href="#capturas">El sistema</a>
       <a href="#modulos">Módulos</a>
-      <a href="#arquitectura">Arquitectura</a>
-      <a href="#hardware">Compatibilidad</a>
+      <a href="#plataforma">Plataforma</a>
+      <a href="#seguridad">Seguridad</a>
     </div>
     <div class="nav-right">
       <button class="btn btn-soft" onclick="openLogin()">Iniciar sesión</button>
@@ -388,126 +388,98 @@
   </div>
 </section>
 
-<section class="band band--white">
+<!-- ================= MÓDULOS · negro ================= -->
+<section id="modulos" class="band band--dark" style="border-top:0">
   <div class="wrap pad">
     <div class="section-head reveal">
-      <div class="eyebrow">Adaptable — sin importar tu punto de partida</div>
-      <h2 class="h2">Gas+ se acopla al sistema que ya operás, o se implementa como sistema único desde cero.</h2>
+      <div class="eyebrow">módulos</div>
+      <h2 class="h2">Toda la estación en un solo sistema.</h2>
+      <p class="lead">Encendé únicamente los módulos que tu estación necesita. Todos comparten el mismo núcleo y la misma base de datos — se captura una vez, aparece en todos lados.</p>
     </div>
-    <div class="grid-2" style="margin-top:40px">
-      <div class="card case reveal">
-        <span class="tag">► caso A · estación con sistema existente</span>
-        <h3>Conviví con tu sistema actual</h3>
-        <p>Si ya tenés un POS, una consola de control de bombas o un sistema de facturación, Gas+ se conecta a su base de datos y lo gestiona desde afuera. Nada cambia en tu operación diaria — agregamos control de pista, app móvil, reportería y cuadre automático sobre lo que ya funciona.</p>
-      </div>
-      <div class="card case reveal">
-        <span class="tag">► caso B · estación nueva o sin sistema</span>
-        <h3>Implementación llave en mano</h3>
-        <p>Si recién arrancás o no tenés nada todavía, Gas+ se instala como sistema único. Factura con tu CAI, controla las bombas, lleva el inventario, cierra turnos y emite reportes. Una sola plataforma, una sola base de datos, sin licencias ni dependencias externas.</p>
-      </div>
+    <div class="grid-2 reveal" style="margin-top:40px">
+      <div class="mod"><div class="mhead"><span class="mcat">contabilidad</span><span class="chip chip--go" style="margin-left:auto">destacado</span></div><h3>Contabilidad integrada</h3><p>Cada venta, compra, gasto y cobro genera su asiento de partida doble en automático. Cuentas por cobrar y por pagar, libro de ventas, declaración de ISV y estados financieros — la operación aterriza sola en los libros.</p><div class="chips"><span class="chip chip--go">partida doble</span><span class="chip">CxC / CxP</span><span class="chip">ISV</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mcat">pipas</span><span class="chip chip--go" style="margin-left:auto">destacado</span></div><h3>Venta en pipas y cisternas</h3><p>Despacho y facturación desde camiones cisterna: carga desde la isla, trasiegos entre pipas y factura externa. Cada pipa lleva su propio nivel, su turno móvil y su cuadre.</p><div class="chips"><span class="chip chip--go">turno móvil</span><span class="chip">trasiegos</span><span class="chip">factura externa</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mcat">planilla</span><span class="chip chip--go" style="margin-left:auto">destacado</span></div><h3>Planilla y personal</h3><p>Nómina quincenal, anticipos de salario, vales de faltante y deducciones — integrados al cuadre y a los gastos de caja de cada turno.</p><div class="chips"><span class="chip">nómina</span><span class="chip">anticipos</span><span class="chip">vales</span></div></div>
+      <div class="mod"><div class="mhead"><span class="mcat">terminales móviles</span><span class="chip chip--go" style="margin-left:auto">destacado</span></div><h3>Venta desde el teléfono</h3><p>Facturá y cobrá en la pista desde cualquier teléfono o tablet. Login por PIN o RFID, formas de pago múltiples, crédito y control de bomba — en la mano del bombero.</p><div class="chips"><span class="chip chip--go">android</span><span class="chip">PIN / RFID</span><span class="chip">offline-aware</span></div></div>
     </div>
-    <div class="chips reveal" style="margin-top:26px">
-      <span class="chip chip--go">tanques multi-producto</span>
-      <span class="chip chip--go">surtidores multi-producto</span>
-      <span class="chip">sin límite de bombas</span>
-      <span class="chip">sin límite de tanques</span>
-      <span class="chip">sin licencia por punto</span>
-      <span class="chip">multi-tarifa por grade</span>
+    <div class="grid-mods reveal" style="margin-top:16px">
+      <div class="mod"><div class="mhead"><span class="mcat">pista</span></div><h3>Control en vivo de bombas</h3><p>Estado, autorización, preset, bloqueo y desbloqueo en tiempo real. Surtidores multi-producto, sin límite de bombas.</p></div>
+      <div class="mod"><div class="mhead"><span class="mcat">facturación</span></div><h3>CAI / SAR Honduras</h3><p>Correlativo SAR vigente, control de rango, ISV gravado y exento, ticket térmico 80 mm o PDF.</p></div>
+      <div class="mod"><div class="mhead"><span class="mcat">turnos</span></div><h3>Cuadre de turno</h3><p>Apertura y cierre por empleado o por islas, con cuadre automático contra el totalizador y atribución por RFID.</p></div>
+      <div class="mod"><div class="mhead"><span class="mcat">tienda</span></div><h3>Tienda e inventario</h3><p>Productos no-combustible, código de barras, factura mixta, conteos físicos y compras a proveedor.</p></div>
+      <div class="mod"><div class="mhead"><span class="mcat">tanques</span></div><h3>Reconciliación de tanques</h3><p>Niveles en vivo con ATG, descargas, mermas por hora y reconciliación histórica contra ventas.</p></div>
+      <div class="mod"><div class="mhead"><span class="mcat">reportes</span></div><h3>Reportes y auditoría</h3><p>Cuadre diario, ventas por empleado, estadígrafo y bitácora inmutable de cada acción.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ================= HARDWARE · claro ================= -->
-<section id="hardware" class="band band--light">
+<!-- ================= PLATAFORMA · se acopla + hardware · blanco ================= -->
+<section id="plataforma" class="band band--white">
+  <span id="hardware"></span>
   <div class="wrap pad">
     <div class="section-head reveal">
-      <div class="eyebrow">Equipos y sistemas soportados</div>
-      <h2 class="h2">Compatible con el hardware y el software de tu estación.</h2>
-      <p class="lead">Gas+ se conecta a los surtidores, controladores de pista, medidores de tanque (ATG) y sistemas de punto de venta más usados en gasolineras de Honduras y Centroamérica.</p>
+      <div class="eyebrow">se acopla a tu estación</div>
+      <h2 class="h2">Sobre el sistema que ya operás, o como sistema único desde cero.</h2>
+      <p class="lead">Si ya tenés POS, consola de bombas o facturación, Gas+ los gestiona desde afuera sin cambiar tu operación. Si arrancás de cero, se instala como plataforma única: factura con tu CAI, controla la pista y lleva el inventario — una sola base de datos, sin licencias por punto.</p>
     </div>
-    <div class="hw reveal" style="margin-top:38px">
+    <div class="hw reveal" style="margin-top:34px">
       <div>
-        <div class="cat">Surtidores / dispensadores</div>
-        <div class="sub">Bombas despachadoras de combustible</div>
+        <div class="cat">Surtidores</div>
+        <div class="sub">Bombas despachadoras</div>
         <div class="brands"><span class="brand-chip">Gilbarco</span><span class="brand-chip">Wayne</span><span class="brand-chip">Tatsuno</span><span class="brand-chip">Tokheim</span></div>
       </div>
       <div>
-        <div class="cat">Controladores de pista</div>
-        <div class="sub">Forecourt controllers / automatización</div>
+        <div class="cat">Control de pista</div>
+        <div class="sub">Forecourt controllers</div>
         <div class="brands"><span class="brand-chip">Wayne Fusion DFS</span><span class="brand-chip">DOMS</span></div>
       </div>
       <div>
         <div class="cat">Medición de tanques · ATG</div>
-        <div class="sub">Sondas y consolas de nivel de tanque</div>
+        <div class="sub">Sondas y consolas de nivel</div>
         <div class="brands"><span class="brand-chip">Veeder-Root</span><span class="brand-chip">EVO</span><span class="brand-chip">Progauge</span></div>
       </div>
     </div>
-    <p class="hw-note reveal">¿Tu equipo no aparece en la lista? <b>Lo integramos.</b> Gas+ se adapta al protocolo del fabricante.</p>
+    <p class="hw-note reveal">¿Tu equipo no aparece? <b>Lo integramos.</b> Gas+ se adapta al protocolo del fabricante.</p>
   </div>
 </section>
 
-<!-- ================= MÓDULOS · negro ================= -->
-<section id="modulos" class="band band--dark">
+<!-- ================= SEGURIDAD · disponibilidad + C·I·D + personalización · verde ================= -->
+<section id="seguridad" class="band band--green">
+  <span id="arquitectura"></span><span id="implementacion"></span>
   <div class="wrap pad">
     <div class="section-head reveal">
-      <div class="eyebrow">01 / módulos</div>
-      <h2 class="h2">Nueve módulos. Una sola operación.</h2>
-      <p class="lead">Cada módulo es independiente pero está integrado al núcleo transaccional. Habilitá únicamente los que tu estación necesita y agregá los demás cuando crezca.</p>
-    </div>
-    <div class="grid-mods reveal" style="margin-top:40px">
-      <div class="mod"><div class="mhead"><span class="mnum">01</span><span class="mcat">pista</span></div><h3>Control en vivo de bombas</h3><p>Dashboard en tiempo real con estado, autorización, preset, bloqueo y desbloqueo. Soporta surtidores multi-producto y cualquier cantidad de bombas.</p><div class="chips"><span class="chip">multi-producto</span><span class="chip">sin límite</span><span class="chip chip--go">cache 2s</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mnum">02</span><span class="mcat">despachos</span></div><h3>Facturación CAI Honduras</h3><p>Emisión con correlativo SAR vigente, control de rango, ISV gravado y exento, ticket térmico 80mm o PDF compartible.</p><div class="chips"><span class="chip chip--go">cai sar</span><span class="chip">impresión 80mm</span><span class="chip">pdf</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mnum">03</span><span class="mcat">turnos</span></div><h3>Cierre unificado y cuadre</h3><p>Apertura y cierre por bombero o jefe, con cuadre automático contra el totalizador del medidor y atribución por TAG RFID.</p><div class="chips"><span class="chip chip--go">cuadre auto</span><span class="chip">tag rfid</span><span class="chip">ticket impr.</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mnum">04</span><span class="mcat">tienda</span></div><h3>Productos no-combustible</h3><p>Catálogo, ventas, escaneo de código de barras y emisión de factura mixta combustible + lubricantes / accesorios / consumibles.</p><div class="chips"><span class="chip">ean-13</span><span class="chip">factura mixta</span><span class="chip">multi-isv</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mnum">05</span><span class="mcat">inventario</span></div><h3>Stock, conteos y ajustes</h3><p>Conteos físicos cíclicos, ajustes con motivo, compras a proveedor con replicación automática al sistema de caja.</p><div class="chips"><span class="chip">conteos físicos</span><span class="chip">cola reintentos</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mnum">06</span><span class="mcat">reportes</span></div><h3>Reportería operativa</h3><p>Cuadre diario, reconciliación de tanques, comparativo Fusion vs caja, ventas por empleado, descargas y estadígrafo mensual.</p><div class="chips"><span class="chip">pdf / xlsx</span><span class="chip chip--go">reportes 9+</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mnum">07</span><span class="mcat">móvil</span></div><h3>App nativa para pista</h3><p>Android (Flutter) para bombero y jefe de pista. Login por PIN o RFID, facturación, control de bomba y reimpresión.</p><div class="chips"><span class="chip">android</span><span class="chip">offline-aware</span><span class="chip chip--go">auto-update</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mnum">08</span><span class="mcat">tanques</span></div><h3>Reconciliación de tanques</h3><p>Lectura en vivo con ATG (Veeder-Root y compatibles), descargas, mermas por hora y reconciliación histórica con ventas.</p><div class="chips"><span class="chip">multi-producto</span><span class="chip">sin límite</span><span class="chip chip--go">atg</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mnum">09</span><span class="mcat">auditoría</span></div><h3>Trazabilidad y eventos</h3><p>Registro detallado de cada acción operativa: facturación, cambios de precio, bloqueo de bomba y cierre de turno con autor, hora y origen.</p><div class="chips"><span class="chip chip--go">log inmutable</span><span class="chip">filtros</span><span class="chip">export</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ARQUITECTURA + IMPLEMENTACIÓN · verde ================= -->
-<section id="arquitectura" class="band band--green">
-  <span id="implementacion"></span>
-  <div class="wrap pad">
-    <div class="section-head reveal">
-      <div class="eyebrow">02 / arquitectura e implementación</div>
-      <h2 class="h2">Un núcleo en sitio, control desde cualquier lugar. Operativo en días, no en meses.</h2>
-      <p class="lead">Llave en mano: Gas+ se instala en el servidor de tu estación, se conecta al hardware existente y queda funcionando con la facturación, el control de pista y la app móvil. Supervisores y dueños entran por túnel cifrado, sin abrir puertos ni exponer la red local.</p>
+      <div class="eyebrow">disponibilidad · seguridad · personalización</div>
+      <h2 class="h2">Tu información protegida y disponible, siempre.</h2>
+      <p class="lead">Un núcleo en sitio que opera sin internet, acceso remoto cifrado y seguridad construida sobre los tres pilares: confidencialidad, integridad y disponibilidad.</p>
     </div>
     <div class="grid-3 reveal" style="margin-top:40px">
       <div class="card">
-        <span class="num">on-premise</span>
-        <h3>Sistema en sitio</h3>
-        <p>El backend corre en el servidor físico de tu estación y opera aunque no haya Internet.</p>
-        <ul class="checks">
-          <li>Facturación CAI propia con correlativo SAR</li>
-          <li>Control de bombas, despachos y cierre de turno</li>
-          <li>Cuadre con atribución por TAG RFID</li>
-          <li>Backup local + sincronización a la nube</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="num">acceso remoto</span>
-        <h3>Conectado donde estés</h3>
+        <span class="num">disponibilidad remota</span>
+        <h3>Control desde cualquier lugar</h3>
         <p>Panel web y app móvil sobre la misma plataforma y los mismos datos.</p>
         <ul class="checks">
-          <li>Panel web seguro desde cualquier red</li>
-          <li>App móvil para pista (Android)</li>
-          <li>Sin VPN, sin puertos abiertos</li>
-          <li>Roles y permisos por usuario</li>
+          <li>Acceso por túnel cifrado — sin VPN ni puertos abiertos</li>
+          <li>Precios, ventas y cuadres en vivo desde tu teléfono</li>
+          <li>Actualización remota de la estación</li>
         </ul>
       </div>
       <div class="card">
-        <span class="num">resiliencia</span>
-        <h3>La estación nunca se detiene</h3>
-        <p>Diseñado para fallar con gracia: la pista no espera a la nube.</p>
+        <span class="num">seguridad · C · I · D</span>
+        <h3>Confidencialidad, integridad, disponibilidad</h3>
         <ul class="checks">
-          <li>Si la nube cae, la pista sigue local</li>
-          <li>Modo degradado con aviso claro al operador</li>
-          <li>Cola de reintentos al volver la conexión</li>
+          <li><b style="color:var(--accent)">Confidencialidad</b> — roles y permisos granulares, túnel cifrado y credenciales enmascaradas</li>
+          <li><b style="color:var(--accent)">Integridad</b> — bitácora inmutable con cadena HMAC: cada acción con autor, hora y origen</li>
+          <li><b style="color:var(--accent)">Disponibilidad</b> — opera sin internet; la pista nunca se detiene; backup y sincronización</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="num">personalización</span>
+        <h3>Se adapta a tu estación</h3>
+        <p>Encendé solo los módulos que usás y crecé cuando la estación lo pida.</p>
+        <ul class="checks">
+          <li>Documentos y tickets configurables por bloques</li>
+          <li>Tu marca: Puma, Shell, Texaco o sin bandera</li>
+          <li>Cuadre por empleado o por islas, full o self-service</li>
         </ul>
       </div>
     </div>
@@ -541,8 +513,8 @@
         <h4>Producto</h4>
         <a href="#capturas">Capturas del sistema</a>
         <a href="#modulos">Módulos</a>
-        <a href="#arquitectura">Arquitectura e implementación</a>
-        <a href="#hardware">Compatibilidad</a>
+        <a href="#plataforma">Plataforma y compatibilidad</a>
+        <a href="#seguridad">Seguridad</a>
       </div>
       <div>
         <h4>Grupo UTP</h4>
