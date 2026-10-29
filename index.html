@@ -4,703 +4,499 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Gas+ · Plataforma de gestión para estaciones de combustible</title>
-<meta name="description" content="Gas+ es el software para gasolineras y estaciones de servicio en Honduras: facturación CAI/SAR, control en vivo de bombas, cuadre de turno por empleado, control de inventario de combustible y reconciliación de tanques (ATG). Compatible con Gilbarco, Wayne Fusion DFS, Veeder-Root, EVO y Progauge.">
-<meta name="keywords" content="software para gasolineras, sistema para estaciones de servicio, software de gestión de gasolineras Honduras, sistema de facturación combustible Honduras, facturación CAI Honduras, facturación SAR gasolineras, control de combustible, control volumétrico gasolinera, cuadre de turno gasolinera, control de inventario de combustible, monitoreo de tanques de combustible, ATG, punto de venta para gasolineras, POS pista, Gilbarco, Wayne Fusion DFS, Veeder-Root, EVO, Progauge, Tatsuno, Tokheim, diesel, gasolina superior, gasolina regular, Tegucigalpa, San Pedro Sula, Centroamérica">
+<meta name="description" content="Gas+ es el software para gasolineras y estaciones de servicio en Honduras: facturación CAI/SAR, control en vivo de bombas, cuadre de turno por empleado, inventario de combustible y reconciliación de tanques (ATG), con app móvil Android y panel multi-estación. Compatible con Gilbarco, Wayne Fusion DFS, Veeder-Root, EVO y Progauge.">
+<meta name="keywords" content="software para gasolineras, sistema para estaciones de servicio, software de gestión de gasolineras Honduras, sistema de facturación combustible Honduras, facturación CAI Honduras, facturación SAR gasolineras, control de combustible, control volumétrico gasolinera, cuadre de turno gasolinera, control de inventario de combustible, monitoreo de tanques de combustible, ATG, punto de venta para gasolineras, POS pista, app para gasolineras, panel multi-estación, análisis de ventas de combustible, Gilbarco, Wayne Fusion DFS, Veeder-Root, EVO, Progauge, Tatsuno, Tokheim, diesel, gasolina superior, gasolina regular, Tegucigalpa, San Pedro Sula, Centroamérica">
 <meta name="author" content="Gas+">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://gas.hn/">
 <meta property="og:title" content="Gas+ · Software para gasolineras y estaciones de combustible">
-<meta property="og:description" content="Plataforma integral para estaciones de combustible: facturación CAI/SAR Honduras, control de bombas, cuadre de turno, inventario y reconciliación de tanques. Compatible con Gilbarco, Wayne Fusion DFS, Veeder-Root, EVO y Progauge.">
+<meta property="og:description" content="Plataforma integral para estaciones de combustible: facturación CAI/SAR Honduras, control de bombas, cuadre de turno, inventario y reconciliación de tanques. App móvil Android y panel multi-estación. Compatible con Gilbarco, Wayne Fusion DFS, Veeder-Root, EVO y Progauge.">
 <meta property="og:url" content="https://gas.hn">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_HN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gas+ · Software para gasolineras">
-<meta name="twitter:description" content="Facturación CAI/SAR, control de bombas, cuadre de turno y reconciliación de tanques para estaciones de combustible en Honduras.">
+<meta name="twitter:description" content="Facturación CAI/SAR, control de bombas, cuadre de turno, app móvil y panel multi-estación para estaciones de combustible en Honduras.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gas+","applicationCategory":"BusinessApplication","operatingSystem":"Windows, Android, iOS, Web","offers":{"@type":"Offer","price":"0","priceCurrency":"HNL"},"description":"Software de gestión para gasolineras y estaciones de servicio en Honduras: facturación CAI/SAR, control en vivo de bombas, cuadre de turno, control de inventario de combustible y reconciliación de tanques (ATG).","areaServed":"HN","url":"https://gas.hn","publisher":{"@type":"Organization","name":"Grupo UTP","url":"https://utp.hn"},"sameAs":["https://utp.hn/#productos"]}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gas+","applicationCategory":"BusinessApplication","operatingSystem":"Windows, Android, Web","offers":{"@type":"Offer","price":"0","priceCurrency":"HNL"},"description":"Software de gestión para gasolineras y estaciones de servicio en Honduras: facturación CAI/SAR, control en vivo de bombas, cuadre de turno, control de inventario de combustible, reconciliación de tanques (ATG), app móvil y panel multi-estación.","areaServed":"HN","url":"https://gas.hn","downloadUrl":"https://play.google.com/store/apps/details?id=hn.gas.aplicacion","publisher":{"@type":"Organization","name":"Grupo UTP","url":"https://utp.hn"},"sameAs":["https://utp.hn/#productos"]}
 </script>
+<link rel="mask-icon" href="/favicon.svg" color="#00d68f">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon-apple.svg">
-<link rel="mask-icon" href="/favicon.svg" color="#00d68f">
-<meta name="theme-color" content="#0a0a0b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --mono: 'JetBrains Mono',ui-monospace,'SF Mono','Cascadia Code',Menlo,Consolas,monospace;
-    --sans: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    --green:#00d68f; --green-ink:#04835c; --amber:#ffb547;
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono','Cascadia Code',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --green:#00d68f; --green-ink:#04835c; --green-deep:#026c4b; --amber:#ffb547;
     --ink:#0a0d0b; --ink-card:#141a16; --ink-line:#26302a;
-    --paper:#ffffff; --paper-2:#f3f6f3; --paper-line:#e2e8e3;
-    --forest:#08251b; --forest-card:#0e352752; --forest-line:#1c5541;
+    --paper:#ffffff; --paper-2:#f4f8f5; --paper-line:#e3eae5; --text:#0e1512; --muted:#5c6b62;
+    --forest:#08251b; --forest-line:#1c5541;
     --maxw:1120px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{margin:0;background:var(--ink);color:#e8efe9;font-family:var(--sans);
+  body{margin:0;background:var(--paper);color:var(--text);font-family:var(--sans);
        font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   img{max-width:100%}
 
-  /* ---- band system: each band sets local tokens, children inherit ---- */
+  /* ---- band system ---- */
   .band{background:var(--bg);color:var(--fg);border-top:1px solid var(--line)}
-  .band--dark   {--bg:var(--ink);   --fg:#e8efe9; --muted:#8fa096; --line:var(--ink-line);   --card:var(--ink-card);   --card-line:var(--ink-line); --accent:var(--green); --accent-txt:var(--green)}
-  .band--white  {--bg:var(--paper);  --fg:#0e1512; --muted:#5c6b62; --line:var(--paper-line); --card:#ffffff;            --card-line:var(--paper-line); --accent:var(--green); --accent-txt:var(--green-ink)}
-  .band--light  {--bg:var(--paper-2);--fg:#0e1512; --muted:#5c6b62; --line:var(--paper-line); --card:#ffffff;            --card-line:var(--paper-line); --accent:var(--green); --accent-txt:var(--green-ink)}
-  .band--green  {--bg:var(--forest); --fg:#eafff6; --muted:#8fcdb6; --line:var(--forest-line);--card:var(--forest-card); --card-line:var(--forest-line);--accent:var(--green); --accent-txt:var(--green)}
+  .band--white {--bg:var(--paper);  --fg:#0e1512;--muted:#5c6b62;--line:var(--paper-line);--card:#fff;             --card-line:var(--paper-line);--accent:var(--green);--accent-txt:var(--green-ink)}
+  .band--light {--bg:var(--paper-2);--fg:#0e1512;--muted:#5c6b62;--line:var(--paper-line);--card:#fff;             --card-line:var(--paper-line);--accent:var(--green);--accent-txt:var(--green-ink)}
+  .band--dark  {--bg:var(--ink);    --fg:#e8efe9;--muted:#8fa096;--line:var(--ink-line);  --card:var(--ink-card);  --card-line:var(--ink-line);  --accent:var(--green);--accent-txt:var(--green)}
+  .band--green {--bg:var(--forest); --fg:#eafff6;--muted:#8fcdb6;--line:var(--forest-line);--card:#0e352752;        --card-line:var(--forest-line);--accent:var(--green);--accent-txt:var(--green)}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .pad{padding-block:96px}
-  @media (max-width:640px){.pad{padding-block:64px}}
+  .pad{padding-block:88px}
+  @media (max-width:640px){.pad{padding-block:56px}}
 
-  /* ---- shared components (styled through tokens) ---- */
   .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
-           color:var(--accent-txt);display:inline-flex;align-items:center;gap:10px;margin:0 0 20px}
+           color:var(--accent-txt);display:inline-flex;align-items:center;gap:10px;margin:0 0 18px}
   .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
   h1,h2,h3{font-family:var(--mono);font-weight:600;text-wrap:balance;margin:0;letter-spacing:-.01em}
-  .h2{font-size:clamp(27px,4vw,40px);line-height:1.12;color:var(--fg)}
-  .lead{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:62ch;margin:18px 0 0}
-  .kicker-num{font-family:var(--mono);color:var(--accent-txt);opacity:.8}
+  .h2{font-size:clamp(26px,3.9vw,38px);line-height:1.13;color:var(--fg)}
+  .lead{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:60ch;margin:16px 0 0}
+  .section-head{max-width:68ch}
 
-  .chip{font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:5px 11px;border-radius:999px;
-        border:1px solid var(--card-line);color:var(--muted);background:color-mix(in srgb,var(--card) 60%,transparent);white-space:nowrap}
+  .chip{font-family:var(--mono);font-size:12px;letter-spacing:.03em;padding:5px 11px;border-radius:999px;
+        border:1px solid var(--card-line);color:var(--muted);background:color-mix(in srgb,var(--card) 70%,transparent);white-space:nowrap}
   .chip--go{color:var(--accent-txt);border-color:color-mix(in srgb,var(--accent) 45%,var(--card-line))}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
 
-  .btn{font-family:var(--mono);font-size:14px;letter-spacing:.02em;padding:13px 22px;border-radius:8px;
-       display:inline-flex;align-items:center;gap:9px;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .15s ease,border-color .15s}
-  .btn-primary{background:var(--green);color:#062a1e;font-weight:600}
+  .btn{font-family:var(--mono);font-size:14px;letter-spacing:.02em;padding:13px 22px;border-radius:9px;
+       display:inline-flex;align-items:center;gap:9px;border:1px solid transparent;cursor:pointer;
+       transition:transform .15s ease,background .15s ease,border-color .15s}
+  .btn-primary{background:var(--green);color:#042a1e;font-weight:700}
   .btn-primary:hover{transform:translateY(-2px);background:#12e6a0}
   .btn-ghost{border-color:var(--card-line);color:var(--fg);background:transparent}
   .btn-ghost:hover{border-color:var(--accent);color:var(--accent-txt);transform:translateY(-2px)}
-  .nav .btn{padding:9px 15px;font-size:13px}
-  .btn-soft{border:1px solid var(--ink-line);color:#cdd8d1;background:transparent}
-  .btn-soft:hover{border-color:var(--green);color:#fff}
-  .btn-soft-primary{border:1px solid rgba(0,214,143,.5);color:var(--green);background:rgba(0,214,143,.10)}
-  .btn-soft-primary:hover{background:rgba(0,214,143,.18)}
-  .lm-ov{position:fixed;inset:0;background:rgba(4,12,8,.72);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
-  .lm-ov.on{display:flex}
-  .lm{background:#0c1512;border:1px solid var(--ink-line);border-radius:16px;padding:34px 30px;width:360px;max-width:100%;position:relative}
-  .lm-x{position:absolute;top:12px;right:16px;background:none;border:0;color:#7f9188;font-size:26px;cursor:pointer}
-  .lm-brand{font-family:var(--mono);font-size:30px;font-weight:700;color:#fff}.lm-brand b{color:var(--green)}
-  .lm-sub{color:#8fa096;font-size:13px;margin:4px 0 22px}
-  .lm input{width:100%;padding:12px 14px;margin-bottom:12px;border-radius:9px;border:1px solid var(--ink-line);background:#08110d;color:#fff;font-size:15px}
-  .lm input:focus{outline:2px solid var(--green);border-color:transparent}
-  .lm-btn{width:100%;padding:12px;border-radius:9px;border:0;background:var(--green);color:#062a1e;font-weight:700;font-size:15px;cursor:pointer}
-  .lm-btn:hover{background:#12e6a0}
-  .lm-msg{color:#ffb547;font-size:13px;margin-top:12px;min-height:18px;text-align:center}
-  .lm-foot{color:#7f9188;font-size:12px;margin-top:16px;text-align:center}.lm-foot a{color:var(--green)}
-  /* ── Modal GRANDE: Política de privacidad (antes el link del pie era falso: #top) ── */
-  .pm{background:#0c1512;border:1px solid var(--ink-line);border-radius:16px;position:relative;
-      width:860px;max-width:100%;max-height:88vh;display:flex;flex-direction:column}
-  .pm-head{padding:22px 28px 14px;border-bottom:1px solid var(--ink-line);flex:none}
-  .pm-head h2{margin:0;font-size:21px;color:#fff;font-weight:650}
-  .pm-head .pm-meta{color:#7f9188;font-size:12.5px;margin-top:5px;font-family:var(--mono)}
-  .pm-body{padding:20px 28px 26px;overflow-y:auto;color:#c6d3cc;font-size:14.2px;line-height:1.62}
-  .pm-body h3{color:#fff;font-size:15.5px;margin:22px 0 8px;font-weight:650}
-  .pm-body h4{color:var(--green);font-size:13.5px;margin:15px 0 6px;font-weight:600;
-      text-transform:uppercase;letter-spacing:.05em}
-  .pm-body p{margin:0 0 11px}
-  .pm-body ul{margin:0 0 12px;padding-left:20px}
-  .pm-body li{margin-bottom:5px}
-  .pm-body strong{color:#e8f2ed}
-  .pm-body code{font-family:var(--mono);font-size:12.5px;background:#08110d;
-      border:1px solid var(--ink-line);border-radius:5px;padding:1px 5px;color:var(--green)}
-  .pm-body a{color:var(--green)}
-  .pm-box{background:#08110d;border:1px solid var(--ink-line);border-left:3px solid var(--green);
-      border-radius:9px;padding:13px 16px;margin:0 0 18px;font-size:13.6px}
-  .pm-foot{padding:13px 28px;border-top:1px solid var(--ink-line);flex:none;display:flex;
-      justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-  .pm-foot a{color:#7f9188;font-size:12.5px}
-  .pm-foot .lm-btn{width:auto;padding:9px 22px}
-  @media(max-width:640px){.pm-head,.pm-body,.pm-foot{padding-left:18px;padding-right:18px}}
-  .btn-wa{background:#25d366;color:#04220f;font-weight:600}
-  .btn-wa:hover{transform:translateY(-2px);background:#33e074}
+  .nav .btn{padding:9px 16px;font-size:13px}
   :focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
 
-  /* ---- nav ---- */
-  .nav{position:sticky;top:0;z-index:50;background:rgba(10,13,11,.86);backdrop-filter:blur(12px);
-       border-bottom:1px solid var(--ink-line)}
-  .nav .wrap{display:flex;align-items:center;gap:24px;height:64px}
-  .brand{font-family:var(--mono);font-weight:700;font-size:20px;color:#fff;letter-spacing:-.02em}
-  @keyframes plusColorCycle{0%{color:#00d68f}14%{color:#ffb547}28%{color:#5b9eff}42%{color:#ef4444}56%{color:#a855f7}70%{color:#22d3ee}84%{color:#fb923c}100%{color:#00d68f}}
-  .brand b{color:var(--green);margin-left:-.22em;animation:plusColorCycle 5s linear infinite;text-shadow:0 0 10px currentColor}
-  @keyframes pulseDot{0%,100%{opacity:1;box-shadow:0 0 12px var(--green)}50%{opacity:.4;box-shadow:0 0 3px var(--green)}}
-  @media (prefers-reduced-motion:reduce){.brand b{animation:none;text-shadow:none}.dot{animation:none}}
-  .nav-links{display:flex;gap:26px;margin-left:14px}
-  .nav-links a{font-family:var(--mono);font-size:13.5px;color:#9fb0a6;letter-spacing:.01em}
-  .nav-links a:hover{color:#fff}
+  /* ---- nav (blanco) ---- */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);
+       border-bottom:1px solid var(--paper-line)}
+  .nav .wrap{display:flex;align-items:center;gap:24px;height:62px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:20px;color:#0e1512;letter-spacing:-.02em}
+  @keyframes plusColorCycle{0%{color:#00d68f}25%{color:#ffb547}50%{color:#5b9eff}75%{color:#a855f7}100%{color:#00d68f}}
+  .brand b{color:var(--green);margin-left:-.22em;animation:plusColorCycle 6s linear infinite}
+  @media (prefers-reduced-motion:reduce){.brand b{animation:none}}
+  .nav-links{display:flex;gap:24px;margin-left:14px}
+  .nav-links a{font-family:var(--mono);font-size:13.5px;color:var(--muted)}
+  .nav-links a:hover{color:#0e1512}
   .nav-right{margin-left:auto;display:flex;gap:10px;align-items:center}
-  @media (max-width:560px){.nav .wrap{gap:8px}.nav-right{gap:6px}.nav-right .btn{padding:9px 12px;font-size:12px}}
   @media (max-width:820px){.nav-links{display:none}}
 
-  /* ---- hero (corto) ---- */
+  /* ---- hero (blanco) ---- */
   .hero{position:relative;overflow:hidden}
   .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(60% 70% at 78% 30%,rgba(0,214,143,.14),transparent 70%);}
+    background:radial-gradient(55% 60% at 82% 24%,rgba(0,214,143,.12),transparent 72%)}
   .hero .wrap{position:relative;z-index:1}
-  .h1{font-family:var(--mono);font-weight:600;font-size:clamp(34px,5.4vw,58px);line-height:1.05;letter-spacing:-.02em;color:#fff;text-wrap:balance;max-width:22ch}
-  .h1 .accent{color:var(--green)}
-  .hero-sub{color:#9fb0a6;max-width:52ch;margin:20px 0 30px;font-size:clamp(16px,1.7vw,19px)}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
-  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
-  .hero-grid .h1{font-size:clamp(34px,4.3vw,54px)}
-  .hero-shot{position:relative}
-  .hs-win{border-radius:12px;overflow:hidden;border:1px solid #2a3a31;background:#0f1512;
-          box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(0,214,143,.08);
-          transform:perspective(1600px) rotateY(-10deg) rotateX(3deg);transition:transform .6s ease}
-  .hero-shot:hover .hs-win{transform:perspective(1600px) rotateY(0) rotateX(0)}
-  .hs-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#161e19;border-bottom:1px solid #26302a}
-  .hs-bar i{width:9px;height:9px;border-radius:50%;background:#3a4a41}
-  .hs-bar span{margin-left:8px;font-family:var(--mono);font-size:11px;color:#7f9188}
-  .hs-win img{display:block;width:100%;height:auto}
-  .hs-badge{position:absolute;font-family:var(--mono);font-size:12.5px;color:#e8efe9;background:rgba(20,26,22,.92);
-            border:1px solid #2c3a32;border-radius:10px;padding:9px 13px;box-shadow:0 14px 34px rgba(0,0,0,.45);
-            display:flex;align-items:center;gap:8px;backdrop-filter:blur(8px)}
-  .hs-badge b{color:var(--green)}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:52px;align-items:center}
+  .h1{font-family:var(--mono);font-weight:600;font-size:clamp(33px,4.4vw,52px);line-height:1.06;
+      letter-spacing:-.02em;color:#0b120e;text-wrap:balance;max-width:16ch}
+  .h1 .accent{color:var(--green-ink)}
+  .hero-sub{color:var(--muted);max-width:50ch;margin:20px 0 28px;font-size:clamp(16px,1.7vw,19px)}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+  .platforms{display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding-top:22px;border-top:1px solid var(--paper-line)}
+  .platforms .pl-label{color:#9aa8a0;text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-family:var(--mono)}
+  .platforms span.pl{font-family:var(--mono);font-size:12.5px;color:#64736a}
+  /* browser frame (una sola captura) */
+  .shot-win{border-radius:13px;overflow:hidden;border:1px solid var(--paper-line);background:#fff;
+            box-shadow:0 36px 90px -40px rgba(3,72,52,.35),0 2px 8px rgba(0,0,0,.05);
+            transform:perspective(1600px) rotateY(-9deg) rotateX(3deg);transition:transform .6s ease}
+  .hero-shot:hover .shot-win{transform:none}
+  .sw-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#f1f5f2;border-bottom:1px solid var(--paper-line)}
+  .sw-bar i{width:9px;height:9px;border-radius:50%;background:#cdd8d1}
+  .sw-bar span{margin-left:8px;font-family:var(--mono);font-size:11px;color:#8a978e}
+  .shot-win img{display:block;width:100%;height:auto}
+  .hs-badge{position:absolute;font-family:var(--mono);font-size:12px;color:#0e1512;background:#fff;
+            border:1px solid var(--paper-line);border-radius:10px;padding:8px 12px;
+            box-shadow:0 14px 34px -12px rgba(3,72,52,.4);display:flex;align-items:center;gap:8px}
+  .hs-badge b{color:var(--green-ink)}
   .hs-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
-  .hs-b1{left:-26px;top:18%}
-  .hs-b2{right:-10px;bottom:-18px}
-  .proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--ink-line);position:relative;z-index:1;padding-top:0;padding-bottom:0}
-  .proof-item{padding:26px 20px 30px;border-left:1px solid var(--ink-line);display:flex;flex-direction:column;gap:4px}
+  .hero-shot{position:relative}
+  .hs-b1{left:-22px;top:16%}.hs-b2{right:-10px;bottom:-16px}
+
+  /* proof bar */
+  .proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--paper-line)}
+  .proof-item{padding:24px 18px 26px;border-left:1px solid var(--paper-line);display:flex;flex-direction:column;gap:3px}
   .proof-item:first-child{border-left:0;padding-left:0}
-  .proof-item b{font-family:var(--mono);font-weight:600;font-size:clamp(17px,1.7vw,22px);color:#fff;letter-spacing:-.01em}
-  .proof-item:first-child b{color:var(--green);font-size:clamp(26px,2.6vw,34px);line-height:1}
-  .proof-item span{font-size:13.5px;color:#8fa096}
-  .proof-item b.proof-brands{font-size:clamp(15px,1.4vw,19px);line-height:1.3}
-  a.proof-item:hover b{color:var(--green)}
+  .proof-item b{font-family:var(--mono);font-weight:600;font-size:clamp(16px,1.6vw,21px);color:#0e1512}
+  .proof-item:first-child b{color:var(--green-ink);font-size:clamp(25px,2.5vw,33px);line-height:1}
+  .proof-item span{font-size:13px;color:var(--muted)}
+  .proof-item b.brands{font-size:clamp(15px,1.3vw,18px);line-height:1.3}
+  a.proof-item:hover b{color:var(--green-ink)}
   @media (max-width:980px){
-    .hero-grid{grid-template-columns:1fr;gap:40px}
-    .hs-win{transform:none}.hs-b1{left:8px;top:auto;bottom:-18px}.hs-b2{display:none}
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .shot-win{transform:none}.hs-b1{left:8px;top:auto;bottom:-16px}.hs-b2{display:none}
     .proof{grid-template-columns:repeat(2,minmax(0,1fr))}
     .proof-item:nth-child(3){border-left:0;padding-left:0}
-    .proof-item:nth-child(n+3){border-top:1px solid var(--ink-line)}
+    .proof-item:nth-child(n+3){border-top:1px solid var(--paper-line)}
   }
-  .utp-by{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:#7f9188;padding:4px 10px;border:1px solid var(--ink-line);border-radius:999px}
-  .utp-by b{color:#e8efe9}
-  .foot a.utp-by{display:inline-flex;padding:4px 12px;font-size:12px}
-  .utp-by:hover{border-color:var(--green);color:#cdd8d1}
-  .platforms{display:flex;flex-wrap:wrap;gap:20px;align-items:center;padding-top:24px;border-top:1px solid var(--ink-line)}
-  .platforms span{font-family:var(--mono);font-size:12.5px;color:#7f9188;letter-spacing:.04em}
-  .platforms .pl-label{color:#5c6b62;text-transform:uppercase;letter-spacing:.2em;font-size:11px}
-  .pad--tight{padding-block-start:8px}
 
-  /* ---- carrusel de capturas ---- */
-  .shots{position:relative}
-  .shots-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
-               scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .shots-track::-webkit-scrollbar{display:none}
-  .shot{flex:0 0 100%;margin:0;scroll-snap-align:center;min-width:0}
-  .shot img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--card-line);
-            background:#0e1512;box-shadow:0 30px 70px -45px rgba(0,214,143,.4)}
-  .shot figcaption{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:12px;text-align:center;padding:0 8px}
-  .shot figcaption b{color:var(--accent-txt);font-weight:600}
-  .shots-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:16px}
-  .shot-btn{font-family:var(--mono);background:transparent;border:1px solid var(--card-line);color:var(--fg);
-            border-radius:8px;padding:8px 16px;cursor:pointer;font-size:14px;transition:border-color .15s,color .15s}
-  .shot-btn:hover{border-color:var(--accent);color:var(--accent-txt)}
-  .shots-dots{display:flex;gap:7px}
-  .shots-dots button{width:8px;height:8px;border-radius:50%;border:0;background:var(--card-line);cursor:pointer;padding:0}
-  .shots-dots button.on{background:var(--accent)}
+  /* ---- app móvil (oscuro, para que resalten los teléfonos) ---- */
+  .app-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  @media (max-width:900px){.app-grid{grid-template-columns:1fr;gap:40px}}
+  .phones{display:flex;justify-content:center;gap:20px;position:relative}
+  .phone{width:min(230px,42vw);border-radius:30px;padding:9px;background:#05100b;
+         border:1px solid #243a30;box-shadow:0 40px 90px -40px rgba(0,0,0,.8)}
+  .phone img{display:block;width:100%;border-radius:22px}
+  .phone--back{transform:translateY(26px) rotate(-5deg) scale(.92);opacity:.92}
+  .phone--front{position:relative;z-index:2}
+  @media (max-width:420px){.phone{width:46vw}.phone--back{display:none}}
+  .store{display:inline-flex;align-items:center;gap:11px;background:#fff;color:#0e1512;
+         border-radius:11px;padding:11px 18px;font-family:var(--mono);font-weight:600;font-size:14px;border:1px solid #fff}
+  .store:hover{transform:translateY(-2px)}
+  .store small{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5c6b62;font-weight:500}
+  .store b{font-size:15px;color:#0e1512}
+  .store svg{flex:0 0 26px}
+  .app-note{font-family:var(--mono);font-size:12.5px;color:#8fa096;margin-top:14px}
 
-  /* ---- generic layouts ---- */
-  .section-head{max-width:70ch}
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .grid-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  @media (max-width:860px){.grid-2,.grid-3,.grid-mods{grid-template-columns:1fr}}
-  @media (max-width:860px) and (min-width:561px){.grid-3,.grid-mods{grid-template-columns:1fr 1fr}}
+  /* ---- panel multi-estación (blanco) ---- */
+  .panel-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+  @media (max-width:980px){.panel-grid{grid-template-columns:1fr;gap:36px}}
+  .pmock{background:#fbfdfc;border:1px solid var(--paper-line);border-radius:16px;padding:18px;
+         box-shadow:0 30px 70px -45px rgba(3,72,52,.3)}
+  .pmock-top{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .pmock-top b{font-family:var(--mono);font-weight:700;font-size:15px;color:#0e1512}
+  .pmock-top b i{color:var(--green)}
+  .pmock-top .tag{margin-left:auto;font-family:var(--mono);font-size:11px;color:#8a978e}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+  .kpi{background:#fff;border:1px solid var(--paper-line);border-radius:10px;padding:10px 11px}
+  .kpi .l{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9aa8a0}
+  .kpi .v{font-family:var(--mono);font-weight:700;font-size:15px;color:#0e1512;margin-top:3px}
+  .kpi .v.green{color:var(--green-ink)}
+  @media (max-width:520px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .st-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--paper-line);
+          border-radius:10px;padding:10px 12px;margin-top:8px}
+  .st-dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px;box-shadow:0 0 7px currentColor}
+  .st-row .nm{font-family:var(--mono);font-size:13px;color:#0e1512;font-weight:600}
+  .st-row .sub{font-size:11.5px;color:#8a978e}
+  .st-row .amt{margin-left:auto;font-family:var(--mono);font-weight:700;font-size:13.5px;color:#0e1512;text-align:right}
+  .st-row .amt small{display:block;font-size:10px;color:#9aa8a0;font-weight:500}
 
-  .card{background:var(--card);border:1px solid var(--card-line);border-radius:14px;padding:26px}
-  .card h3{font-size:19px;color:var(--fg);margin-bottom:8px}
-  .card p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
-  .card .num{font-family:var(--mono);font-size:12px;color:var(--accent-txt);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;display:block}
-
-  /* case A/B */
-  .case{position:relative;overflow:hidden}
-  .case .tag{font-family:var(--mono);font-size:12px;color:var(--accent-txt);letter-spacing:.02em;margin-bottom:14px;display:block}
-  .case h3{font-size:22px;margin-bottom:10px}
-  .case p{font-size:15.5px}
-
-  /* module card */
+  /* ---- módulos (compacto) ---- */
+  .grid-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+  @media (max-width:860px){.grid-mods{grid-template-columns:1fr}}
+  @media (max-width:860px) and (min-width:561px){.grid-mods{grid-template-columns:1fr 1fr}}
   .mod{background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:22px;transition:border-color .2s,transform .2s}
   .mod:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--card-line));transform:translateY(-3px)}
-  .mod .mhead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-  .mod .mnum{font-family:var(--mono);font-size:12px;color:var(--accent-txt);letter-spacing:.1em}
-  .mod .mcat{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
-  .mod h3{font-size:17px;color:var(--fg);margin-bottom:8px}
-  .mod p{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.5}
+  .mod .mcat{font-family:var(--mono);font-size:11px;color:var(--accent-txt);letter-spacing:.14em;text-transform:uppercase}
+  .mod h3{font-size:17px;color:var(--fg);margin:10px 0 8px}
+  .mod p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+  .mods-more{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .mods-more .lbl{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
 
-  /* checklist */
-  .checks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
-  .checks li{display:flex;gap:11px;font-size:15px;color:var(--fg)}
-  .checks li::before{content:"";flex:0 0 18px;height:18px;margin-top:3px;border-radius:5px;
-    background:color-mix(in srgb,var(--accent) 18%,transparent);
-    border:1px solid var(--accent);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5 11-11' fill='none' stroke='%2300d68f' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-size:12px 12px;background-position:center;background-repeat:no-repeat}
-
-  /* hardware brand rows */
-  .hw{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+  /* ---- hardware (compacto) ---- */
+  .hw{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
   @media (max-width:860px){.hw{grid-template-columns:1fr}}
-  .hw .cat{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-txt);margin-bottom:6px}
-  .hw .sub{color:var(--muted);font-size:13.5px;margin-bottom:16px}
+  .hw .cat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-txt);margin-bottom:10px}
   .hw .brands{display:flex;flex-wrap:wrap;gap:9px}
   .hw .brand-chip{font-family:var(--mono);font-size:13px;padding:8px 13px;border:1px solid var(--card-line);border-radius:8px;background:var(--card);color:var(--fg)}
-  .hw-note{margin-top:26px;font-size:14.5px;color:var(--muted)}
+  .hw-note{margin-top:24px;font-size:14.5px;color:var(--muted)}
   .hw-note b{color:var(--accent-txt);font-family:var(--mono);font-weight:600}
 
+  /* ---- seguridad (verde, 3 puntos) ---- */
+  .sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
+  @media (max-width:860px){.sec-grid{grid-template-columns:1fr}}
+  .sec{border-left:2px solid var(--green);padding:2px 0 2px 18px}
+  .sec .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+  .sec h3{font-size:17px;color:var(--fg);margin-bottom:7px}
+  .sec p{margin:0;color:var(--muted);font-size:14.5px}
 
-  /* arch columns */
-  .arch{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media (max-width:860px){.arch{grid-template-columns:1fr}}
-  .arch .col{border-left:2px solid var(--accent);padding:4px 0 4px 20px}
-  .arch .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-  .arch h3{font-size:18px;color:var(--fg);margin-bottom:8px}
-  .arch p{margin:0;color:var(--muted);font-size:14.5px}
-
-  /* CTA band */
+  /* ---- CTA ---- */
   .cta-band{text-align:center}
-  .cta-band .h2{margin-bottom:16px}
-  .cta-band .lead{margin:0 auto 30px}
+  .cta-band .lead{margin:16px auto 28px}
   .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-  /* footer */
+  /* ---- footer ---- */
   .foot{color:#8fa096;font-size:14px}
-  .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;padding:56px 0 40px}
+  .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;padding:52px 0 36px}
   @media (max-width:760px){.foot-top{grid-template-columns:1fr}}
-  .foot h4{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#5c6b62;margin:0 0 14px}
+  .foot h4{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5c6b62;margin:0 0 14px}
   .foot a{display:block;color:#9fb0a6;padding:5px 0;font-size:14px}
   .foot a:hover{color:var(--green)}
   .foot .seo{font-size:12.5px;color:#5c6b62;line-height:1.7;max-width:58ch;margin-top:14px}
-  .foot-bottom{border-top:1px solid var(--ink-line);padding:20px 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  .foot .brand{color:#fff}
+  .foot-bottom{border-top:1px solid var(--ink-line);padding:18px 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
                font-family:var(--mono);font-size:12px;color:#5c6b62}
   .status-ok{color:var(--green)}
+  .utp-by{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:#7f9188;padding:4px 12px;border:1px solid var(--ink-line);border-radius:999px;margin-top:6px}
+  .utp-by b{color:#e8efe9}.utp-by:hover{border-color:var(--green)}
 
-  /* reveal */
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
-  /* ---- limpieza movil (fuerte) ---- */
   @media (max-width:640px){
     body{font-size:16px}
-    .pad{padding-block:50px}
-    .h1{font-size:clamp(29px,8.2vw,38px);line-height:1.06}
-    .hero-sub{margin:16px 0 24px;font-size:15.5px}
-    .hero-actions{margin-bottom:22px}
-    .h2{font-size:clamp(23px,6.6vw,30px)}
-    .eyebrow{margin-bottom:14px}
-    .lead{font-size:15px;margin-top:14px}
-    .card{padding:18px}
-    .card h3{font-size:17px}
-    .mod{padding:17px}
-    .platforms{gap:12px;padding-top:18px}
-    .foot-top{padding:40px 0 28px;gap:24px}
-    .foot .seo{display:none}
+    .h1{font-size:clamp(28px,8vw,36px)}
+    .h2{font-size:clamp(23px,6.4vw,29px)}
     .hero-actions .btn,.cta-actions .btn{width:100%;justify-content:center}
+    .foot .seo{display:none}
   }
-  @media (max-width:400px){
-    .wrap{padding:0 18px}
-    .pad{padding-block:40px}
-  }
+  /* aviso de preview */
+  .preview-tag{position:fixed;left:10px;bottom:10px;z-index:120;background:#111c16;color:#9fe9cf;
+    font-family:var(--mono);font-size:11px;padding:6px 11px;border:1px solid #1c5541;border-radius:8px;opacity:.9}
 </style>
 </head>
 <body>
-<!-- ================= NAV ================= -->
+
+<!-- ============ NAV (blanco) ============ -->
 <nav class="nav">
   <div class="wrap">
     <a class="brand" href="#top">gas<b>+</b></a>
     <div class="nav-links">
-      <a href="#capturas">El sistema</a>
+      <a href="#app">App móvil</a>
+      <a href="#panel">Panel</a>
       <a href="#modulos">Módulos</a>
-      <a href="#plataforma">Plataforma</a>
-      <a href="#seguridad">Seguridad</a>
+      <a href="#compat">Compatibilidad</a>
     </div>
     <div class="nav-right">
-      <button class="btn btn-soft" onclick="openLogin()">Iniciar sesión</button>
+      <button class="btn btn-ghost" onclick="openLogin()">Iniciar sesión</button>
+      <a class="btn btn-primary" href="#contacto">Demostración</a>
     </div>
   </div>
 </nav>
 
-
-
-<!-- ================= HERO · negro ================= -->
-<header id="top" class="band band--dark hero">
+<!-- ============ HERO (blanco · una sola captura) ============ -->
+<header id="top" class="band band--white hero">
   <div class="wrap pad hero-grid">
-    <div class="hero-text">
+    <div>
       <div class="eyebrow">Software para estaciones de combustible · Honduras</div>
-      <h1 class="h1">Plataforma de gestión para <span class="accent">estaciones de combustible</span>.</h1>
-      <p class="hero-sub">Facturación CAI/SAR, control de bombas en vivo, cuadre de turno e inventario — en un solo sistema, corriendo en tu estación.</p>
+      <h1 class="h1">Toda la estación de combustible en <span class="accent">un solo sistema</span>.</h1>
+      <p class="hero-sub">Facturación CAI/SAR, control de bombas en vivo, cuadre de turno e inventario — corriendo en tu estación, con app móvil y panel para verlo todo desde donde estés.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#contacto">Solicitar demostración <span aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost" href="#capturas">Ver el sistema</a>
+        <a class="btn btn-ghost" href="#app">Ver la app</a>
       </div>
       <div class="platforms">
-        <span class="pl-label">Disponible en</span>
-        <span>Windows</span><span>iOS · macOS</span><span>Android</span><span>Web</span>
+        <span class="pl-label">En</span>
+        <span class="pl">Windows / Ubuntu en sitio</span><span class="pl">App Android</span><span class="pl">Panel web</span>
       </div>
     </div>
     <div class="hero-shot" aria-hidden="true">
-      <div class="hs-win">
-        <div class="hs-bar"><i></i><i></i><i></i><span>pista · panel en vivo</span></div>
-        <img src="/shots/pista.webp?v=20260808" width="2880" height="1800" alt="" fetchpriority="high">
+      <div class="shot-win">
+        <div class="sw-bar"><i></i><i></i><i></i><span>pista · panel en vivo</span></div>
+        <img src="/shots/pista.webp?v=20260808" width="2880" height="1800" alt="Gas+ · panel de pista en vivo con el estado de cada bomba" fetchpriority="high">
       </div>
-      <div class="hs-badge hs-b1"><span class="dot"></span>16 caras en vivo</div>
+      <div class="hs-badge hs-b1"><span class="dot"></span>Bombas en vivo</div>
       <div class="hs-badge hs-b2">Cuadre de turno <b>automático</b></div>
     </div>
   </div>
   <div class="wrap proof">
     <div class="proof-item"><b>+30</b><span>estaciones en producción</span></div>
-    <div class="proof-item"><b class="proof-brands">Todas las marcas</b><span>y estaciones sin bandera</span></div>
+    <div class="proof-item"><b class="brands">Todas las marcas</b><span>y estaciones sin bandera</span></div>
     <div class="proof-item"><b>Sin internet</b><span>la pista sigue facturando</span></div>
-    <a class="proof-item" href="https://utp.hn/#productos" target="_blank" rel="noopener"><b>Grupo UTP</b><span>creadores de Gas+ · soporte en Honduras</span></a>
+    <a class="proof-item" href="https://utp.hn/#productos" target="_blank" rel="noopener"><b>Grupo UTP</b><span>soporte en Honduras</span></a>
   </div>
 </header>
 
-<!-- ================= CAPTURAS · negro ================= -->
-<section id="capturas" class="band band--dark" style="border-top:0">
-  <div class="wrap pad pad--tight">
-    <div class="section-head reveal">
-      <div class="eyebrow">el sistema real · datos de demostración</div>
-      <h2 class="h2">Así se ve Gas+ por dentro.</h2>
-      <p class="lead">Capturas reales de la estación de demostración: pista en vivo, cuadre, reportes y facturación. Lo que ves acá es lo mismo que opera tu equipo.</p>
-    </div>
-    <div class="shots reveal" style="margin-top:32px">
-      <div class="shots-track" id="shotsTrack" tabindex="0" aria-label="Capturas del sistema">
-        <figure class="shot"><img src="/shots/pista.webp?v=20260808" width="2880" height="1800" alt="Gas+ · panel de pista en vivo con estado de cada bomba" loading="eager" fetchpriority="high"><figcaption><b>Pista · panel en vivo</b> — estado y litros de cada bomba, al segundo.</figcaption></figure>
-        <figure class="shot"><img src="/shots/despachos.webp?v=20260808" width="2880" height="1800" alt="Gas+ · despachos en tiempo real" loading="lazy"><figcaption><b>Despachos</b> — cada suministro con bomba, producto, monto y bombero.</figcaption></figure>
-        <figure class="shot"><img src="/shots/cuadre.webp?v=20260808" width="2880" height="1800" alt="Gas+ · cuadre diario contra totalizadores" loading="lazy"><figcaption><b>Cuadre diario</b> — manual vs totalizador, falta/sobra por turno e isla.</figcaption></figure>
-        <figure class="shot"><img src="/shots/reporte.webp?v=20260808" width="2880" height="1800" alt="Gas+ · reporte de ventas diario por turno y empleado" loading="lazy"><figcaption><b>Reporte de ventas</b> — por turno, empleado e isla, con PDF de un clic.</figcaption></figure>
-        <figure class="shot"><img src="/shots/tanques.webp?v=20260808" width="2880" height="1800" alt="Gas+ · tanques y reconciliación ATG" loading="lazy"><figcaption><b>Tanques</b> — niveles en vivo, descargas y reconciliación con ventas.</figcaption></figure>
-        <figure class="shot"><img src="/shots/graficas.webp?v=20260808" width="2880" height="1800" alt="Gas+ · gráficas de venta" loading="lazy"><figcaption><b>Gráficas</b> — tendencias de venta por producto, día y hora.</figcaption></figure>
-        <figure class="shot"><img src="/shots/facturas.webp?v=20260808" width="2880" height="1800" alt="Gas+ · facturación CAI/SAR" loading="lazy"><figcaption><b>Facturación CAI/SAR</b> — correlativo vigente, ticket 80mm o PDF.</figcaption></figure>
-        <figure class="shot"><img src="/shots/contabilidad.webp?v=20260808" width="2880" height="1800" alt="Gas+ · contabilidad integrada" loading="lazy"><figcaption><b>Contabilidad</b> — la operación aterriza sola en los libros.</figcaption></figure>
+<!-- ============ APP MÓVIL (oscuro) ============ -->
+<section id="app" class="band band--dark">
+  <div class="wrap pad app-grid">
+    <div class="reveal">
+      <div class="eyebrow">app móvil · android</div>
+      <h2 class="h2">La pista, en tu teléfono.</h2>
+      <p class="lead">Factura, cobra y controla las bombas desde cualquier teléfono o tablet. El bombero trabaja en la mano; el administrador ve su estación sin estar presente.</p>
+      <div class="chips" style="margin-top:22px">
+        <span class="chip chip--go">login PIN / RFID</span>
+        <span class="chip">formas de pago múltiples</span>
+        <span class="chip">crédito y clientes</span>
+        <span class="chip">control de bomba</span>
+        <span class="chip">tanques en vivo</span>
+        <span class="chip">funciona con señal intermitente</span>
       </div>
-      <div class="shots-nav">
-        <button class="shot-btn" data-dir="-1" aria-label="Captura anterior">←</button>
-        <div class="shots-dots" id="shotsDots"></div>
-        <button class="shot-btn" data-dir="1" aria-label="Captura siguiente">→</button>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <a class="store" href="https://play.google.com/store/apps/details?id=hn.gas.aplicacion" target="_blank" rel="noopener" aria-label="Descargar Gas+ en Google Play">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#34a853" d="M3.6 20.5l9-9-2.4-2.4L3 16.4c-.1.6 0 1.2.6 1.6z"/><path fill="#ea4335" d="M15.9 11.5l-3.3-1.9L4.2 3.6c-.5-.3-1-.2-1.2.1l9.6 9.6z"/><path fill="#fbbc04" d="M20.3 11.1l-3.1-1.7-2.3 2.1 2.3 2.3 3.1-1.7c.6-.4.6-1.2 0-1.6z"/><path fill="#4285f4" d="M3 4.2v15.6c0 .3.1.5.3.7l9.3-9.3z"/></svg>
+          <span><small>Disponible en</small><b>Google Play</b></span>
+        </a>
+        <span class="app-note">El <b style="color:#9fe9cf">panel web</b> funciona también desde iPhone, Mac y PC.</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="phones">
+        <div class="phone phone--back"><img src="/shots/app-tanques.webp" width="900" height="1956" alt="Gas+ app · niveles de tanques en vivo con ATG"></div>
+        <div class="phone phone--front"><img src="/shots/app-pista.webp" width="900" height="1956" alt="Gas+ app · control de pista en vivo, estado de cada bomba"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= MÓDULOS · negro ================= -->
-<section id="modulos" class="band band--dark" style="border-top:0">
+<!-- ============ PANEL MULTI-ESTACIÓN (blanco) ============ -->
+<section id="panel" class="band band--white">
+  <div class="wrap pad panel-grid">
+    <div class="reveal">
+      <div class="eyebrow">panel · todas tus estaciones</div>
+      <h2 class="h2">Todas tus estaciones, en un solo panel.</h2>
+      <p class="lead">Si tenés más de una estación, Gas+ las junta en un tablero: la venta del día de cada una, estado y salud, niveles de tanque, respaldos — y los <b>análisis avanzados</b> para comparar, proyectar y decidir.</p>
+      <ul style="list-style:none;padding:0;margin:20px 0 0;display:grid;gap:9px;font-size:15px">
+        <li>• <b style="color:var(--green-ink)">Venta del día y KPIs</b> por estación, lado a lado</li>
+        <li>• <b style="color:var(--green-ink)">Estadística y análisis avanzados</b> — tendencias, comparativos, proyección</li>
+        <li>• Salud del servidor, respaldos y estado de la controladora</li>
+        <li>• Actualización remota de cada estación</li>
+      </ul>
+      <div style="margin-top:26px"><a class="btn btn-primary" href="#contacto">Conocé el panel <span aria-hidden="true">→</span></a></div>
+    </div>
+    <div class="reveal">
+      <div class="pmock" role="img" aria-label="Vista del panel con varias estaciones, KPIs y venta del día (datos de demostración)">
+        <div class="pmock-top"><b>gas<i>+</i> panel</b><span class="tag">datos de demostración</span></div>
+        <div class="kpis">
+          <div class="kpi"><div class="l">Venta hoy</div><div class="v green">L 1.84 M</div></div>
+          <div class="kpi"><div class="l">Litros</div><div class="v">42,610</div></div>
+          <div class="kpi"><div class="l">Estaciones</div><div class="v">3 / 3 ✔</div></div>
+          <div class="kpi"><div class="l">Alertas</div><div class="v">1</div></div>
+        </div>
+        <div class="st-row"><span class="st-dot" style="color:#00d68f"></span><div><div class="nm">El Dorado · Centro</div><div class="sub">online · cuadre al día</div></div><div class="amt">L 712,340<small>14,980 L</small></div></div>
+        <div class="st-row"><span class="st-dot" style="color:#00d68f"></span><div><div class="nm">El Dorado · Norte</div><div class="sub">online · 4 bombas activas</div></div><div class="amt">L 659,120<small>15,240 L</small></div></div>
+        <div class="st-row"><span class="st-dot" style="color:#ffb547"></span><div><div class="nm">El Dorado · Sur</div><div class="sub">tanque Súper bajo</div></div><div class="amt">L 471,900<small>12,390 L</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÓDULOS (claro · compacto) ============ -->
+<section id="modulos" class="band band--light">
   <div class="wrap pad">
     <div class="section-head reveal">
       <div class="eyebrow">módulos</div>
-      <h2 class="h2">Toda la estación en un solo sistema.</h2>
-      <p class="lead">Encendé únicamente los módulos que tu estación necesita. Todos comparten el mismo núcleo y la misma base de datos — se captura una vez, aparece en todos lados.</p>
+      <h2 class="h2">Encendés solo lo que tu estación usa.</h2>
+      <p class="lead">Un mismo núcleo y una sola base de datos: se captura una vez y aparece en todos lados. La operación aterriza sola en la contabilidad.</p>
     </div>
-    <div class="grid-2 reveal" style="margin-top:40px">
-      <div class="mod"><div class="mhead"><span class="mcat">contabilidad</span><span class="chip chip--go" style="margin-left:auto">destacado</span></div><h3>Contabilidad integrada</h3><p>Cada venta, compra, gasto y cobro genera su asiento de partida doble en automático. Cuentas por cobrar y por pagar, libro de ventas, declaración de ISV y estados financieros — la operación aterriza sola en los libros.</p><div class="chips"><span class="chip chip--go">partida doble</span><span class="chip">CxC / CxP</span><span class="chip">ISV</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mcat">pipas</span><span class="chip chip--go" style="margin-left:auto">destacado</span></div><h3>Venta en pipas y cisternas</h3><p>Despacho y facturación desde camiones cisterna: carga desde la isla, trasiegos entre pipas y factura externa. Cada pipa lleva su propio nivel, su turno móvil y su cuadre.</p><div class="chips"><span class="chip chip--go">turno móvil</span><span class="chip">trasiegos</span><span class="chip">factura externa</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mcat">planilla</span><span class="chip chip--go" style="margin-left:auto">destacado</span></div><h3>Planilla y personal</h3><p>Nómina quincenal, anticipos de salario, vales de faltante y deducciones — integrados al cuadre y a los gastos de caja de cada turno.</p><div class="chips"><span class="chip">nómina</span><span class="chip">anticipos</span><span class="chip">vales</span></div></div>
-      <div class="mod"><div class="mhead"><span class="mcat">terminales móviles</span><span class="chip chip--go" style="margin-left:auto">destacado</span></div><h3>Venta desde el teléfono</h3><p>Facturá y cobrá en la pista desde cualquier teléfono o tablet. Login por PIN o RFID, formas de pago múltiples, crédito y control de bomba — en la mano del bombero.</p><div class="chips"><span class="chip chip--go">android</span><span class="chip">PIN / RFID</span><span class="chip">offline-aware</span></div></div>
+    <div class="grid-mods reveal">
+      <div class="mod"><div class="mcat">pista</div><h3>Control en vivo de bombas</h3><p>Estado, autorización, preset, bloqueo y desbloqueo en tiempo real. Multi-producto, sin límite de bombas.</p></div>
+      <div class="mod"><div class="mcat">facturación</div><h3>CAI / SAR Honduras</h3><p>Correlativo SAR vigente, control de rango, ISV gravado y exento, ticket 80 mm o PDF.</p></div>
+      <div class="mod"><div class="mcat">turnos</div><h3>Cuadre de turno</h3><p>Apertura y cierre por empleado o por islas, cuadre automático contra el totalizador y atribución por RFID.</p></div>
+      <div class="mod"><div class="mcat">tanques</div><h3>Tanques y mermas</h3><p>Niveles en vivo con ATG, descargas, reconciliación contra ventas y merma real por período.</p></div>
+      <div class="mod"><div class="mcat">contabilidad</div><h3>Contabilidad integrada</h3><p>Partida doble automática, cuentas por cobrar y pagar, libro de ventas y declaración de ISV.</p></div>
+      <div class="mod"><div class="mcat">pipas</div><h3>Venta en pipas</h3><p>Despacho y factura desde cisternas, trasiegos entre pipas y factura externa — cada pipa con su cuadre.</p></div>
     </div>
-    <div class="grid-mods reveal" style="margin-top:16px">
-      <div class="mod"><div class="mhead"><span class="mcat">pista</span></div><h3>Control en vivo de bombas</h3><p>Estado, autorización, preset, bloqueo y desbloqueo en tiempo real. Surtidores multi-producto, sin límite de bombas.</p></div>
-      <div class="mod"><div class="mhead"><span class="mcat">facturación</span></div><h3>CAI / SAR Honduras</h3><p>Correlativo SAR vigente, control de rango, ISV gravado y exento, ticket térmico 80 mm o PDF.</p></div>
-      <div class="mod"><div class="mhead"><span class="mcat">turnos</span></div><h3>Cuadre de turno</h3><p>Apertura y cierre por empleado o por islas, con cuadre automático contra el totalizador y atribución por RFID.</p></div>
-      <div class="mod"><div class="mhead"><span class="mcat">tienda</span></div><h3>Tienda e inventario</h3><p>Productos no-combustible, código de barras, factura mixta, conteos físicos y compras a proveedor.</p></div>
-      <div class="mod"><div class="mhead"><span class="mcat">tanques</span></div><h3>Reconciliación de tanques</h3><p>Niveles en vivo con ATG, descargas, mermas por hora y reconciliación histórica contra ventas.</p></div>
-      <div class="mod"><div class="mhead"><span class="mcat">reportes</span></div><h3>Reportes y auditoría</h3><p>Cuadre diario, ventas por empleado, estadígrafo y bitácora inmutable de cada acción.</p></div>
+    <div class="mods-more reveal">
+      <span class="lbl">y más —</span>
+      <span class="chip">Tienda e inventario</span><span class="chip">Planilla y personal</span>
+      <span class="chip">Promociones</span><span class="chip">Lealtad</span>
+      <span class="chip">Créditos y clientes</span><span class="chip">Mantenimiento</span><span class="chip">Auditoría / bitácora</span>
     </div>
   </div>
 </section>
 
-<!-- ================= PLATAFORMA · se acopla + hardware · blanco ================= -->
-<section id="plataforma" class="band band--white">
-  <span id="hardware"></span>
+<!-- ============ COMPATIBILIDAD (blanco · compacto) ============ -->
+<section id="compat" class="band band--white">
   <div class="wrap pad">
     <div class="section-head reveal">
       <div class="eyebrow">se acopla a tu estación</div>
-      <h2 class="h2">Sobre el sistema que ya operás, o como sistema único desde cero.</h2>
-      <p class="lead">Si ya tenés POS, consola de bombas o facturación, Gas+ los gestiona desde afuera sin cambiar tu operación. Si arrancás de cero, se instala como plataforma única: factura con tu CAI, controla la pista y lleva el inventario — una sola base de datos, sin licencias por punto.</p>
+      <h2 class="h2">Sobre lo que ya tenés, o como sistema único.</h2>
+      <p class="lead">Si ya tenés POS, consola de bombas o facturación, Gas+ los gestiona desde afuera sin cambiar tu operación. Si arrancás de cero, se instala como plataforma única — sin licencias por punto.</p>
     </div>
-    <div class="hw reveal" style="margin-top:34px">
-      <div>
-        <div class="cat">Surtidores</div>
-        <div class="sub">Bombas despachadoras</div>
-        <div class="brands"><span class="brand-chip">Gilbarco</span><span class="brand-chip">Wayne</span><span class="brand-chip">Tatsuno</span><span class="brand-chip">Tokheim</span></div>
-      </div>
-      <div>
-        <div class="cat">Control de pista</div>
-        <div class="sub">Forecourt controllers</div>
-        <div class="brands"><span class="brand-chip">Wayne Fusion DFS</span><span class="brand-chip">Gilbarco VOX</span><span class="brand-chip">DOMS</span></div>
-      </div>
-      <div>
-        <div class="cat">Medición de tanques · ATG</div>
-        <div class="sub">Sondas y consolas de nivel</div>
-        <div class="brands"><span class="brand-chip">Veeder-Root</span><span class="brand-chip">EVO</span><span class="brand-chip">Progauge</span></div>
-      </div>
+    <div class="hw reveal">
+      <div><div class="cat">Surtidores</div><div class="brands"><span class="brand-chip">Gilbarco</span><span class="brand-chip">Wayne</span><span class="brand-chip">Tatsuno</span><span class="brand-chip">Tokheim</span></div></div>
+      <div><div class="cat">Control de pista</div><div class="brands"><span class="brand-chip">Wayne Fusion DFS</span><span class="brand-chip">Gilbarco VOX</span><span class="brand-chip">DOMS</span></div></div>
+      <div><div class="cat">Medición de tanques · ATG</div><div class="brands"><span class="brand-chip">Veeder-Root</span><span class="brand-chip">EVO</span><span class="brand-chip">Progauge</span></div></div>
     </div>
     <p class="hw-note reveal">¿Tu equipo no aparece? <b>Lo integramos.</b> Gas+ se adapta al protocolo del fabricante.</p>
   </div>
 </section>
 
-<!-- ================= SEGURIDAD · disponibilidad + C·I·D + personalización · verde ================= -->
+<!-- ============ SEGURIDAD (verde · 3 puntos) ============ -->
 <section id="seguridad" class="band band--green">
-  <span id="arquitectura"></span><span id="implementacion"></span>
   <div class="wrap pad">
     <div class="section-head reveal">
-      <div class="eyebrow">disponibilidad · seguridad · personalización</div>
+      <div class="eyebrow">seguridad · C · I · D</div>
       <h2 class="h2">Tu información protegida y disponible, siempre.</h2>
-      <p class="lead">Un núcleo en sitio que opera sin internet, acceso remoto cifrado y seguridad construida sobre los tres pilares: confidencialidad, integridad y disponibilidad.</p>
     </div>
-    <div class="grid-3 reveal" style="margin-top:40px">
-      <div class="card">
-        <span class="num">disponibilidad remota</span>
-        <h3>Control desde cualquier lugar</h3>
-        <p>Panel web y app móvil sobre la misma plataforma y los mismos datos.</p>
-        <ul class="checks">
-          <li>Acceso por túnel cifrado — sin VPN ni puertos abiertos</li>
-          <li>Precios, ventas y cuadres en vivo desde tu teléfono</li>
-          <li>Actualización remota de la estación</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="num">seguridad · C · I · D</span>
-        <h3>Confidencialidad, integridad, disponibilidad</h3>
-        <ul class="checks">
-          <li><b style="color:var(--accent)">Confidencialidad</b> — roles y permisos granulares, túnel cifrado y credenciales enmascaradas</li>
-          <li><b style="color:var(--accent)">Integridad</b> — bitácora inmutable con cadena HMAC: cada acción con autor, hora y origen</li>
-          <li><b style="color:var(--accent)">Disponibilidad</b> — opera sin internet; la pista nunca se detiene; backup y sincronización</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="num">personalización</span>
-        <h3>Se adapta a tu estación</h3>
-        <p>Encendé solo los módulos que usás y crecé cuando la estación lo pida.</p>
-        <ul class="checks">
-          <li>Documentos y tickets configurables por bloques</li>
-          <li>Tu marca: Puma, Shell, Texaco o sin bandera</li>
-          <li>Cuadre por empleado o por islas, full o self-service</li>
-        </ul>
-      </div>
+    <div class="sec-grid reveal">
+      <div class="sec"><div class="k">Confidencialidad</div><h3>Roles y túnel cifrado</h3><p>Permisos granulares por empleado, acceso por túnel cifrado sin VPN ni puertos abiertos, credenciales enmascaradas.</p></div>
+      <div class="sec"><div class="k">Integridad</div><h3>Bitácora inmutable</h3><p>Cada acción con autor, hora y origen, en una cadena HMAC que no se puede alterar.</p></div>
+      <div class="sec"><div class="k">Disponibilidad</div><h3>Opera sin internet</h3><p>El núcleo corre en sitio: la pista nunca se detiene. Respaldo y sincronización cuando vuelve la señal.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ================= CONTACTO · verde ================= -->
-<section id="contacto" class="band band--green">
+<!-- ============ CONTACTO (blanco) ============ -->
+<section id="contacto" class="band band--white">
   <div class="wrap pad cta-band">
     <div class="reveal">
       <div class="eyebrow" style="justify-content:center">contacto</div>
       <h2 class="h2">Hablemos de tu estación.</h2>
-      <p class="lead">Coordinamos una demostración con datos reales y discutimos cómo integrar Gas+ a tu operación actual.</p>
+      <p class="lead">Coordinamos una demostración con datos reales y vemos cómo integrar Gas+ a tu operación.</p>
       <div class="cta-actions">
-        <a class="btn btn-ghost" href="mailto:hola@gas.hn">hola@gas.hn</a>
+        <a class="btn btn-primary" href="mailto:hola@gas.hn">hola@gas.hn</a>
+        <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=hn.gas.aplicacion" target="_blank" rel="noopener">Descargar la app</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= FOOTER · negro ================= -->
+<!-- ============ FOOTER (oscuro) ============ -->
 <footer class="band band--dark foot">
   <div class="wrap">
     <div class="foot-top">
       <div>
         <a class="brand" href="#top">gas<b>+</b></a>
         <p class="seo" style="margin-top:14px">Software para gasolineras y estaciones de servicio: facturación CAI/SAR, control de bombas, cuadre de turno, inventario de combustible y reconciliación de tanques. Desarrollado y operado desde Honduras.</p>
-        <a class="utp-by" style="margin-top:6px" href="https://utp.hn/#productos" target="_blank" rel="noopener">un producto de <b>Grupo UTP</b> →</a>
+        <a class="utp-by" href="https://utp.hn/#productos" target="_blank" rel="noopener">un producto de <b>Grupo UTP</b> →</a>
       </div>
       <div>
         <h4>Producto</h4>
-        <a href="#capturas">Capturas del sistema</a>
+        <a href="#app">App móvil</a>
+        <a href="#panel">Panel multi-estación</a>
         <a href="#modulos">Módulos</a>
-        <a href="#plataforma">Plataforma y compatibilidad</a>
-        <a href="#seguridad">Seguridad</a>
+        <a href="#compat">Compatibilidad</a>
       </div>
       <div>
         <h4>Grupo UTP</h4>
         <a href="https://utp.hn" target="_blank" rel="noopener">utp.hn</a>
         <a href="https://utp.hn/#productos" target="_blank" rel="noopener">POS+ · Planilla+</a>
-        <h4 style="margin-top:22px">Contacto</h4>
+        <h4 style="margin-top:20px">Contacto</h4>
         <a href="mailto:hola@gas.hn">hola@gas.hn</a>
         <a href="privacidad.html" onclick="openPriv();return false;">Política de privacidad</a>
       </div>
     </div>
-    <p class="seo" style="max-width:none;padding-bottom:26px">Gas+ es un software para gasolineras y estaciones de servicio en Honduras y Centroamérica. Integra facturación electrónica CAI/SAR, control volumétrico de combustible, cuadre de turno por empleado, control de inventario, punto de venta de pista y monitoreo de tanques (ATG). Compatible con surtidores Gilbarco, Wayne, Tatsuno y Tokheim; controladores de pista Wayne Fusion DFS y DOMS; medición de tanques Veeder-Root, EVO y Progauge. Operación de diésel, gasolina superior y gasolina regular en Tegucigalpa, San Pedro Sula y todo el país.</p>
+    <p class="seo" style="max-width:none;padding-bottom:24px">Gas+ es un software para gasolineras y estaciones de servicio en Honduras y Centroamérica: facturación electrónica CAI/SAR, control volumétrico de combustible, cuadre de turno por empleado, control de inventario, punto de venta de pista y monitoreo de tanques (ATG). Compatible con surtidores Gilbarco, Wayne, Tatsuno y Tokheim; controladores Wayne Fusion DFS, Gilbarco VOX y DOMS; medición de tanques Veeder-Root, EVO y Progauge. Diésel, gasolina superior y regular en Tegucigalpa, San Pedro Sula y todo el país.</p>
     <div class="foot-bottom">
-      <span>© 2026 gas.hn · un producto de <a href="https://utp.hn" target="_blank" rel="noopener" style="display:inline;padding:0;color:#cdd8d1">Grupo UTP</a> · todos los derechos reservados</span>
+      <span>© 2026 gas.hn · un producto de <a href="https://utp.hn" target="_blank" rel="noopener" style="display:inline;padding:0;color:#cdd8d1">Grupo UTP</a></span>
       <span><span id="gp-vers"></span>status: <span class="status-ok">operativo</span></span>
       <script>
-      /* Versiones PUBLICADAS (fuente única: panel.gas.hn). Software = imagen de la flota;
-         App móvil = último instalador publicado. Si el panel no responde, sólo queda el status. */
       (function(){var el=document.getElementById('gp-vers');if(!el||!window.fetch)return;
         fetch('https://panel.gas.hn/gasplus-versiones.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;})
         .then(function(d){if(!d||!d.ok)return;var t=[];
           if(d.software)t.push('Software '+d.software);
-          if(d.app)t.push('App móvil '+d.app);
+          if(d.app)t.push('App '+d.app);
           if(t.length)el.textContent=t.join(' · ')+' · ';}).catch(function(){});})();
       </script>
     </div>
   </div>
 </footer>
 
+<!-- login modal -->
+<div id="loginModal" class="lm-ov" onclick="if(event.target===this)closeLogin()" style="position:fixed;inset:0;background:rgba(4,12,8,.6);display:none;align-items:center;justify-content:center;z-index:100;padding:16px">
+  <div style="background:#fff;border:1px solid var(--paper-line);border-radius:16px;padding:32px 28px;width:360px;max-width:100%;position:relative">
+    <button onclick="closeLogin()" aria-label="Cerrar" style="position:absolute;top:10px;right:14px;background:none;border:0;color:#9aa8a0;font-size:26px;cursor:pointer">&times;</button>
+    <div class="brand" style="font-size:28px">gas<b>+</b></div>
+    <div style="color:var(--muted);font-size:13px;margin:4px 0 20px">Portal de clientes · ingresá a tu estación</div>
+    <form action="https://panel.gas.hn/login" method="post">
+      <input type="email" name="email" placeholder="Correo" autocomplete="username" required style="width:100%;padding:12px 14px;margin-bottom:12px;border-radius:9px;border:1px solid var(--paper-line);font-size:15px">
+      <input type="password" name="pass" placeholder="Contraseña" autocomplete="current-password" required style="width:100%;padding:12px 14px;margin-bottom:12px;border-radius:9px;border:1px solid var(--paper-line);font-size:15px">
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Ingresar</button>
+    </form>
+    <div style="color:var(--muted);font-size:12px;margin-top:16px;text-align:center">¿Cliente nuevo? Escribinos a <a href="mailto:hola@gas.hn" style="color:var(--green-ink)">hola@gas.hn</a></div>
+  </div>
+</div>
+
 <script>
-  // scroll reveal
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // carrusel de capturas
-  (function(){
-    var track=document.getElementById('shotsTrack'); if(!track)return;
-    var slides=[].slice.call(track.children);
-    var dots=document.getElementById('shotsDots');
-    slides.forEach(function(_,i){var d=document.createElement('button');
-      d.setAttribute('aria-label','Ir a captura '+(i+1));
-      d.addEventListener('click',function(){stop();go(i)});dots.appendChild(d);});
-    function cur(){return Math.round(track.scrollLeft/Math.max(1,track.clientWidth));}
-    function go(i){i=(i+slides.length)%slides.length;
-      track.scrollTo({left:i*track.clientWidth,behavior:'smooth'});}
-    function paint(){var c=cur();[].forEach.call(dots.children,function(d,i){d.classList.toggle('on',i===c)});}
-    track.addEventListener('scroll',function(){requestAnimationFrame(paint)},{passive:true});
-    document.querySelectorAll('.shot-btn').forEach(function(b){
-      b.addEventListener('click',function(){stop();go(cur()+parseInt(b.dataset.dir,10))});});
-    var timer=setInterval(function(){
-      if(document.visibilityState==='visible')go(cur()+1);},6500);
-    function stop(){if(timer){clearInterval(timer);timer=null;}}
-    track.addEventListener('pointerdown',stop,{passive:true});
-    paint();
-  })();
-  function openLogin(){document.getElementById('loginModal').classList.add('on');}
-  function closeLogin(){document.getElementById('loginModal').classList.remove('on');}
-  function doLogin(e){e.preventDefault();document.getElementById('lm-msg').textContent='Portal de clientes en configuración — muy pronto verás tu estación acá.';return false;}
-  /* Política de privacidad: modal grande. El <a> conserva el href a privacidad.html
-     (sirve sin JS y para los buscadores); el onclick solo lo abre acá mismo. */
-  function openPriv(){document.getElementById('privModal').classList.add('on');document.body.style.overflow='hidden';}
-  function closePriv(){document.getElementById('privModal').classList.remove('on');document.body.style.overflow='';}
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closePriv();});
-  window.openLogin=openLogin; window.closeLogin=closeLogin; window.doLogin=doLogin;
+  function openLogin(){document.getElementById('loginModal').style.display='flex';}
+  function closeLogin(){document.getElementById('loginModal').style.display='none';}
+  function openPriv(){window.open('privacidad.html','_blank');}
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLogin();});
 </script>
-<div id="loginModal" class="lm-ov" onclick="if(event.target===this)closeLogin()">
-  <div class="lm">
-    <button class="lm-x" onclick="closeLogin()" aria-label="Cerrar">&times;</button>
-    <div class="lm-brand">gas<b>+</b></div>
-    <div class="lm-sub">Portal de clientes · ingresá a tu estación</div>
-    <form action="https://panel.gas.hn/login" method="post">
-      <input type="email" name="email" placeholder="Correo" autocomplete="username" required>
-      <input type="password" name="pass" placeholder="Contraseña" autocomplete="current-password" required>
-      <button type="submit" class="lm-btn">Ingresar</button>
-    </form>
-    <div class="lm-msg" id="lm-msg"></div>
-    <div class="lm-foot">¿Cliente nuevo? Escribinos a <a href="mailto:hola@gas.hn">hola@gas.hn</a></div>
-  </div>
-</div>
-
-<!-- ── Política de privacidad (modal grande) ── -->
-<div id="privModal" class="lm-ov" onclick="if(event.target===this)closePriv()">
-  <div class="pm" role="dialog" aria-modal="true" aria-labelledby="pm-t">
-    <button class="lm-x" onclick="closePriv()" aria-label="Cerrar">&times;</button>
-    <div class="pm-head">
-      <h2 id="pm-t">Política de Privacidad</h2>
-      <div class="pm-meta">Gas+ · Última actualización: 30 de junio de 2026</div>
-    </div>
-    <div class="pm-body">
-      <p>Esta política describe cómo la aplicación <strong>Gas+</strong> (en adelante “la aplicación”)
-         recolecta, usa, almacena y protege la información de sus usuarios y de la estación de
-         combustible donde opera.</p>
-
-      <div class="pm-box"><strong>Resumen.</strong> Gas+ es una aplicación operativa B2B para personal
-        autorizado de estaciones de combustible. No recolecta datos personales del público general ni
-        los comparte con terceros. Todo el procesamiento ocurre en el servidor on-premise de la propia
-        estación.</div>
-
-      <h3>1. Información que recolectamos</h3>
-      <h4>Identificadores del operador</h4>
-      <ul>
-        <li><strong>Nombre y PIN</strong> del expendedor o del empleado avanzado (asignados por el administrador de la estación).</li>
-        <li><strong>ID de empleado</strong> dentro del sistema de la estación.</li>
-        <li><strong>Rol</strong> (expendedor, avanzado, administrador, supervisor o auditor).</li>
-      </ul>
-      <h4>Datos operativos generados durante el uso</h4>
-      <ul>
-        <li>Despachos de combustible registrados, facturas emitidas, turnos abiertos y cerrados.</li>
-        <li>Acciones administrativas: cambios de precio, bloqueos de dispensadora, cierres de turno.</li>
-        <li>Fecha, hora y autor de cada acción (para auditoría).</li>
-      </ul>
-      <h4>Datos técnicos del dispositivo</h4>
-      <ul>
-        <li>Versión de la aplicación (para detectar actualizaciones).</li>
-        <li>Registros de error anónimos almacenados localmente en el dispositivo (no se envían a terceros).</li>
-      </ul>
-      <h4>Lo que NO recolectamos</h4>
-      <ul>
-        <li>Ubicación GPS del dispositivo.</li>
-        <li>Lista de contactos, fotos ni archivos personales.</li>
-        <li>Datos del cliente final que carga combustible, más allá de su identificación cuando se factura (requerida por la normativa fiscal aplicable).</li>
-        <li>Identificadores publicitarios: la aplicación no muestra anuncios.</li>
-      </ul>
-
-      <h3>2. Cómo usamos la información</h3>
-      <p>Los datos recolectados se usan exclusivamente para:</p>
-      <ul>
-        <li>Autenticar al personal y autorizar acciones según su rol.</li>
-        <li>Registrar la operación de la estación (despachos, ventas, cierre de turno).</li>
-        <li>Generar los reportes y cuadres internos solicitados por el administrador.</li>
-        <li>Cumplir los requisitos fiscales aplicables: emisión de comprobantes con numeración correlativa.</li>
-      </ul>
-
-      <h3>3. Dónde se almacenan los datos</h3>
-      <p>Todos los datos se almacenan en el <strong>servidor on-premise de la propia estación</strong>
-         (instalación física en el local del cliente). La aplicación se conecta a ese servidor mediante
-         un túnel cifrado (TLS 1.2+ sobre Cloudflare Tunnel).</p>
-      <p><strong>No usamos servicios de terceros</strong> para procesar, almacenar ni analizar los datos
-         operativos del cliente.</p>
-
-      <h3>4. Compartición de datos</h3>
-      <p>No compartimos, vendemos ni transferimos datos a terceros, salvo cuando es legalmente obligatorio:</p>
-      <ul>
-        <li>Las facturas pueden ser declaradas ante la autoridad fiscal correspondiente (responsabilidad del contribuyente, no de la aplicación).</li>
-        <li>Ante una orden judicial de autoridad competente.</li>
-      </ul>
-
-      <h3>5. Seguridad</h3>
-      <ul>
-        <li>Las credenciales del operador (PIN) se almacenan como hash <code>pbkdf2:sha256</code> en la base de datos del servidor.</li>
-        <li>La comunicación entre la app y el servidor usa <strong>HTTPS/TLS</strong> a través de un túnel Cloudflare con autenticación de origen.</li>
-        <li>El acceso al panel administrativo requiere credenciales separadas con rol explícito.</li>
-      </ul>
-
-      <h3>6. Retención de datos</h3>
-      <p>Los datos operativos se retienen por <strong>7 años</strong>, en cumplimiento de las regulaciones
-         fiscales de Honduras. Pasado ese plazo, el administrador de la estación puede solicitar su eliminación.</p>
-      <p>Los registros técnicos del dispositivo se conservan localmente y se eliminan automáticamente al
-         desinstalar la aplicación o al usar la función “Borrar caché” desde Configuración.</p>
-
-      <h3>7. Derechos del operador</h3>
-      <p>El personal autorizado tiene derecho a:</p>
-      <ul>
-        <li>Solicitar al administrador de la estación el acceso a los datos personales que la aplicación tiene sobre él.</li>
-        <li>Solicitar la corrección de datos inexactos.</li>
-        <li>Solicitar la eliminación de su cuenta cuando deje de pertenecer al personal de la estación.</li>
-      </ul>
-
-      <h3>8. Datos de menores</h3>
-      <p>La aplicación está destinada exclusivamente a personal autorizado mayor de edad. No recolectamos
-         intencionalmente datos de menores de 18 años.</p>
-
-      <h3>9. Cambios en esta política</h3>
-      <p>Podemos actualizar esta política en cualquier momento. La fecha de “última actualización” al
-         inicio de este documento refleja la versión vigente. Los cambios sustanciales se notifican a los
-         administradores de las estaciones.</p>
-
-      <h3>10. Contacto</h3>
-      <p>Para consultas sobre privacidad o para ejercer alguno de los derechos descritos arriba, escribinos a
-         <a href="mailto:contacto@gas.hn">contacto@gas.hn</a>.</p>
-    </div>
-    <div class="pm-foot">
-      <a href="privacidad.html" target="_blank" rel="noopener">Abrir en una página aparte ↗</a>
-      <button class="lm-btn" onclick="closePriv()">Entendido</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
