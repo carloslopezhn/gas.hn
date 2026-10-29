@@ -147,11 +147,14 @@
   .phones{display:flex;justify-content:center;align-items:flex-end;gap:16px;flex-wrap:nowrap;max-width:100%}
   .phone{flex:0 0 auto;width:200px;border-radius:28px;padding:7px;background:#060f0b;
          border:1px solid #223a30;box-shadow:0 34px 80px -42px rgba(0,0,0,.9)}
-  .phone img{display:block;width:100%;border-radius:21px}
+  .phone img{display:block;width:100%;height:auto;border-radius:21px}
   .phone--back{margin-bottom:28px;opacity:.96}
   .phone--front{position:relative;z-index:2}
-  @media (max-width:980px){.phone{width:170px}.phone--back{margin-bottom:22px}}
-  @media (max-width:560px){.phones{gap:10px}.phone{width:40vw;max-width:180px}.phone--back{margin-bottom:14px}}
+  @media (max-width:980px){.phone{width:168px}.phone--back{margin-bottom:22px}}
+  @media (max-width:560px){
+    .phone--back{display:none}
+    .phone--front{width:min(64vw,240px);margin-bottom:0}
+  }
   .store{display:inline-flex;align-items:center;gap:11px;background:#fff;color:#0e1512;
          border-radius:11px;padding:11px 18px;font-family:var(--mono);font-weight:600;font-size:14px;border:1px solid #fff}
   .store:hover{transform:translateY(-2px)}
