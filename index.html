@@ -144,17 +144,17 @@
   .app-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
   @media (max-width:900px){.app-grid{grid-template-columns:1fr;gap:40px}}
   #app{overflow:hidden}
-  .phones{display:flex;justify-content:center;align-items:flex-end;gap:16px;flex-wrap:nowrap;max-width:100%}
-  .phone{flex:0 0 auto;width:200px;border-radius:28px;padding:7px;background:#060f0b;
-         border:1px solid #223a30;box-shadow:0 34px 80px -42px rgba(0,0,0,.9)}
+  .pcar{display:flex;flex-direction:column;align-items:center;gap:20px;max-width:100%}
+  .pcar-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+              -webkit-overflow-scrolling:touch;width:min(256px,74vw)}
+  .pcar-track::-webkit-scrollbar{display:none}
+  .pshot{flex:0 0 100%;scroll-snap-align:center;display:flex;justify-content:center;min-width:0}
+  .phone{width:100%;border-radius:28px;padding:7px;background:#060f0b;border:1px solid #223a30;
+         box-shadow:0 34px 80px -42px rgba(0,0,0,.9)}
   .phone img{display:block;width:100%;height:auto;border-radius:21px}
-  .phone--back{margin-bottom:28px;opacity:.96}
-  .phone--front{position:relative;z-index:2}
-  @media (max-width:980px){.phone{width:168px}.phone--back{margin-bottom:22px}}
-  @media (max-width:560px){
-    .phone--back{display:none}
-    .phone--front{width:min(64vw,240px);margin-bottom:0}
-  }
+  .pcar-dots{display:flex;gap:8px}
+  .pcar-dots button{width:8px;height:8px;border-radius:50%;border:0;background:#2f4038;cursor:pointer;padding:0;transition:background .2s}
+  .pcar-dots button.on{background:var(--green)}
   .store{display:inline-flex;align-items:center;gap:11px;background:#fff;color:#0e1512;
          border-radius:11px;padding:11px 18px;font-family:var(--mono);font-weight:600;font-size:14px;border:1px solid #fff}
   .store:hover{transform:translateY(-2px)}
@@ -186,16 +186,21 @@
   .st-row .amt small{display:block;font-size:10px;color:#9aa8a0;font-weight:500}
 
   /* ---- módulos (compacto) ---- */
-  .grid-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+  .mods-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+  .mods-label .mll{font-size:10px;color:#b06d00;border:1px solid color-mix(in srgb,var(--amber) 45%,var(--paper-line));border-radius:999px;padding:2px 9px;letter-spacing:.08em}
+  .grid-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media (max-width:860px){.grid-mods{grid-template-columns:1fr}}
   @media (max-width:860px) and (min-width:561px){.grid-mods{grid-template-columns:1fr 1fr}}
-  .mod{background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:22px;transition:border-color .2s,transform .2s}
-  .mod:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--card-line));transform:translateY(-3px)}
-  .mod .mcat{font-family:var(--mono);font-size:11px;color:var(--accent-txt);letter-spacing:.14em;text-transform:uppercase}
-  .mod h3{font-size:17px;color:var(--fg);margin:10px 0 8px}
-  .mod p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
-  .mods-more{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .mods-more .lbl{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .mod{position:relative;background:var(--card);border:1px solid var(--card-line);border-radius:14px;padding:22px;transition:border-color .2s,transform .2s,box-shadow .2s}
+  .mod:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--card-line));transform:translateY(-3px);box-shadow:0 18px 44px -32px rgba(3,72,52,.55)}
+  .mod .micon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;color:var(--accent-txt);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 28%,var(--card-line))}
+  .mod .micon svg{width:22px;height:22px}
+  .mod h3{font-size:16.5px;color:var(--fg);margin:0 0 7px}
+  .mod p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
+  .mod--pro{border-color:color-mix(in srgb,var(--amber) 40%,var(--card-line));background:color-mix(in srgb,var(--amber) 6%,var(--card))}
+  .mod--pro:hover{border-color:color-mix(in srgb,var(--amber) 72%,var(--card-line));box-shadow:0 18px 44px -32px rgba(176,109,0,.4)}
+  .mod--pro .micon{color:#b06d00;background:color-mix(in srgb,var(--amber) 16%,transparent);border-color:color-mix(in srgb,var(--amber) 42%,var(--card-line))}
+  .mod .badge{position:absolute;top:13px;right:13px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#b06d00;background:color-mix(in srgb,var(--amber) 16%,transparent);border:1px solid color-mix(in srgb,var(--amber) 40%,var(--card-line));border-radius:999px;padding:3px 8px}
 
   /* ---- hardware (compacto) ---- */
   .hw{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
@@ -274,7 +279,6 @@
       <p class="hero-sub">Facturación CAI/SAR, control de bombas en vivo, cuadre de turno e inventario — corriendo en tu estación, con app móvil y panel para verlo todo desde donde estés.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#contacto">Solicitar demostración <span aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost" href="#app">Ver la app</a>
       </div>
       <div class="platforms">
         <span class="pl-label">En</span>
@@ -314,17 +318,18 @@
         <span class="chip">tanques en vivo</span>
         <span class="chip">funciona con tu hardware actual</span>
       </div>
-      <div style="margin-top:28px">
+    </div>
+    <div class="reveal">
+      <div class="pcar">
+        <div class="pcar-track" id="appTrack" tabindex="0" aria-label="Capturas de la app">
+          <div class="pshot"><div class="phone"><img src="/shots/app-pista.webp?v=2" width="900" height="1864" alt="Gas+ app · control de pista en vivo, estado de cada bomba"></div></div>
+          <div class="pshot"><div class="phone"><img src="/shots/app-tanques.webp?v=2" width="900" height="1864" alt="Gas+ app · niveles de tanques en vivo con ATG"></div></div>
+        </div>
+        <div class="pcar-dots" id="appDots"></div>
         <a class="store" href="https://play.google.com/store/apps/details?id=hn.gas.aplicacion" target="_blank" rel="noopener" aria-label="Descargar Gas+ en Google Play">
           <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#34a853" d="M3.6 20.5l9-9-2.4-2.4L3 16.4c-.1.6 0 1.2.6 1.6z"/><path fill="#ea4335" d="M15.9 11.5l-3.3-1.9L4.2 3.6c-.5-.3-1-.2-1.2.1l9.6 9.6z"/><path fill="#fbbc04" d="M20.3 11.1l-3.1-1.7-2.3 2.1 2.3 2.3 3.1-1.7c.6-.4.6-1.2 0-1.6z"/><path fill="#4285f4" d="M3 4.2v15.6c0 .3.1.5.3.7l9.3-9.3z"/></svg>
           <span><small>Disponible en</small><b>Google Play</b></span>
         </a>
-      </div>
-    </div>
-    <div class="reveal">
-      <div class="phones">
-        <div class="phone phone--back"><img src="/shots/app-tanques.webp?v=2" width="900" height="1864" alt="Gas+ app · niveles de tanques en vivo con ATG"></div>
-        <div class="phone phone--front"><img src="/shots/app-pista.webp?v=2" width="900" height="1864" alt="Gas+ app · control de pista en vivo, estado de cada bomba"></div>
       </div>
     </div>
   </div>
@@ -370,19 +375,20 @@
       <h2 class="h2">Encendés solo lo que tu estación usa.</h2>
       <p class="lead">Un mismo núcleo y una sola base de datos: se captura una vez y aparece en todos lados. La operación aterriza sola en la contabilidad.</p>
     </div>
+    <div class="mods-label reveal">Incluidos</div>
     <div class="grid-mods reveal">
-      <div class="mod"><div class="mcat">pista</div><h3>Control en vivo de bombas</h3><p>Estado, autorización, preset, bloqueo y desbloqueo en tiempo real. Multi-producto, sin límite de bombas.</p></div>
-      <div class="mod"><div class="mcat">facturación</div><h3>CAI / SAR Honduras</h3><p>Correlativo SAR vigente, control de rango, ISV gravado y exento, ticket 80 mm o PDF.</p></div>
-      <div class="mod"><div class="mcat">turnos</div><h3>Cuadre de turno</h3><p>Apertura y cierre por empleado o por islas, cuadre automático contra el totalizador y atribución por RFID.</p></div>
-      <div class="mod"><div class="mcat">tanques</div><h3>Tanques y mermas</h3><p>Niveles en vivo con ATG, descargas, reconciliación contra ventas y merma real por período.</p></div>
-      <div class="mod"><div class="mcat">contabilidad</div><h3>Contabilidad integrada</h3><p>Partida doble automática, cuentas por cobrar y pagar, libro de ventas y declaración de ISV.</p></div>
-      <div class="mod"><div class="mcat">pipas</div><h3>Venta en pipas</h3><p>Despacho y factura desde cisternas, trasiegos entre pipas y factura externa — cada pipa con su cuadre.</p></div>
+      <div class="mod"><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="10" height="18" rx="1.5"/><path d="M3 10h10"/><path d="M13 7h4l2 2v7a2 2 0 0 0 4 0V11"/></svg></span><h3>Control de pista</h3><p>Estado, autorización, preset y bloqueo de bombas en tiempo real, sin límite de dispensadoras.</p></div>
+      <div class="mod"><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h14v20l-3-2-2 2-2-2-2 2-3-2z"/><path d="M8 7h8M8 11h8M8 15h6"/></svg></span><h3>Facturación CAI/SAR</h3><p>Correlativo SAR vigente, ISV gravado y exento, ticket térmico 80 mm o PDF.</p></div>
+      <div class="mod"><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M8.5 13l2 2 4-4"/></svg></span><h3>Cuadre de turno</h3><p>Cierre por empleado o por islas, cuadre automático contra el totalizador.</p></div>
+      <div class="mod"><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c3.5 4 6 7.2 6 10.5a6 6 0 0 1-12 0c0-3.3 2.5-6.5 6-10.5z"/></svg></span><h3>Tanques y mermas</h3><p>Niveles ATG en vivo, descargas y merma real por período.</p></div>
+      <div class="mod"><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 7h12M4 21h16"/><path d="M6 7l-2.5 5a3 3 0 0 0 5 0z"/><path d="M18 7l-2.5 5a3 3 0 0 0 5 0z"/></svg></span><h3>Contabilidad integrada</h3><p>Partida doble automática, CxC y CxP, libro de ventas y declaración de ISV.</p></div>
+      <div class="mod"><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><rect x="7" y="12" width="3" height="5"/><rect x="12" y="8" width="3" height="9"/><rect x="17" y="5" width="3" height="12"/></svg></span><h3>Reportes y auditoría</h3><p>Ventas por empleado, estadígrafo y bitácora inmutable de cada acción.</p></div>
     </div>
-    <div class="mods-more reveal">
-      <span class="lbl">y más —</span>
-      <span class="chip">Tienda e inventario</span><span class="chip">Planilla y personal</span>
-      <span class="chip">Promociones</span><span class="chip">Lealtad</span>
-      <span class="chip">Créditos y clientes</span><span class="chip">Mantenimiento</span><span class="chip">Auditoría / bitácora</span>
+    <div class="mods-label reveal" style="margin-top:36px">Módulos adicionales <span class="mll">con licencia</span></div>
+    <div class="grid-mods reveal">
+      <div class="mod mod--pro"><span class="badge">licencia</span><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5"/><path d="M18 20a5 5 0 0 0-3-4.6"/></svg></span><h3>Planilla y personal</h3><p>Nómina quincenal, anticipos de salario y deducciones, integrados al cuadre.</p></div>
+      <div class="mod mod--pro"><span class="badge">licencia</span><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2z"/><path d="M13 10h4l3 3v3h-7z"/><circle cx="6.5" cy="18.5" r="1.6"/><circle cx="17" cy="18.5" r="1.6"/></svg></span><h3>Pipas y cisternas</h3><p>Venta y factura desde camiones: carga desde la isla, trasiegos y factura externa.</p></div>
+      <div class="mod mod--pro"><span class="badge">licencia</span><span class="micon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1.3-5h13.4L20 9"/><path d="M4 9a2.4 2.4 0 0 0 4.7 0 2.4 2.4 0 0 0 4.6 0 2.4 2.4 0 0 0 4.7 0"/><path d="M5 10v10h14V10"/><path d="M9.5 20v-5h5v5"/></svg></span><h3>Tienda PRO</h3><p>Inventario, código de barras, compras a proveedor, promociones y lealtad.</p></div>
     </div>
   </div>
 </section>
@@ -428,7 +434,6 @@
       <p class="lead">Coordinamos una demostración con datos reales y vemos cómo integrar Gas+ a tu operación.</p>
       <div class="cta-actions">
         <a class="btn btn-primary" href="mailto:hola@gas.hn">hola@gas.hn</a>
-        <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=hn.gas.aplicacion" target="_blank" rel="noopener">Descargar la app</a>
       </div>
     </div>
   </div>
@@ -479,6 +484,21 @@
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   function openPriv(){window.open('privacidad.html','_blank');}
+  (function(){
+    var track=document.getElementById('appTrack'); if(!track)return;
+    var slides=[].slice.call(track.children), dots=document.getElementById('appDots');
+    slides.forEach(function(_,i){var d=document.createElement('button');
+      d.setAttribute('aria-label','Captura '+(i+1));
+      d.addEventListener('click',function(){stop();go(i)});dots.appendChild(d);});
+    function cur(){return Math.round(track.scrollLeft/Math.max(1,track.clientWidth));}
+    function go(i){i=(i+slides.length)%slides.length;track.scrollTo({left:i*track.clientWidth,behavior:'smooth'});}
+    function paint(){var c=cur();[].forEach.call(dots.children,function(d,i){d.classList.toggle('on',i===c)});}
+    track.addEventListener('scroll',function(){requestAnimationFrame(paint)},{passive:true});
+    var timer=setInterval(function(){if(document.visibilityState==='visible')go(cur()+1);},5000);
+    function stop(){if(timer){clearInterval(timer);timer=null;}}
+    track.addEventListener('pointerdown',stop,{passive:true});
+    paint();
+  })();
 </script>
 </body>
 </html>
