@@ -258,10 +258,6 @@
       <a href="#modulos">Módulos</a>
       <a href="#compat">Compatibilidad</a>
     </div>
-    <div class="nav-right">
-      <button class="btn btn-ghost" onclick="openLogin()">Iniciar sesión</button>
-      <a class="btn btn-primary" href="#contacto">Demostración</a>
-    </div>
   </div>
 </nav>
 
@@ -475,28 +471,10 @@
   </div>
 </footer>
 
-<!-- login modal -->
-<div id="loginModal" class="lm-ov" onclick="if(event.target===this)closeLogin()" style="position:fixed;inset:0;background:rgba(4,12,8,.6);display:none;align-items:center;justify-content:center;z-index:100;padding:16px">
-  <div style="background:#fff;border:1px solid var(--paper-line);border-radius:16px;padding:32px 28px;width:360px;max-width:100%;position:relative">
-    <button onclick="closeLogin()" aria-label="Cerrar" style="position:absolute;top:10px;right:14px;background:none;border:0;color:#9aa8a0;font-size:26px;cursor:pointer">&times;</button>
-    <div class="brand" style="font-size:28px">gas<b>+</b></div>
-    <div style="color:var(--muted);font-size:13px;margin:4px 0 20px">Portal de clientes · ingresá a tu estación</div>
-    <form action="https://panel.gas.hn/login" method="post">
-      <input type="email" name="email" placeholder="Correo" autocomplete="username" required style="width:100%;padding:12px 14px;margin-bottom:12px;border-radius:9px;border:1px solid var(--paper-line);font-size:15px">
-      <input type="password" name="pass" placeholder="Contraseña" autocomplete="current-password" required style="width:100%;padding:12px 14px;margin-bottom:12px;border-radius:9px;border:1px solid var(--paper-line);font-size:15px">
-      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Ingresar</button>
-    </form>
-    <div style="color:var(--muted);font-size:12px;margin-top:16px;text-align:center">¿Cliente nuevo? Escribinos a <a href="mailto:hola@gas.hn" style="color:var(--green-ink)">hola@gas.hn</a></div>
-  </div>
-</div>
-
 <script>
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  function openLogin(){document.getElementById('loginModal').style.display='flex';}
-  function closeLogin(){document.getElementById('loginModal').style.display='none';}
   function openPriv(){window.open('privacidad.html','_blank');}
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLogin();});
 </script>
 </body>
 </html>
