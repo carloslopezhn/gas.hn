@@ -466,7 +466,7 @@
     </div>
     <p class="seo" style="max-width:none;padding-bottom:24px">Gas+ es un software para gasolineras y estaciones de servicio en Honduras y Centroamérica: facturación electrónica CAI/SAR, control volumétrico de combustible, cuadre de turno por empleado, control de inventario, punto de venta de pista y monitoreo de tanques (ATG). Compatible con surtidores Gilbarco, Wayne, Tatsuno y Tokheim; controladores Wayne Fusion DFS, Gilbarco VOX y DOMS; medición de tanques Veeder-Root, EVO y Progauge. Diésel, gasolina superior y regular en Tegucigalpa, San Pedro Sula y todo el país.</p>
     <div class="foot-bottom">
-      <span>© 2026 gas.hn · un producto de <a href="https://utp.hn" target="_blank" rel="noopener" style="display:inline;padding:0;color:#cdd8d1">Grupo UTP</a></span>
+      <span>© <span class="js-year">2026</span> gas.hn · un producto de <a href="https://utp.hn" target="_blank" rel="noopener" style="display:inline;padding:0;color:#cdd8d1">Grupo UTP</a></span>
       <span><span id="gp-vers"></span>status: <span class="status-ok">operativo</span></span>
       <script>
       (function(){var el=document.getElementById('gp-vers');if(!el||!window.fetch)return;
@@ -500,5 +500,6 @@
     paint();
   })();
 </script>
+<script>document.querySelectorAll(".js-year").forEach(function(e){try{e.textContent=new Date().getFullYear();}catch(_){}} );</script>
 </body>
 </html>
